@@ -1,0 +1,5 @@
+inicializar modulo: go mod init #nombre
+descargar fyne lb: go get fyne.io/fyne/v2
+decargar fyne app lb: go get fyne.io/fyne/v2/app@v2.3.5
+importar github: go get github.com/antlr4-go/antlr/v4
+generar gramatica visitor: ./GoGrammar.sh
