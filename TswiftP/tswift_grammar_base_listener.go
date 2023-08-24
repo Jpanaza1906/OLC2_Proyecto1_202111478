@@ -20,38 +20,159 @@ func (s *BaseTswift_GrammarListener) EnterEveryRule(ctx antlr.ParserRuleContext)
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseTswift_GrammarListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
-// EnterS is called when production s is entered.
-func (s *BaseTswift_GrammarListener) EnterS(ctx *SContext) {}
+// EnterSLSentencias is called when production SLSentencias is entered.
+func (s *BaseTswift_GrammarListener) EnterSLSentencias(ctx *SLSentenciasContext) {}
 
-// ExitS is called when production s is exited.
-func (s *BaseTswift_GrammarListener) ExitS(ctx *SContext) {}
+// ExitSLSentencias is called when production SLSentencias is exited.
+func (s *BaseTswift_GrammarListener) ExitSLSentencias(ctx *SLSentenciasContext) {}
 
-// EnterA0 is called when production A0 is entered.
-func (s *BaseTswift_GrammarListener) EnterA0(ctx *A0Context) {}
+// EnterL_Sentencia is called when production L_Sentencia is entered.
+func (s *BaseTswift_GrammarListener) EnterL_Sentencia(ctx *L_SentenciaContext) {}
 
-// ExitA0 is called when production A0 is exited.
-func (s *BaseTswift_GrammarListener) ExitA0(ctx *A0Context) {}
+// ExitL_Sentencia is called when production L_Sentencia is exited.
+func (s *BaseTswift_GrammarListener) ExitL_Sentencia(ctx *L_SentenciaContext) {}
 
-// EnterAENTERO is called when production AENTERO is entered.
-func (s *BaseTswift_GrammarListener) EnterAENTERO(ctx *AENTEROContext) {}
+// EnterS_Consola is called when production S_Consola is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Consola(ctx *S_ConsolaContext) {}
 
-// ExitAENTERO is called when production AENTERO is exited.
-func (s *BaseTswift_GrammarListener) ExitAENTERO(ctx *AENTEROContext) {}
+// ExitS_Consola is called when production S_Consola is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Consola(ctx *S_ConsolaContext) {}
 
-// EnterADECIMAL is called when production ADECIMAL is entered.
-func (s *BaseTswift_GrammarListener) EnterADECIMAL(ctx *ADECIMALContext) {}
+// EnterS_Declaracion is called when production S_Declaracion is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Declaracion(ctx *S_DeclaracionContext) {}
 
-// ExitADECIMAL is called when production ADECIMAL is exited.
-func (s *BaseTswift_GrammarListener) ExitADECIMAL(ctx *ADECIMALContext) {}
+// ExitS_Declaracion is called when production S_Declaracion is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Declaracion(ctx *S_DeclaracionContext) {}
 
-// EnterAID is called when production AID is entered.
-func (s *BaseTswift_GrammarListener) EnterAID(ctx *AIDContext) {}
+// EnterDeclaracion_Tipo_Val is called when production Declaracion_Tipo_Val is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) {}
 
-// ExitAID is called when production AID is exited.
-func (s *BaseTswift_GrammarListener) ExitAID(ctx *AIDContext) {}
+// ExitDeclaracion_Tipo_Val is called when production Declaracion_Tipo_Val is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) {}
 
-// EnterAEPSILUM is called when production AEPSILUM is entered.
-func (s *BaseTswift_GrammarListener) EnterAEPSILUM(ctx *AEPSILUMContext) {}
+// EnterDeclaracion_Val is called when production Declaracion_Val is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Val(ctx *Declaracion_ValContext) {}
 
-// ExitAEPSILUM is called when production AEPSILUM is exited.
-func (s *BaseTswift_GrammarListener) ExitAEPSILUM(ctx *AEPSILUMContext) {}
+// ExitDeclaracion_Val is called when production Declaracion_Val is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Val(ctx *Declaracion_ValContext) {}
+
+// EnterDeclaracion_Tipo_noVal is called when production Declaracion_Tipo_noVal is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Tipo_noVal(ctx *Declaracion_Tipo_noValContext) {
+}
+
+// ExitDeclaracion_Tipo_noVal is called when production Declaracion_Tipo_noVal is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Tipo_noVal(ctx *Declaracion_Tipo_noValContext) {}
+
+// EnterTipo_Int is called when production Tipo_Int is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}
+
+// ExitTipo_Int is called when production Tipo_Int is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Int(ctx *Tipo_IntContext) {}
+
+// EnterTipo_Float is called when production Tipo_Float is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Float(ctx *Tipo_FloatContext) {}
+
+// ExitTipo_Float is called when production Tipo_Float is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Float(ctx *Tipo_FloatContext) {}
+
+// EnterTipo_String is called when production Tipo_String is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_String(ctx *Tipo_StringContext) {}
+
+// ExitTipo_String is called when production Tipo_String is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_String(ctx *Tipo_StringContext) {}
+
+// EnterTipo_Bool is called when production Tipo_Bool is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Bool(ctx *Tipo_BoolContext) {}
+
+// ExitTipo_Bool is called when production Tipo_Bool is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Bool(ctx *Tipo_BoolContext) {}
+
+// EnterTipo_Character is called when production Tipo_Character is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Character(ctx *Tipo_CharacterContext) {}
+
+// ExitTipo_Character is called when production Tipo_Character is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Character(ctx *Tipo_CharacterContext) {}
+
+// EnterExpr_Rel is called when production Expr_Rel is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Rel(ctx *Expr_RelContext) {}
+
+// ExitExpr_Rel is called when production Expr_Rel is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Rel(ctx *Expr_RelContext) {}
+
+// EnterExpr_Decimal is called when production Expr_Decimal is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Decimal(ctx *Expr_DecimalContext) {}
+
+// ExitExpr_Decimal is called when production Expr_Decimal is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Decimal(ctx *Expr_DecimalContext) {}
+
+// EnterExpr_Caracter is called when production Expr_Caracter is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Caracter(ctx *Expr_CaracterContext) {}
+
+// ExitExpr_Caracter is called when production Expr_Caracter is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Caracter(ctx *Expr_CaracterContext) {}
+
+// EnterExpr_SumRes is called when production Expr_SumRes is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_SumRes(ctx *Expr_SumResContext) {}
+
+// ExitExpr_SumRes is called when production Expr_SumRes is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_SumRes(ctx *Expr_SumResContext) {}
+
+// EnterExpr_Neg is called when production Expr_Neg is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Neg(ctx *Expr_NegContext) {}
+
+// ExitExpr_Neg is called when production Expr_Neg is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Neg(ctx *Expr_NegContext) {}
+
+// EnterExpr_MulDiv is called when production Expr_MulDiv is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_MulDiv(ctx *Expr_MulDivContext) {}
+
+// ExitExpr_MulDiv is called when production Expr_MulDiv is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_MulDiv(ctx *Expr_MulDivContext) {}
+
+// EnterExpr_Nil is called when production Expr_Nil is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Nil(ctx *Expr_NilContext) {}
+
+// ExitExpr_Nil is called when production Expr_Nil is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Nil(ctx *Expr_NilContext) {}
+
+// EnterExpr_Cadena is called when production Expr_Cadena is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Cadena(ctx *Expr_CadenaContext) {}
+
+// ExitExpr_Cadena is called when production Expr_Cadena is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Cadena(ctx *Expr_CadenaContext) {}
+
+// EnterExpr_Id is called when production Expr_Id is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Id(ctx *Expr_IdContext) {}
+
+// ExitExpr_Id is called when production Expr_Id is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Id(ctx *Expr_IdContext) {}
+
+// EnterExpr_Mod is called when production Expr_Mod is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Mod(ctx *Expr_ModContext) {}
+
+// ExitExpr_Mod is called when production Expr_Mod is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Mod(ctx *Expr_ModContext) {}
+
+// EnterExpr_Par is called when production Expr_Par is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Par(ctx *Expr_ParContext) {}
+
+// ExitExpr_Par is called when production Expr_Par is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Par(ctx *Expr_ParContext) {}
+
+// EnterExpr_Logica is called when production Expr_Logica is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Logica(ctx *Expr_LogicaContext) {}
+
+// ExitExpr_Logica is called when production Expr_Logica is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Logica(ctx *Expr_LogicaContext) {}
+
+// EnterExpr_Booleano is called when production Expr_Booleano is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Booleano(ctx *Expr_BooleanoContext) {}
+
+// ExitExpr_Booleano is called when production Expr_Booleano is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Booleano(ctx *Expr_BooleanoContext) {}
+
+// EnterExpr_Entero is called when production Expr_Entero is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Entero(ctx *Expr_EnteroContext) {}
+
+// ExitExpr_Entero is called when production Expr_Entero is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Entero(ctx *Expr_EnteroContext) {}

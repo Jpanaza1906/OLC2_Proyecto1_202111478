@@ -1,0 +1,15 @@
+/*
+COMPILADORES 2
+
+Estos son comentarios multilinea
+
+Si no se lee esto estamos bien
+*/
+
+//Pruebas de declaracion
+
+//var num:Int = 10
+//var letras = "abc"
+//var cont:Float?
+
+print(10, 10, 20)

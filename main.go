@@ -1,10 +1,10 @@
 package main
 
 import (
+	interprete "OLC2_Proyecto1_202111478/Interprete"
 	"OLC2_Proyecto1_202111478/TswiftP"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"fyne.io/fyne/v2"
@@ -15,8 +15,11 @@ import (
 	"github.com/antlr4-go/antlr/v4"
 )
 
-//VARIABLE GLOBAL DEL PATH
+//VARIABLE GLOBAL DEL PATH-----------------------------------------------------------------------------------------------------------------------------------------------------
 var rutaCompleta string
+var Consola = widget.NewMultiLineEntry()
+var Simbolos = widget.NewMultiLineEntry()
+var Errores = widget.NewMultiLineEntry()
 
 //FUNCION PARA CREAR LAS TABS DE CONSOLA, SIMBOLOS, ERRORES
 func createTabContent(entry fyne.Widget) *fyne.Container {
@@ -30,7 +33,7 @@ func createTabContent(entry fyne.Widget) *fyne.Container {
 	return tabContent
 }
 
-//FUNCION PARA GUARDAR UNICAMENTE CON EL PATH
+//FUNCION PARA GUARDAR UNICAMENTE CON EL PATH-----------------------------------------------------------------------------------------------------------------------------------
 func saveToFile(filePath, content string) error {
 	file, err := os.Create(filePath)
 	if err != nil {
@@ -46,7 +49,27 @@ func saveToFile(filePath, content string) error {
 	return nil
 }
 
-//FUNCION PARA MOSTRAR LA VENTANA
+//EJECUTAR VISITOR INTERPRETE-------------------------------------------------------------------------------------------------------------------------------------------------
+func ejecutarInterprete(entrada string) {
+	is := antlr.NewInputStream(entrada)
+	lexer := TswiftP.NewTswift_GrammarLexer(is)
+	tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+	parser := TswiftP.NewTswift_GrammarParser(tokens)
+
+	visitor := NewVisitorInterprete()
+	arbol := parser.S()
+	raiz := visitor.Visit(arbol).(interprete.AbstractExpression)
+
+	//Hacemos contexto
+	ctx := interprete.NewContexto()
+	raiz.Interpretar(ctx)
+
+	//igualar la caja de texto a Consola
+	Consola.SetText(string(ctx.Consola))
+
+}
+
+//FUNCION PARA MOSTRAR LA VENTANA----------------------------------------------------------------------------------------------------------------------------------------------
 func VentanaM() {
 	//setup de la ventana
 	myApp := app.New()
@@ -62,21 +85,28 @@ func VentanaM() {
 	Entrada.Move(fyne.NewPos(30, 30))
 
 	//Tabs inferiores
-	Consola := widget.NewMultiLineEntry()
+	Consola = widget.NewMultiLineEntry()
 	Consola.Wrapping = fyne.TextWrapBreak
-	Consola.Disable()
+	Consola.TextStyle = fyne.TextStyle{}
+	//Consola.Disable()
 
-	Simbolos := widget.NewMultiLineEntry()
+	Simbolos = widget.NewMultiLineEntry()
 	Simbolos.Wrapping = fyne.TextWrapBreak
-	Simbolos.Disable()
+	//Simbolos.Disable()
 
-	Errores := widget.NewMultiLineEntry()
+	Errores = widget.NewMultiLineEntry()
 	Errores.Wrapping = fyne.TextWrapBreak
-	Errores.Disable()
+	//Errores.Disable()
 
 	//botones
 	//BOTON EJECUTAR
-	btn1 := widget.NewButton("Ejecutar", func() {})
+	btn1 := widget.NewButton("Ejecutar", func() {
+		if Entrada.Text != "" {
+			ejecutarInterprete(Entrada.Text)
+		} else {
+			dialog.ShowInformation("Error", "La entrada está vacía, no puede interpretar nada", myWindow)
+		}
+	})
 	btn1.Resize(fyne.NewSize(200, 50))
 	btn1.Move(fyne.NewPos(1550, 230))
 	//BOTON REPORTES
@@ -89,12 +119,20 @@ func VentanaM() {
 
 	//Menu de despliegue de Archivo
 	ArchivoItem1 := fyne.NewMenuItem("Abrir", func() {
+
 		fileDialog := dialog.NewFileOpen(func(uc fyne.URIReadCloser, err error) {
-			data, _ := ioutil.ReadAll(uc)
-			result := fyne.NewStaticResource("entrada", data)
-			rutaCompleta = uc.URI().Path()
-			ruta.SetText("RUTA: " + rutaCompleta)
-			Entrada.SetText(string(result.StaticContent))
+			if err == nil {
+				fmt.Print("")
+				//No se hace nada
+			}
+			if uc != nil {
+				data, _ := ioutil.ReadAll(uc)
+				result := fyne.NewStaticResource("entrada", data)
+				rutaCompleta = uc.URI().Path()
+				ruta.SetText("RUTA: " + rutaCompleta)
+				Entrada.SetText(string(result.StaticContent))
+				uc.Close()
+			}
 		}, myWindow)
 		fileDialog.Show()
 	})
@@ -117,14 +155,20 @@ func VentanaM() {
 	})
 	ArchivoItem3 := fyne.NewMenuItem("Guardar Como", func() {
 		fileDialog := dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
-			data := []byte(Entrada.Text)
-			uc.Write(data)
-			rutaCompleta = uc.URI().Path()
-			mensaje := "Archivo guardado exitosamente en:"
-			mensaje += rutaCompleta
-			dialog.ShowInformation("Información", mensaje, myWindow)
-			ruta.SetText("RUTA: " + rutaCompleta)
-			uc.Close()
+			if err == nil {
+				fmt.Print("")
+				//No se hace nada
+			}
+			if uc != nil {
+				data := []byte(Entrada.Text)
+				uc.Write(data)
+				rutaCompleta = uc.URI().Path()
+				mensaje := "Archivo guardado exitosamente en:"
+				mensaje += rutaCompleta
+				dialog.ShowInformation("Información", mensaje, myWindow)
+				ruta.SetText("RUTA: " + rutaCompleta)
+				uc.Close()
+			}
 		}, myWindow)
 		fileDialog.SetFileName("")
 		fileDialog.Show()
@@ -176,25 +220,7 @@ func VentanaM() {
 	myWindow.ShowAndRun()
 }
 
-//MOSTRAR MAIN
+//MOSTRAR MAIN-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 func main() {
 	VentanaM()
-	fmt.Println("hola mundo")
-	//abrir archivos
-	archivo, err := antlr.NewFileStream("entrada.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	//se ejecuta el lexer
-	lexer := TswiftP.NewTswift_Lexer(archivo)
-	//se ven los tokens
-	tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-	//se ve el parser
-	parser := TswiftP.NewTswift_GrammarParser(tokens)
-	//se visita por medio de visitor
-	visitor := NewTswiftPVisitorImp()
-	//comenzar el arbol
-	arbol := parser.S() // S es la produccion inicial
-
-	fmt.Println(visitor.Visit(arbol))
 }

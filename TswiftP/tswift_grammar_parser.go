@@ -32,25 +32,72 @@ var Tswift_GrammarParserStaticData struct {
 func tswift_grammarParserInit() {
 	staticData := &Tswift_GrammarParserStaticData
 	staticData.LiteralNames = []string{
-		"", "')'", "'('", "'='", "'/'", "'int'", "'Console.out'", "", "", "",
-		"", "'return'",
+		"", "','", "')'", "'('", "'{'", "'}'", "':'", "'?'", "'+='", "'-='",
+		"'='", "'/'", "'%'", "'-'", "'+'", "'*'", "'=='", "'!='", "'>='", "'<='",
+		"'>'", "'<'", "'&&'", "'||'", "'!'", "'print'", "'var'", "'let'", "'true'",
+		"'false'", "'return'", "'if'", "'else'", "'switch'", "'case'", "'break'",
+		"'default'", "'while'", "'for'", "'in'", "'...'", "'guard'", "'continue'",
+		"'nil'", "'Int'", "'Float'", "'Bool'", "'Character'", "'String'",
 	}
 	staticData.SymbolicNames = []string{
-		"", "PARDER", "PARIZQ", "ASIG", "DIV", "INT", "CONSOLE", "ENBLANCO",
-		"ENTERO", "DECIMAL", "ID", "RETURN", "UL_C",
+		"", "", "PARDER", "PARIZQ", "LLAVEIZQ", "LLAVEDER", "DOSPT", "INTERROGACION",
+		"MASIGUAL", "MENOSIGUAL", "IGUAL", "DIV", "MOD", "MENOS", "MAS", "POR",
+		"IGUALIGUAL", "DIFERENTE", "MAYORIGUAL", "MENORIGUAL", "MAYOR", "MENOR",
+		"AND", "OR", "NOT", "PRINT", "VAR", "LET", "TRUE", "FALSE", "RETURN",
+		"IF", "ELSE", "SWITCH", "CASE", "BREAK", "DEFAULT", "WHILE", "FOR",
+		"IN", "RANGO", "GUARD", "CONTINUE", "NIL", "INT", "FLOAT", "BOOL", "CHARACTER",
+		"STRING", "ENBLANCO", "ENTERO", "DECIMAL", "BOOLEANO", "CARACTER", "CADENA",
+		"ID", "UL_C", "ML_C",
 	}
 	staticData.RuleNames = []string{
-		"s", "a",
+		"s", "l_sentencias", "sentencia", "declaracion", "tipo", "e",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 12, 17, 2, 0, 7, 0, 2, 1, 7, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 15, 8, 1, 1, 1, 0, 0, 2, 0, 2, 0, 0, 18,
-		0, 4, 1, 0, 0, 0, 2, 14, 1, 0, 0, 0, 4, 5, 3, 2, 1, 0, 5, 1, 1, 0, 0, 0,
-		6, 7, 5, 2, 0, 0, 7, 8, 3, 2, 1, 0, 8, 9, 5, 1, 0, 0, 9, 15, 1, 0, 0, 0,
-		10, 15, 5, 8, 0, 0, 11, 15, 5, 9, 0, 0, 12, 15, 5, 10, 0, 0, 13, 15, 1,
-		0, 0, 0, 14, 6, 1, 0, 0, 0, 14, 10, 1, 0, 0, 0, 14, 11, 1, 0, 0, 0, 14,
-		12, 1, 0, 0, 0, 14, 13, 1, 0, 0, 0, 15, 3, 1, 0, 0, 0, 1, 14,
+		4, 1, 57, 98, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 1, 0, 1, 0, 1, 1, 5, 1, 16, 8, 1, 10, 1, 12, 1, 19, 9, 1,
+		1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 2, 26, 8, 2, 10, 2, 12, 2, 29, 9, 2, 1,
+		2, 1, 2, 1, 2, 3, 2, 34, 8, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3,
+		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 3, 3, 53, 8,
+		3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 3, 4, 60, 8, 4, 1, 5, 1, 5, 1, 5, 1, 5,
+		1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 76, 8,
+		5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1,
+		5, 1, 5, 1, 5, 1, 5, 5, 5, 93, 8, 5, 10, 5, 12, 5, 96, 9, 5, 1, 5, 0, 1,
+		10, 6, 0, 2, 4, 6, 8, 10, 0, 5, 2, 0, 13, 13, 24, 24, 1, 0, 16, 21, 1,
+		0, 22, 23, 2, 0, 11, 11, 15, 15, 1, 0, 13, 14, 113, 0, 12, 1, 0, 0, 0,
+		2, 17, 1, 0, 0, 0, 4, 33, 1, 0, 0, 0, 6, 52, 1, 0, 0, 0, 8, 59, 1, 0, 0,
+		0, 10, 75, 1, 0, 0, 0, 12, 13, 3, 2, 1, 0, 13, 1, 1, 0, 0, 0, 14, 16, 3,
+		4, 2, 0, 15, 14, 1, 0, 0, 0, 16, 19, 1, 0, 0, 0, 17, 15, 1, 0, 0, 0, 17,
+		18, 1, 0, 0, 0, 18, 3, 1, 0, 0, 0, 19, 17, 1, 0, 0, 0, 20, 21, 5, 25, 0,
+		0, 21, 22, 5, 3, 0, 0, 22, 27, 3, 10, 5, 0, 23, 24, 5, 1, 0, 0, 24, 26,
+		3, 10, 5, 0, 25, 23, 1, 0, 0, 0, 26, 29, 1, 0, 0, 0, 27, 25, 1, 0, 0, 0,
+		27, 28, 1, 0, 0, 0, 28, 30, 1, 0, 0, 0, 29, 27, 1, 0, 0, 0, 30, 31, 5,
+		2, 0, 0, 31, 34, 1, 0, 0, 0, 32, 34, 3, 6, 3, 0, 33, 20, 1, 0, 0, 0, 33,
+		32, 1, 0, 0, 0, 34, 5, 1, 0, 0, 0, 35, 36, 5, 26, 0, 0, 36, 37, 5, 55,
+		0, 0, 37, 38, 5, 6, 0, 0, 38, 39, 3, 8, 4, 0, 39, 40, 5, 10, 0, 0, 40,
+		41, 3, 10, 5, 0, 41, 53, 1, 0, 0, 0, 42, 43, 5, 26, 0, 0, 43, 44, 5, 55,
+		0, 0, 44, 45, 5, 10, 0, 0, 45, 53, 3, 10, 5, 0, 46, 47, 5, 26, 0, 0, 47,
+		48, 5, 55, 0, 0, 48, 49, 5, 6, 0, 0, 49, 50, 3, 8, 4, 0, 50, 51, 5, 7,
+		0, 0, 51, 53, 1, 0, 0, 0, 52, 35, 1, 0, 0, 0, 52, 42, 1, 0, 0, 0, 52, 46,
+		1, 0, 0, 0, 53, 7, 1, 0, 0, 0, 54, 60, 5, 44, 0, 0, 55, 60, 5, 45, 0, 0,
+		56, 60, 5, 48, 0, 0, 57, 60, 5, 46, 0, 0, 58, 60, 5, 47, 0, 0, 59, 54,
+		1, 0, 0, 0, 59, 55, 1, 0, 0, 0, 59, 56, 1, 0, 0, 0, 59, 57, 1, 0, 0, 0,
+		59, 58, 1, 0, 0, 0, 60, 9, 1, 0, 0, 0, 61, 62, 6, 5, -1, 0, 62, 63, 7,
+		0, 0, 0, 63, 76, 3, 10, 5, 12, 64, 76, 5, 52, 0, 0, 65, 76, 5, 43, 0, 0,
+		66, 76, 5, 55, 0, 0, 67, 76, 5, 51, 0, 0, 68, 76, 5, 50, 0, 0, 69, 76,
+		5, 54, 0, 0, 70, 76, 5, 53, 0, 0, 71, 72, 5, 3, 0, 0, 72, 73, 3, 10, 5,
+		0, 73, 74, 5, 2, 0, 0, 74, 76, 1, 0, 0, 0, 75, 61, 1, 0, 0, 0, 75, 64,
+		1, 0, 0, 0, 75, 65, 1, 0, 0, 0, 75, 66, 1, 0, 0, 0, 75, 67, 1, 0, 0, 0,
+		75, 68, 1, 0, 0, 0, 75, 69, 1, 0, 0, 0, 75, 70, 1, 0, 0, 0, 75, 71, 1,
+		0, 0, 0, 76, 94, 1, 0, 0, 0, 77, 78, 10, 14, 0, 0, 78, 79, 7, 1, 0, 0,
+		79, 93, 3, 10, 5, 15, 80, 81, 10, 13, 0, 0, 81, 82, 7, 2, 0, 0, 82, 93,
+		3, 10, 5, 14, 83, 84, 10, 11, 0, 0, 84, 85, 7, 3, 0, 0, 85, 93, 3, 10,
+		5, 12, 86, 87, 10, 10, 0, 0, 87, 88, 7, 4, 0, 0, 88, 93, 3, 10, 5, 11,
+		89, 90, 10, 9, 0, 0, 90, 91, 5, 12, 0, 0, 91, 93, 3, 10, 5, 10, 92, 77,
+		1, 0, 0, 0, 92, 80, 1, 0, 0, 0, 92, 83, 1, 0, 0, 0, 92, 86, 1, 0, 0, 0,
+		92, 89, 1, 0, 0, 0, 93, 96, 1, 0, 0, 0, 94, 92, 1, 0, 0, 0, 94, 95, 1,
+		0, 0, 0, 95, 11, 1, 0, 0, 0, 96, 94, 1, 0, 0, 0, 8, 17, 27, 33, 52, 59,
+		75, 92, 94,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -88,25 +135,74 @@ func NewTswift_GrammarParser(input antlr.TokenStream) *Tswift_GrammarParser {
 
 // Tswift_GrammarParser tokens.
 const (
-	Tswift_GrammarParserEOF      = antlr.TokenEOF
-	Tswift_GrammarParserPARDER   = 1
-	Tswift_GrammarParserPARIZQ   = 2
-	Tswift_GrammarParserASIG     = 3
-	Tswift_GrammarParserDIV      = 4
-	Tswift_GrammarParserINT      = 5
-	Tswift_GrammarParserCONSOLE  = 6
-	Tswift_GrammarParserENBLANCO = 7
-	Tswift_GrammarParserENTERO   = 8
-	Tswift_GrammarParserDECIMAL  = 9
-	Tswift_GrammarParserID       = 10
-	Tswift_GrammarParserRETURN   = 11
-	Tswift_GrammarParserUL_C     = 12
+	Tswift_GrammarParserEOF           = antlr.TokenEOF
+	Tswift_GrammarParserT__0          = 1
+	Tswift_GrammarParserPARDER        = 2
+	Tswift_GrammarParserPARIZQ        = 3
+	Tswift_GrammarParserLLAVEIZQ      = 4
+	Tswift_GrammarParserLLAVEDER      = 5
+	Tswift_GrammarParserDOSPT         = 6
+	Tswift_GrammarParserINTERROGACION = 7
+	Tswift_GrammarParserMASIGUAL      = 8
+	Tswift_GrammarParserMENOSIGUAL    = 9
+	Tswift_GrammarParserIGUAL         = 10
+	Tswift_GrammarParserDIV           = 11
+	Tswift_GrammarParserMOD           = 12
+	Tswift_GrammarParserMENOS         = 13
+	Tswift_GrammarParserMAS           = 14
+	Tswift_GrammarParserPOR           = 15
+	Tswift_GrammarParserIGUALIGUAL    = 16
+	Tswift_GrammarParserDIFERENTE     = 17
+	Tswift_GrammarParserMAYORIGUAL    = 18
+	Tswift_GrammarParserMENORIGUAL    = 19
+	Tswift_GrammarParserMAYOR         = 20
+	Tswift_GrammarParserMENOR         = 21
+	Tswift_GrammarParserAND           = 22
+	Tswift_GrammarParserOR            = 23
+	Tswift_GrammarParserNOT           = 24
+	Tswift_GrammarParserPRINT         = 25
+	Tswift_GrammarParserVAR           = 26
+	Tswift_GrammarParserLET           = 27
+	Tswift_GrammarParserTRUE          = 28
+	Tswift_GrammarParserFALSE         = 29
+	Tswift_GrammarParserRETURN        = 30
+	Tswift_GrammarParserIF            = 31
+	Tswift_GrammarParserELSE          = 32
+	Tswift_GrammarParserSWITCH        = 33
+	Tswift_GrammarParserCASE          = 34
+	Tswift_GrammarParserBREAK         = 35
+	Tswift_GrammarParserDEFAULT       = 36
+	Tswift_GrammarParserWHILE         = 37
+	Tswift_GrammarParserFOR           = 38
+	Tswift_GrammarParserIN            = 39
+	Tswift_GrammarParserRANGO         = 40
+	Tswift_GrammarParserGUARD         = 41
+	Tswift_GrammarParserCONTINUE      = 42
+	Tswift_GrammarParserNIL           = 43
+	Tswift_GrammarParserINT           = 44
+	Tswift_GrammarParserFLOAT         = 45
+	Tswift_GrammarParserBOOL          = 46
+	Tswift_GrammarParserCHARACTER     = 47
+	Tswift_GrammarParserSTRING        = 48
+	Tswift_GrammarParserENBLANCO      = 49
+	Tswift_GrammarParserENTERO        = 50
+	Tswift_GrammarParserDECIMAL       = 51
+	Tswift_GrammarParserBOOLEANO      = 52
+	Tswift_GrammarParserCARACTER      = 53
+	Tswift_GrammarParserCADENA        = 54
+	Tswift_GrammarParserID            = 55
+	Tswift_GrammarParserUL_C          = 56
+	Tswift_GrammarParserML_C          = 57
 )
 
 // Tswift_GrammarParser rules.
 const (
-	Tswift_GrammarParserRULE_s = 0
-	Tswift_GrammarParserRULE_a = 1
+	Tswift_GrammarParserRULE_s            = 0
+	Tswift_GrammarParserRULE_l_sentencias = 1
+	Tswift_GrammarParserRULE_sentencia    = 2
+	Tswift_GrammarParserRULE_declaracion  = 3
+	Tswift_GrammarParserRULE_tipo         = 4
+	Tswift_GrammarParserRULE_e            = 5
 )
 
 // ISContext is an interface to support dynamic dispatch.
@@ -115,10 +211,6 @@ type ISContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
-	// Getter signatures
-	A() IAContext
-
 	// IsSContext differentiates from other interfaces.
 	IsSContext()
 }
@@ -155,20 +247,8 @@ func NewSContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingSt
 
 func (s *SContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *SContext) A() IAContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IAContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IAContext)
+func (s *SContext) CopyAll(ctx *SContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *SContext) GetRuleContext() antlr.RuleContext {
@@ -179,22 +259,56 @@ func (s *SContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) stri
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SContext) EnterRule(listener antlr.ParseTreeListener) {
+type SLSentenciasContext struct {
+	SContext
+}
+
+func NewSLSentenciasContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SLSentenciasContext {
+	var p = new(SLSentenciasContext)
+
+	InitEmptySContext(&p.SContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*SContext))
+
+	return p
+}
+
+func (s *SLSentenciasContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *SLSentenciasContext) L_sentencias() IL_sentenciasContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IL_sentenciasContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IL_sentenciasContext)
+}
+
+func (s *SLSentenciasContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterS(s)
+		listenerT.EnterSLSentencias(s)
 	}
 }
 
-func (s *SContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *SLSentenciasContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitS(s)
+		listenerT.ExitSLSentencias(s)
 	}
 }
 
-func (s *SContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SLSentenciasContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case Tswift_GrammarVisitor:
-		return t.VisitS(s)
+		return t.VisitSLSentencias(s)
 
 	default:
 		return t.VisitChildren(s)
@@ -204,10 +318,11 @@ func (s *SContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 func (p *Tswift_GrammarParser) S() (localctx ISContext) {
 	localctx = NewSContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, Tswift_GrammarParserRULE_s)
+	localctx = NewSLSentenciasContext(p, localctx)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(4)
-		p.A()
+		p.SetState(12)
+		p.L_sentencias()
 	}
 
 errorExit:
@@ -223,258 +338,351 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// IAContext is an interface to support dynamic dispatch.
-type IAContext interface {
+// IL_sentenciasContext is an interface to support dynamic dispatch.
+type IL_sentenciasContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-	// IsAContext differentiates from other interfaces.
-	IsAContext()
+	// IsL_sentenciasContext differentiates from other interfaces.
+	IsL_sentenciasContext()
 }
 
-type AContext struct {
+type L_sentenciasContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyAContext() *AContext {
-	var p = new(AContext)
+func NewEmptyL_sentenciasContext() *L_sentenciasContext {
+	var p = new(L_sentenciasContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = Tswift_GrammarParserRULE_a
+	p.RuleIndex = Tswift_GrammarParserRULE_l_sentencias
 	return p
 }
 
-func InitEmptyAContext(p *AContext) {
+func InitEmptyL_sentenciasContext(p *L_sentenciasContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = Tswift_GrammarParserRULE_a
+	p.RuleIndex = Tswift_GrammarParserRULE_l_sentencias
 }
 
-func (*AContext) IsAContext() {}
+func (*L_sentenciasContext) IsL_sentenciasContext() {}
 
-func NewAContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *AContext {
-	var p = new(AContext)
+func NewL_sentenciasContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *L_sentenciasContext {
+	var p = new(L_sentenciasContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = Tswift_GrammarParserRULE_a
+	p.RuleIndex = Tswift_GrammarParserRULE_l_sentencias
 
 	return p
 }
 
-func (s *AContext) GetParser() antlr.Parser { return s.parser }
+func (s *L_sentenciasContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *AContext) CopyAll(ctx *AContext) {
+func (s *L_sentenciasContext) CopyAll(ctx *L_sentenciasContext) {
 	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
-func (s *AContext) GetRuleContext() antlr.RuleContext {
+func (s *L_sentenciasContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *AContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *L_sentenciasContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-type AEPSILUMContext struct {
-	AContext
+type L_SentenciaContext struct {
+	L_sentenciasContext
 }
 
-func NewAEPSILUMContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AEPSILUMContext {
-	var p = new(AEPSILUMContext)
+func NewL_SentenciaContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *L_SentenciaContext {
+	var p = new(L_SentenciaContext)
 
-	InitEmptyAContext(&p.AContext)
+	InitEmptyL_sentenciasContext(&p.L_sentenciasContext)
 	p.parser = parser
-	p.CopyAll(ctx.(*AContext))
+	p.CopyAll(ctx.(*L_sentenciasContext))
 
 	return p
 }
 
-func (s *AEPSILUMContext) GetRuleContext() antlr.RuleContext {
+func (s *L_SentenciaContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *AEPSILUMContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *L_SentenciaContext) AllSentencia() []ISentenciaContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ISentenciaContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]ISentenciaContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ISentenciaContext); ok {
+			tst[i] = t.(ISentenciaContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *L_SentenciaContext) Sentencia(i int) ISentenciaContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISentenciaContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ISentenciaContext)
+}
+
+func (s *L_SentenciaContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterAEPSILUM(s)
+		listenerT.EnterL_Sentencia(s)
 	}
 }
 
-func (s *AEPSILUMContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *L_SentenciaContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitAEPSILUM(s)
+		listenerT.ExitL_Sentencia(s)
 	}
 }
 
-func (s *AEPSILUMContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *L_SentenciaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case Tswift_GrammarVisitor:
-		return t.VisitAEPSILUM(s)
+		return t.VisitL_Sentencia(s)
 
 	default:
 		return t.VisitChildren(s)
 	}
 }
 
-type ADECIMALContext struct {
-	AContext
+func (p *Tswift_GrammarParser) L_sentencias() (localctx IL_sentenciasContext) {
+	localctx = NewL_sentenciasContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 2, Tswift_GrammarParserRULE_l_sentencias)
+	var _la int
+
+	localctx = NewL_SentenciaContext(p, localctx)
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(17)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == Tswift_GrammarParserPRINT || _la == Tswift_GrammarParserVAR {
+		{
+			p.SetState(14)
+			p.Sentencia()
+		}
+
+		p.SetState(19)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-func NewADECIMALContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ADECIMALContext {
-	var p = new(ADECIMALContext)
+// ISentenciaContext is an interface to support dynamic dispatch.
+type ISentenciaContext interface {
+	antlr.ParserRuleContext
 
-	InitEmptyAContext(&p.AContext)
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+	// IsSentenciaContext differentiates from other interfaces.
+	IsSentenciaContext()
+}
+
+type SentenciaContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptySentenciaContext() *SentenciaContext {
+	var p = new(SentenciaContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_sentencia
+	return p
+}
+
+func InitEmptySentenciaContext(p *SentenciaContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_sentencia
+}
+
+func (*SentenciaContext) IsSentenciaContext() {}
+
+func NewSentenciaContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SentenciaContext {
+	var p = new(SentenciaContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
 	p.parser = parser
-	p.CopyAll(ctx.(*AContext))
+	p.RuleIndex = Tswift_GrammarParserRULE_sentencia
 
 	return p
 }
 
-func (s *ADECIMALContext) GetRuleContext() antlr.RuleContext {
+func (s *SentenciaContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *SentenciaContext) CopyAll(ctx *SentenciaContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *SentenciaContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *ADECIMALContext) DECIMAL() antlr.TerminalNode {
-	return s.GetToken(Tswift_GrammarParserDECIMAL, 0)
+func (s *SentenciaContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ADECIMALContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterADECIMAL(s)
-	}
+type S_ConsolaContext struct {
+	SentenciaContext
 }
 
-func (s *ADECIMALContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitADECIMAL(s)
-	}
-}
+func NewS_ConsolaContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *S_ConsolaContext {
+	var p = new(S_ConsolaContext)
 
-func (s *ADECIMALContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case Tswift_GrammarVisitor:
-		return t.VisitADECIMAL(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
-type AIDContext struct {
-	AContext
-}
-
-func NewAIDContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AIDContext {
-	var p = new(AIDContext)
-
-	InitEmptyAContext(&p.AContext)
+	InitEmptySentenciaContext(&p.SentenciaContext)
 	p.parser = parser
-	p.CopyAll(ctx.(*AContext))
+	p.CopyAll(ctx.(*SentenciaContext))
 
 	return p
 }
 
-func (s *AIDContext) GetRuleContext() antlr.RuleContext {
+func (s *S_ConsolaContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *AIDContext) ID() antlr.TerminalNode {
-	return s.GetToken(Tswift_GrammarParserID, 0)
+func (s *S_ConsolaContext) PRINT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserPRINT, 0)
 }
 
-func (s *AIDContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterAID(s)
-	}
-}
-
-func (s *AIDContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitAID(s)
-	}
-}
-
-func (s *AIDContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case Tswift_GrammarVisitor:
-		return t.VisitAID(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
-type AENTEROContext struct {
-	AContext
-}
-
-func NewAENTEROContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AENTEROContext {
-	var p = new(AENTEROContext)
-
-	InitEmptyAContext(&p.AContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*AContext))
-
-	return p
-}
-
-func (s *AENTEROContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *AENTEROContext) ENTERO() antlr.TerminalNode {
-	return s.GetToken(Tswift_GrammarParserENTERO, 0)
-}
-
-func (s *AENTEROContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterAENTERO(s)
-	}
-}
-
-func (s *AENTEROContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitAENTERO(s)
-	}
-}
-
-func (s *AENTEROContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case Tswift_GrammarVisitor:
-		return t.VisitAENTERO(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
-type A0Context struct {
-	AContext
-}
-
-func NewA0Context(parser antlr.Parser, ctx antlr.ParserRuleContext) *A0Context {
-	var p = new(A0Context)
-
-	InitEmptyAContext(&p.AContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*AContext))
-
-	return p
-}
-
-func (s *A0Context) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *A0Context) PARIZQ() antlr.TerminalNode {
+func (s *S_ConsolaContext) PARIZQ() antlr.TerminalNode {
 	return s.GetToken(Tswift_GrammarParserPARIZQ, 0)
 }
 
-func (s *A0Context) A() IAContext {
+func (s *S_ConsolaContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *S_ConsolaContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *S_ConsolaContext) PARDER() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserPARDER, 0)
+}
+
+func (s *S_ConsolaContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterS_Consola(s)
+	}
+}
+
+func (s *S_ConsolaContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitS_Consola(s)
+	}
+}
+
+func (s *S_ConsolaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitS_Consola(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type S_DeclaracionContext struct {
+	SentenciaContext
+}
+
+func NewS_DeclaracionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *S_DeclaracionContext {
+	var p = new(S_DeclaracionContext)
+
+	InitEmptySentenciaContext(&p.SentenciaContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*SentenciaContext))
+
+	return p
+}
+
+func (s *S_DeclaracionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *S_DeclaracionContext) Declaracion() IDeclaracionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IAContext); ok {
+		if _, ok := ctx.(IDeclaracionContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -484,50 +692,56 @@ func (s *A0Context) A() IAContext {
 		return nil
 	}
 
-	return t.(IAContext)
+	return t.(IDeclaracionContext)
 }
 
-func (s *A0Context) PARDER() antlr.TerminalNode {
-	return s.GetToken(Tswift_GrammarParserPARDER, 0)
-}
-
-func (s *A0Context) EnterRule(listener antlr.ParseTreeListener) {
+func (s *S_DeclaracionContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.EnterA0(s)
+		listenerT.EnterS_Declaracion(s)
 	}
 }
 
-func (s *A0Context) ExitRule(listener antlr.ParseTreeListener) {
+func (s *S_DeclaracionContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
-		listenerT.ExitA0(s)
+		listenerT.ExitS_Declaracion(s)
 	}
 }
 
-func (s *A0Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *S_DeclaracionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case Tswift_GrammarVisitor:
-		return t.VisitA0(s)
+		return t.VisitS_Declaracion(s)
 
 	default:
 		return t.VisitChildren(s)
 	}
 }
 
-func (p *Tswift_GrammarParser) A() (localctx IAContext) {
-	localctx = NewAContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 2, Tswift_GrammarParserRULE_a)
-	p.SetState(14)
+func (p *Tswift_GrammarParser) Sentencia() (localctx ISentenciaContext) {
+	localctx = NewSentenciaContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 4, Tswift_GrammarParserRULE_sentencia)
+	var _la int
+
+	p.SetState(33)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case Tswift_GrammarParserPARIZQ:
-		localctx = NewA0Context(p, localctx)
+	case Tswift_GrammarParserPRINT:
+		localctx = NewS_ConsolaContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(6)
+			p.SetState(20)
+			p.Match(Tswift_GrammarParserPRINT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(21)
 			p.Match(Tswift_GrammarParserPARIZQ)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -535,11 +749,39 @@ func (p *Tswift_GrammarParser) A() (localctx IAContext) {
 			}
 		}
 		{
-			p.SetState(7)
-			p.A()
+			p.SetState(22)
+			p.e(0)
+		}
+		p.SetState(27)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+
+		for _la == Tswift_GrammarParserT__0 {
+			{
+				p.SetState(23)
+				p.Match(Tswift_GrammarParserT__0)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+			{
+				p.SetState(24)
+				p.e(0)
+			}
+
+			p.SetState(29)
+			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
+			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(8)
+			p.SetState(30)
 			p.Match(Tswift_GrammarParserPARDER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -547,45 +789,13 @@ func (p *Tswift_GrammarParser) A() (localctx IAContext) {
 			}
 		}
 
-	case Tswift_GrammarParserENTERO:
-		localctx = NewAENTEROContext(p, localctx)
+	case Tswift_GrammarParserVAR:
+		localctx = NewS_DeclaracionContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(10)
-			p.Match(Tswift_GrammarParserENTERO)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
+			p.SetState(32)
+			p.Declaracion()
 		}
-
-	case Tswift_GrammarParserDECIMAL:
-		localctx = NewADECIMALContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(11)
-			p.Match(Tswift_GrammarParserDECIMAL)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-
-	case Tswift_GrammarParserID:
-		localctx = NewAIDContext(p, localctx)
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(12)
-			p.Match(Tswift_GrammarParserID)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-
-	case Tswift_GrammarParserEOF, Tswift_GrammarParserPARDER:
-		localctx = NewAEPSILUMContext(p, localctx)
-		p.EnterOuterAlt(localctx, 5)
 
 	default:
 		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
@@ -603,4 +813,2174 @@ errorExit:
 	p.ExitRule()
 	return localctx
 	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IDeclaracionContext is an interface to support dynamic dispatch.
+type IDeclaracionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+	// IsDeclaracionContext differentiates from other interfaces.
+	IsDeclaracionContext()
+}
+
+type DeclaracionContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyDeclaracionContext() *DeclaracionContext {
+	var p = new(DeclaracionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_declaracion
+	return p
+}
+
+func InitEmptyDeclaracionContext(p *DeclaracionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_declaracion
+}
+
+func (*DeclaracionContext) IsDeclaracionContext() {}
+
+func NewDeclaracionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DeclaracionContext {
+	var p = new(DeclaracionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = Tswift_GrammarParserRULE_declaracion
+
+	return p
+}
+
+func (s *DeclaracionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *DeclaracionContext) CopyAll(ctx *DeclaracionContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *DeclaracionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *DeclaracionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type Declaracion_Tipo_ValContext struct {
+	DeclaracionContext
+}
+
+func NewDeclaracion_Tipo_ValContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Declaracion_Tipo_ValContext {
+	var p = new(Declaracion_Tipo_ValContext)
+
+	InitEmptyDeclaracionContext(&p.DeclaracionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*DeclaracionContext))
+
+	return p
+}
+
+func (s *Declaracion_Tipo_ValContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Declaracion_Tipo_ValContext) VAR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserVAR, 0)
+}
+
+func (s *Declaracion_Tipo_ValContext) ID() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserID, 0)
+}
+
+func (s *Declaracion_Tipo_ValContext) DOSPT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserDOSPT, 0)
+}
+
+func (s *Declaracion_Tipo_ValContext) Tipo() ITipoContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITipoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITipoContext)
+}
+
+func (s *Declaracion_Tipo_ValContext) IGUAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserIGUAL, 0)
+}
+
+func (s *Declaracion_Tipo_ValContext) E() IEContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Declaracion_Tipo_ValContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterDeclaracion_Tipo_Val(s)
+	}
+}
+
+func (s *Declaracion_Tipo_ValContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitDeclaracion_Tipo_Val(s)
+	}
+}
+
+func (s *Declaracion_Tipo_ValContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitDeclaracion_Tipo_Val(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Declaracion_Tipo_noValContext struct {
+	DeclaracionContext
+}
+
+func NewDeclaracion_Tipo_noValContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Declaracion_Tipo_noValContext {
+	var p = new(Declaracion_Tipo_noValContext)
+
+	InitEmptyDeclaracionContext(&p.DeclaracionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*DeclaracionContext))
+
+	return p
+}
+
+func (s *Declaracion_Tipo_noValContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Declaracion_Tipo_noValContext) VAR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserVAR, 0)
+}
+
+func (s *Declaracion_Tipo_noValContext) ID() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserID, 0)
+}
+
+func (s *Declaracion_Tipo_noValContext) DOSPT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserDOSPT, 0)
+}
+
+func (s *Declaracion_Tipo_noValContext) Tipo() ITipoContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITipoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITipoContext)
+}
+
+func (s *Declaracion_Tipo_noValContext) INTERROGACION() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserINTERROGACION, 0)
+}
+
+func (s *Declaracion_Tipo_noValContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterDeclaracion_Tipo_noVal(s)
+	}
+}
+
+func (s *Declaracion_Tipo_noValContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitDeclaracion_Tipo_noVal(s)
+	}
+}
+
+func (s *Declaracion_Tipo_noValContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitDeclaracion_Tipo_noVal(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Declaracion_ValContext struct {
+	DeclaracionContext
+}
+
+func NewDeclaracion_ValContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Declaracion_ValContext {
+	var p = new(Declaracion_ValContext)
+
+	InitEmptyDeclaracionContext(&p.DeclaracionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*DeclaracionContext))
+
+	return p
+}
+
+func (s *Declaracion_ValContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Declaracion_ValContext) VAR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserVAR, 0)
+}
+
+func (s *Declaracion_ValContext) ID() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserID, 0)
+}
+
+func (s *Declaracion_ValContext) IGUAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserIGUAL, 0)
+}
+
+func (s *Declaracion_ValContext) E() IEContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Declaracion_ValContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterDeclaracion_Val(s)
+	}
+}
+
+func (s *Declaracion_ValContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitDeclaracion_Val(s)
+	}
+}
+
+func (s *Declaracion_ValContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitDeclaracion_Val(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *Tswift_GrammarParser) Declaracion() (localctx IDeclaracionContext) {
+	localctx = NewDeclaracionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 6, Tswift_GrammarParserRULE_declaracion)
+	p.SetState(52)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext()) {
+	case 1:
+		localctx = NewDeclaracion_Tipo_ValContext(p, localctx)
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(35)
+			p.Match(Tswift_GrammarParserVAR)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(36)
+			p.Match(Tswift_GrammarParserID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(37)
+			p.Match(Tswift_GrammarParserDOSPT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(38)
+			p.Tipo()
+		}
+		{
+			p.SetState(39)
+			p.Match(Tswift_GrammarParserIGUAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(40)
+			p.e(0)
+		}
+
+	case 2:
+		localctx = NewDeclaracion_ValContext(p, localctx)
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(42)
+			p.Match(Tswift_GrammarParserVAR)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(43)
+			p.Match(Tswift_GrammarParserID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(44)
+			p.Match(Tswift_GrammarParserIGUAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(45)
+			p.e(0)
+		}
+
+	case 3:
+		localctx = NewDeclaracion_Tipo_noValContext(p, localctx)
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(46)
+			p.Match(Tswift_GrammarParserVAR)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(47)
+			p.Match(Tswift_GrammarParserID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(48)
+			p.Match(Tswift_GrammarParserDOSPT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(49)
+			p.Tipo()
+		}
+		{
+			p.SetState(50)
+			p.Match(Tswift_GrammarParserINTERROGACION)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// ITipoContext is an interface to support dynamic dispatch.
+type ITipoContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+	// IsTipoContext differentiates from other interfaces.
+	IsTipoContext()
+}
+
+type TipoContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTipoContext() *TipoContext {
+	var p = new(TipoContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_tipo
+	return p
+}
+
+func InitEmptyTipoContext(p *TipoContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_tipo
+}
+
+func (*TipoContext) IsTipoContext() {}
+
+func NewTipoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TipoContext {
+	var p = new(TipoContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = Tswift_GrammarParserRULE_tipo
+
+	return p
+}
+
+func (s *TipoContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TipoContext) CopyAll(ctx *TipoContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *TipoContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TipoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type Tipo_FloatContext struct {
+	TipoContext
+}
+
+func NewTipo_FloatContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Tipo_FloatContext {
+	var p = new(Tipo_FloatContext)
+
+	InitEmptyTipoContext(&p.TipoContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*TipoContext))
+
+	return p
+}
+
+func (s *Tipo_FloatContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tipo_FloatContext) FLOAT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserFLOAT, 0)
+}
+
+func (s *Tipo_FloatContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterTipo_Float(s)
+	}
+}
+
+func (s *Tipo_FloatContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitTipo_Float(s)
+	}
+}
+
+func (s *Tipo_FloatContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitTipo_Float(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Tipo_CharacterContext struct {
+	TipoContext
+}
+
+func NewTipo_CharacterContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Tipo_CharacterContext {
+	var p = new(Tipo_CharacterContext)
+
+	InitEmptyTipoContext(&p.TipoContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*TipoContext))
+
+	return p
+}
+
+func (s *Tipo_CharacterContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tipo_CharacterContext) CHARACTER() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserCHARACTER, 0)
+}
+
+func (s *Tipo_CharacterContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterTipo_Character(s)
+	}
+}
+
+func (s *Tipo_CharacterContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitTipo_Character(s)
+	}
+}
+
+func (s *Tipo_CharacterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitTipo_Character(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Tipo_StringContext struct {
+	TipoContext
+}
+
+func NewTipo_StringContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Tipo_StringContext {
+	var p = new(Tipo_StringContext)
+
+	InitEmptyTipoContext(&p.TipoContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*TipoContext))
+
+	return p
+}
+
+func (s *Tipo_StringContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tipo_StringContext) STRING() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserSTRING, 0)
+}
+
+func (s *Tipo_StringContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterTipo_String(s)
+	}
+}
+
+func (s *Tipo_StringContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitTipo_String(s)
+	}
+}
+
+func (s *Tipo_StringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitTipo_String(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Tipo_BoolContext struct {
+	TipoContext
+}
+
+func NewTipo_BoolContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Tipo_BoolContext {
+	var p = new(Tipo_BoolContext)
+
+	InitEmptyTipoContext(&p.TipoContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*TipoContext))
+
+	return p
+}
+
+func (s *Tipo_BoolContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tipo_BoolContext) BOOL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserBOOL, 0)
+}
+
+func (s *Tipo_BoolContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterTipo_Bool(s)
+	}
+}
+
+func (s *Tipo_BoolContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitTipo_Bool(s)
+	}
+}
+
+func (s *Tipo_BoolContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitTipo_Bool(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Tipo_IntContext struct {
+	TipoContext
+}
+
+func NewTipo_IntContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Tipo_IntContext {
+	var p = new(Tipo_IntContext)
+
+	InitEmptyTipoContext(&p.TipoContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*TipoContext))
+
+	return p
+}
+
+func (s *Tipo_IntContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tipo_IntContext) INT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserINT, 0)
+}
+
+func (s *Tipo_IntContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterTipo_Int(s)
+	}
+}
+
+func (s *Tipo_IntContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitTipo_Int(s)
+	}
+}
+
+func (s *Tipo_IntContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitTipo_Int(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *Tswift_GrammarParser) Tipo() (localctx ITipoContext) {
+	localctx = NewTipoContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 8, Tswift_GrammarParserRULE_tipo)
+	p.SetState(59)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetTokenStream().LA(1) {
+	case Tswift_GrammarParserINT:
+		localctx = NewTipo_IntContext(p, localctx)
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(54)
+			p.Match(Tswift_GrammarParserINT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserFLOAT:
+		localctx = NewTipo_FloatContext(p, localctx)
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(55)
+			p.Match(Tswift_GrammarParserFLOAT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserSTRING:
+		localctx = NewTipo_StringContext(p, localctx)
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(56)
+			p.Match(Tswift_GrammarParserSTRING)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserBOOL:
+		localctx = NewTipo_BoolContext(p, localctx)
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(57)
+			p.Match(Tswift_GrammarParserBOOL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserCHARACTER:
+		localctx = NewTipo_CharacterContext(p, localctx)
+		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(58)
+			p.Match(Tswift_GrammarParserCHARACTER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IEContext is an interface to support dynamic dispatch.
+type IEContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+	// IsEContext differentiates from other interfaces.
+	IsEContext()
+}
+
+type EContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyEContext() *EContext {
+	var p = new(EContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_e
+	return p
+}
+
+func InitEmptyEContext(p *EContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = Tswift_GrammarParserRULE_e
+}
+
+func (*EContext) IsEContext() {}
+
+func NewEContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EContext {
+	var p = new(EContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = Tswift_GrammarParserRULE_e
+
+	return p
+}
+
+func (s *EContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *EContext) CopyAll(ctx *EContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
+}
+
+func (s *EContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *EContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type Expr_RelContext struct {
+	EContext
+	op antlr.Token
+}
+
+func NewExpr_RelContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_RelContext {
+	var p = new(Expr_RelContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_RelContext) GetOp() antlr.Token { return s.op }
+
+func (s *Expr_RelContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *Expr_RelContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_RelContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Expr_RelContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_RelContext) IGUALIGUAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserIGUALIGUAL, 0)
+}
+
+func (s *Expr_RelContext) DIFERENTE() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserDIFERENTE, 0)
+}
+
+func (s *Expr_RelContext) MAYORIGUAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMAYORIGUAL, 0)
+}
+
+func (s *Expr_RelContext) MAYOR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMAYOR, 0)
+}
+
+func (s *Expr_RelContext) MENORIGUAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMENORIGUAL, 0)
+}
+
+func (s *Expr_RelContext) MENOR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMENOR, 0)
+}
+
+func (s *Expr_RelContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Rel(s)
+	}
+}
+
+func (s *Expr_RelContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Rel(s)
+	}
+}
+
+func (s *Expr_RelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Rel(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_DecimalContext struct {
+	EContext
+}
+
+func NewExpr_DecimalContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_DecimalContext {
+	var p = new(Expr_DecimalContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_DecimalContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_DecimalContext) DECIMAL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserDECIMAL, 0)
+}
+
+func (s *Expr_DecimalContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Decimal(s)
+	}
+}
+
+func (s *Expr_DecimalContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Decimal(s)
+	}
+}
+
+func (s *Expr_DecimalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Decimal(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_CaracterContext struct {
+	EContext
+}
+
+func NewExpr_CaracterContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_CaracterContext {
+	var p = new(Expr_CaracterContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_CaracterContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_CaracterContext) CARACTER() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserCARACTER, 0)
+}
+
+func (s *Expr_CaracterContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Caracter(s)
+	}
+}
+
+func (s *Expr_CaracterContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Caracter(s)
+	}
+}
+
+func (s *Expr_CaracterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Caracter(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_SumResContext struct {
+	EContext
+	op antlr.Token
+}
+
+func NewExpr_SumResContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_SumResContext {
+	var p = new(Expr_SumResContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_SumResContext) GetOp() antlr.Token { return s.op }
+
+func (s *Expr_SumResContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *Expr_SumResContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_SumResContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Expr_SumResContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_SumResContext) MAS() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMAS, 0)
+}
+
+func (s *Expr_SumResContext) MENOS() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMENOS, 0)
+}
+
+func (s *Expr_SumResContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_SumRes(s)
+	}
+}
+
+func (s *Expr_SumResContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_SumRes(s)
+	}
+}
+
+func (s *Expr_SumResContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_SumRes(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_NegContext struct {
+	EContext
+	op antlr.Token
+}
+
+func NewExpr_NegContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_NegContext {
+	var p = new(Expr_NegContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_NegContext) GetOp() antlr.Token { return s.op }
+
+func (s *Expr_NegContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *Expr_NegContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_NegContext) E() IEContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_NegContext) MENOS() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMENOS, 0)
+}
+
+func (s *Expr_NegContext) NOT() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserNOT, 0)
+}
+
+func (s *Expr_NegContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Neg(s)
+	}
+}
+
+func (s *Expr_NegContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Neg(s)
+	}
+}
+
+func (s *Expr_NegContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Neg(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_MulDivContext struct {
+	EContext
+	op antlr.Token
+}
+
+func NewExpr_MulDivContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_MulDivContext {
+	var p = new(Expr_MulDivContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_MulDivContext) GetOp() antlr.Token { return s.op }
+
+func (s *Expr_MulDivContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *Expr_MulDivContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_MulDivContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Expr_MulDivContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_MulDivContext) POR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserPOR, 0)
+}
+
+func (s *Expr_MulDivContext) DIV() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserDIV, 0)
+}
+
+func (s *Expr_MulDivContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_MulDiv(s)
+	}
+}
+
+func (s *Expr_MulDivContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_MulDiv(s)
+	}
+}
+
+func (s *Expr_MulDivContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_MulDiv(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_NilContext struct {
+	EContext
+}
+
+func NewExpr_NilContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_NilContext {
+	var p = new(Expr_NilContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_NilContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_NilContext) NIL() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserNIL, 0)
+}
+
+func (s *Expr_NilContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Nil(s)
+	}
+}
+
+func (s *Expr_NilContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Nil(s)
+	}
+}
+
+func (s *Expr_NilContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Nil(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_CadenaContext struct {
+	EContext
+}
+
+func NewExpr_CadenaContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_CadenaContext {
+	var p = new(Expr_CadenaContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_CadenaContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_CadenaContext) CADENA() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserCADENA, 0)
+}
+
+func (s *Expr_CadenaContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Cadena(s)
+	}
+}
+
+func (s *Expr_CadenaContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Cadena(s)
+	}
+}
+
+func (s *Expr_CadenaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Cadena(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_IdContext struct {
+	EContext
+}
+
+func NewExpr_IdContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_IdContext {
+	var p = new(Expr_IdContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_IdContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_IdContext) ID() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserID, 0)
+}
+
+func (s *Expr_IdContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Id(s)
+	}
+}
+
+func (s *Expr_IdContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Id(s)
+	}
+}
+
+func (s *Expr_IdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Id(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_ModContext struct {
+	EContext
+}
+
+func NewExpr_ModContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_ModContext {
+	var p = new(Expr_ModContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_ModContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_ModContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Expr_ModContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_ModContext) MOD() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserMOD, 0)
+}
+
+func (s *Expr_ModContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Mod(s)
+	}
+}
+
+func (s *Expr_ModContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Mod(s)
+	}
+}
+
+func (s *Expr_ModContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Mod(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_ParContext struct {
+	EContext
+}
+
+func NewExpr_ParContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_ParContext {
+	var p = new(Expr_ParContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_ParContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_ParContext) PARIZQ() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserPARIZQ, 0)
+}
+
+func (s *Expr_ParContext) E() IEContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_ParContext) PARDER() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserPARDER, 0)
+}
+
+func (s *Expr_ParContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Par(s)
+	}
+}
+
+func (s *Expr_ParContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Par(s)
+	}
+}
+
+func (s *Expr_ParContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Par(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_LogicaContext struct {
+	EContext
+	op antlr.Token
+}
+
+func NewExpr_LogicaContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_LogicaContext {
+	var p = new(Expr_LogicaContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_LogicaContext) GetOp() antlr.Token { return s.op }
+
+func (s *Expr_LogicaContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *Expr_LogicaContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_LogicaContext) AllE() []IEContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEContext); ok {
+			tst[i] = t.(IEContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Expr_LogicaContext) E(i int) IEContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEContext)
+}
+
+func (s *Expr_LogicaContext) AND() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserAND, 0)
+}
+
+func (s *Expr_LogicaContext) OR() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserOR, 0)
+}
+
+func (s *Expr_LogicaContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Logica(s)
+	}
+}
+
+func (s *Expr_LogicaContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Logica(s)
+	}
+}
+
+func (s *Expr_LogicaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Logica(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_BooleanoContext struct {
+	EContext
+}
+
+func NewExpr_BooleanoContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_BooleanoContext {
+	var p = new(Expr_BooleanoContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_BooleanoContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_BooleanoContext) BOOLEANO() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserBOOLEANO, 0)
+}
+
+func (s *Expr_BooleanoContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Booleano(s)
+	}
+}
+
+func (s *Expr_BooleanoContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Booleano(s)
+	}
+}
+
+func (s *Expr_BooleanoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Booleano(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type Expr_EnteroContext struct {
+	EContext
+}
+
+func NewExpr_EnteroContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Expr_EnteroContext {
+	var p = new(Expr_EnteroContext)
+
+	InitEmptyEContext(&p.EContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*EContext))
+
+	return p
+}
+
+func (s *Expr_EnteroContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Expr_EnteroContext) ENTERO() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserENTERO, 0)
+}
+
+func (s *Expr_EnteroContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.EnterExpr_Entero(s)
+	}
+}
+
+func (s *Expr_EnteroContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(Tswift_GrammarListener); ok {
+		listenerT.ExitExpr_Entero(s)
+	}
+}
+
+func (s *Expr_EnteroContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case Tswift_GrammarVisitor:
+		return t.VisitExpr_Entero(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *Tswift_GrammarParser) E() (localctx IEContext) {
+	return p.e(0)
+}
+
+func (p *Tswift_GrammarParser) e(_p int) (localctx IEContext) {
+	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+
+	_parentState := p.GetState()
+	localctx = NewEContext(p, p.GetParserRuleContext(), _parentState)
+	var _prevctx IEContext = localctx
+	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
+	_startState := 10
+	p.EnterRecursionRule(localctx, 10, Tswift_GrammarParserRULE_e, _p)
+	var _la int
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(75)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetTokenStream().LA(1) {
+	case Tswift_GrammarParserMENOS, Tswift_GrammarParserNOT:
+		localctx = NewExpr_NegContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+
+		{
+			p.SetState(62)
+
+			var _lt = p.GetTokenStream().LT(1)
+
+			localctx.(*Expr_NegContext).op = _lt
+
+			_la = p.GetTokenStream().LA(1)
+
+			if !(_la == Tswift_GrammarParserMENOS || _la == Tswift_GrammarParserNOT) {
+				var _ri = p.GetErrorHandler().RecoverInline(p)
+
+				localctx.(*Expr_NegContext).op = _ri
+			} else {
+				p.GetErrorHandler().ReportMatch(p)
+				p.Consume()
+			}
+		}
+		{
+			p.SetState(63)
+			p.e(12)
+		}
+
+	case Tswift_GrammarParserBOOLEANO:
+		localctx = NewExpr_BooleanoContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(64)
+			p.Match(Tswift_GrammarParserBOOLEANO)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserNIL:
+		localctx = NewExpr_NilContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(65)
+			p.Match(Tswift_GrammarParserNIL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserID:
+		localctx = NewExpr_IdContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(66)
+			p.Match(Tswift_GrammarParserID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserDECIMAL:
+		localctx = NewExpr_DecimalContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(67)
+			p.Match(Tswift_GrammarParserDECIMAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserENTERO:
+		localctx = NewExpr_EnteroContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(68)
+			p.Match(Tswift_GrammarParserENTERO)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserCADENA:
+		localctx = NewExpr_CadenaContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(69)
+			p.Match(Tswift_GrammarParserCADENA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserCARACTER:
+		localctx = NewExpr_CaracterContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(70)
+			p.Match(Tswift_GrammarParserCARACTER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case Tswift_GrammarParserPARIZQ:
+		localctx = NewExpr_ParContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(71)
+			p.Match(Tswift_GrammarParserPARIZQ)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(72)
+			p.e(0)
+		}
+		{
+			p.SetState(73)
+			p.Match(Tswift_GrammarParserPARDER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
+	}
+	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
+	p.SetState(94)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			if p.GetParseListeners() != nil {
+				p.TriggerExitRuleEvent()
+			}
+			_prevctx = localctx
+			p.SetState(92)
+			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
+
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 6, p.GetParserRuleContext()) {
+			case 1:
+				localctx = NewExpr_RelContext(p, NewEContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
+				p.SetState(77)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 14)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 14)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(78)
+
+					var _lt = p.GetTokenStream().LT(1)
+
+					localctx.(*Expr_RelContext).op = _lt
+
+					_la = p.GetTokenStream().LA(1)
+
+					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4128768) != 0) {
+						var _ri = p.GetErrorHandler().RecoverInline(p)
+
+						localctx.(*Expr_RelContext).op = _ri
+					} else {
+						p.GetErrorHandler().ReportMatch(p)
+						p.Consume()
+					}
+				}
+				{
+					p.SetState(79)
+					p.e(15)
+				}
+
+			case 2:
+				localctx = NewExpr_LogicaContext(p, NewEContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
+				p.SetState(80)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 13)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 13)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(81)
+
+					var _lt = p.GetTokenStream().LT(1)
+
+					localctx.(*Expr_LogicaContext).op = _lt
+
+					_la = p.GetTokenStream().LA(1)
+
+					if !(_la == Tswift_GrammarParserAND || _la == Tswift_GrammarParserOR) {
+						var _ri = p.GetErrorHandler().RecoverInline(p)
+
+						localctx.(*Expr_LogicaContext).op = _ri
+					} else {
+						p.GetErrorHandler().ReportMatch(p)
+						p.Consume()
+					}
+				}
+				{
+					p.SetState(82)
+					p.e(14)
+				}
+
+			case 3:
+				localctx = NewExpr_MulDivContext(p, NewEContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
+				p.SetState(83)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 11)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 11)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(84)
+
+					var _lt = p.GetTokenStream().LT(1)
+
+					localctx.(*Expr_MulDivContext).op = _lt
+
+					_la = p.GetTokenStream().LA(1)
+
+					if !(_la == Tswift_GrammarParserDIV || _la == Tswift_GrammarParserPOR) {
+						var _ri = p.GetErrorHandler().RecoverInline(p)
+
+						localctx.(*Expr_MulDivContext).op = _ri
+					} else {
+						p.GetErrorHandler().ReportMatch(p)
+						p.Consume()
+					}
+				}
+				{
+					p.SetState(85)
+					p.e(12)
+				}
+
+			case 4:
+				localctx = NewExpr_SumResContext(p, NewEContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
+				p.SetState(86)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(87)
+
+					var _lt = p.GetTokenStream().LT(1)
+
+					localctx.(*Expr_SumResContext).op = _lt
+
+					_la = p.GetTokenStream().LA(1)
+
+					if !(_la == Tswift_GrammarParserMENOS || _la == Tswift_GrammarParserMAS) {
+						var _ri = p.GetErrorHandler().RecoverInline(p)
+
+						localctx.(*Expr_SumResContext).op = _ri
+					} else {
+						p.GetErrorHandler().ReportMatch(p)
+						p.Consume()
+					}
+				}
+				{
+					p.SetState(88)
+					p.e(11)
+				}
+
+			case 5:
+				localctx = NewExpr_ModContext(p, NewEContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
+				p.SetState(89)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(90)
+					p.Match(Tswift_GrammarParserMOD)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
+				}
+				{
+					p.SetState(91)
+					p.e(10)
+				}
+
+			case antlr.ATNInvalidAltNumber:
+				goto errorExit
+			}
+
+		}
+		p.SetState(96)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.UnrollRecursionContexts(_parentctx)
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+func (p *Tswift_GrammarParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
+	switch ruleIndex {
+	case 5:
+		var t *EContext = nil
+		if localctx != nil {
+			t = localctx.(*EContext)
+		}
+		return p.E_Sempred(t, predIndex)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(ruleIndex))
+	}
+}
+
+func (p *Tswift_GrammarParser) E_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 0:
+		return p.Precpred(p.GetParserRuleContext(), 14)
+
+	case 1:
+		return p.Precpred(p.GetParserRuleContext(), 13)
+
+	case 2:
+		return p.Precpred(p.GetParserRuleContext(), 11)
+
+	case 3:
+		return p.Precpred(p.GetParserRuleContext(), 10)
+
+	case 4:
+		return p.Precpred(p.GetParserRuleContext(), 9)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
 }

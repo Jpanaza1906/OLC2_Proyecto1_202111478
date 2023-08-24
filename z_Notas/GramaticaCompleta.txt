@@ -1,0 +1,116 @@
+grammar Tswift_Grammar;
+import Tswift_Lexer;
+//Produccion inicial de donde salen las sentencias--------------------------------
+
+s: l_sentencias #SLSentencias
+    ;
+
+//Lista de sentencias-------------------------------------------------------------
+
+l_sentencias:
+    sentencia* #L_Sentencia
+;
+
+//Sentencias---------------------------------------------------------------------
+
+sentencia:
+    PRINT PARIZQ e (',' e)* PARDER #S_Consola
+    |declaracion #S_Declaracion
+    |asignacion #S_Asignacion
+    |if_sentencia #S_If
+    |switch_sentencia #S_Switch
+    |while_sentencia #S_While
+    |for_sentencia #S_For
+    ;
+
+//Declaracion--------------------------------------------------------------------
+
+declaracion:
+    VAR ID DOSPT tipo IGUAL e #Declaracion_Tipo_Val
+    |VAR ID IGUAL e #Declaracion_Val
+    |VAR ID DOSPT tipo INTERROGACION #Declaracion_Tipo_noVal
+    ;
+//Constante----------------------------------------------------------------------
+
+constante:
+    LET ID DOSPT tipo IGUAL e #Constante_Tipo_Val
+    |LET ID IGUAL e #Constante_Val
+    |LET ID DOSPT tipo INTERROGACION #Constante_Tipo_noVal
+    ;
+
+//Asignacion---------------------------------------------------------------------
+
+asignacion:
+    ID MASIGUAL e #SumAsg
+    |ID MENOSIGUAL e #ResAsg
+    |ID IGUAL  e #Asig
+    ;
+
+//Sentencia if-------------------------------------------------------------------
+
+if_sentencia:
+    IF e LLAVEIZQ l_sentencias LLAVEDER #If_Simple
+    |IF e LLAVEIZQ l_sentencias LLAVEDER ELSE LLAVEIZQ l_sentencias LLAVEDER #If_Else
+    |IF e LLAVEIZQ l_sentencias LLAVEDER ELSE if_sentencia #If_ElseIf
+    ;
+
+//Sentencia switch----------------------------------------------------------------
+
+switch_sentencia:
+    SWITCH e LLAVEIZQ l_casos+ l_default? LLAVEDER #Switch
+    ;
+l_casos:
+    CASE e DOSPT l_sentencias BREAK? #Case
+    ;
+l_default:
+    DEFAULT DOSPT l_sentencias BREAK? #Default
+    ;
+
+//Ciclo While--------------------------------------------------------------------
+
+while_sentencia:
+    WHILE e LLAVEIZQ l_sentencias LLAVEDER #While
+    ;
+
+//Ciclo For----------------------------------------------------------------------
+
+for_sentencia:
+    FOR ID IN (e|(e RANGO e)) LLAVEIZQ l_sentencias LLAVEDER #For
+    ;
+
+//Sentencia guard----------------------------------------------------------------
+
+guard_sentencia:
+    GUARD e ELSE LLAVEIZQ l_sentencias (CONTINUE|BREAK|RETURN) LLAVEDER #Guard
+    ;
+
+//Tipos de datos-----------------------------------------------------------------
+
+tipo:
+    INT #Tipo_Int
+    |DOUBLE #Tipo_Double
+    |STRING #Tipo_String
+    |BOOL #Tipo_Bool
+    |CHAR #Tipo_Char
+    ;
+
+//Expresiones--------------------------------------------------------------------
+
+e
+    : e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
+    | e op=(AND | OR) e     # Expr_Logica
+    | op=(MENOS | NOT) e      # Expr_Neg
+    | e op=(POR | DIV) e    # Expr_MulDiv
+    | e op=(MAS | MENOS) e  # Expr_SumRes
+    | e MOD e           # Expr_Mod
+    | BOOLEANO          # Expr_Booleano
+    | NIL               # Expr_Nil
+    | ID                # Expr_Id
+    | DECIMAL           # Expr_Decimal
+    | ENTERO            # Expr_Entero
+    | CADENA            # Expr_Cadena
+    | CARACTER          # Expr_Caracter
+    | PARIZQ e PARDER   # Expr_Par
+    ;
+
+//pag 20 grammar
