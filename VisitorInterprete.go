@@ -35,11 +35,13 @@ func (vI *VisitorInterprete) Visit(tree antlr.ParseTree) interface{} {
 }
 
 func (vI *VisitorInterprete) VisitChildren(node antlr.RuleNode) interface{} {
-	panic("not implemented") // TODO: Implement
+	//panic("not implemented") // TODO: Implement
+	return ""
 }
 
 func (vI *VisitorInterprete) VisitTerminal(node antlr.TerminalNode) interface{} {
-	panic("not implemented") // TODO: Implement
+	//panic("not implemented") // TODO: Implement
+	return ""
 }
 
 func (vI *VisitorInterprete) VisitErrorNode(node antlr.ErrorNode) interface{} {
@@ -85,6 +87,11 @@ func (vI *VisitorInterprete) VisitS_Declaracion(ctx *TswiftP.S_DeclaracionContex
 
 }
 
+// Visit a parse tree produced by Tswift_GrammarParser#S_Constante.
+func (vI *VisitorInterprete) VisitS_Constante(ctx *TswiftP.S_ConstanteContext) interface{} {
+	return ctx.Constante().Accept(vI).(interprete.AbstractExpression)
+}
+
 // DECLARACIONES --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
@@ -123,6 +130,44 @@ func (vI *VisitorInterprete) VisitDeclaracion_Tipo_noVal(ctx *TswiftP.Declaracio
 	return noterm.NewNT_DecVar(id, tipo, nil, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
+// CONTANTES --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_Val.
+func (vI *VisitorInterprete) VisitConstante_Tipo_Val(ctx *TswiftP.Constante_Tipo_ValContext) interface{} {
+	// tipo
+	tipo := ctx.Tipo().GetText()
+
+	// id
+	id := ctx.ID().GetText()
+
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_DecConst(id, tipo, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Constante_Val.
+func (vI *VisitorInterprete) VisitConstante_Val(ctx *TswiftP.Constante_ValContext) interface{} {
+	// id
+	id := ctx.ID().GetText()
+
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_DecConst(id, "", expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_noVal.
+func (vI *VisitorInterprete) VisitConstante_Tipo_noVal(ctx *TswiftP.Constante_Tipo_noValContext) interface{} {
+	// tipo
+	tipo := ctx.Tipo().GetText()
+
+	// id
+	id := ctx.ID().GetText()
+
+	return noterm.NewNT_DecConst(id, tipo, nil, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
 // TIPOS DE DATOS --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
@@ -154,19 +199,67 @@ func (vI *VisitorInterprete) VisitTipo_Character(ctx *TswiftP.Tipo_CharacterCont
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Rel.
 func (vI *VisitorInterprete) VisitExpr_Rel(ctx *TswiftP.Expr_RelContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	// izquierda
+	exprIzq := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// derecha
+	exprDer := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	if ctx.GetOp().GetText() == ">" {
+		return noterm.NewNT_MayorQue(exprIzq, exprDer)
+	} else if ctx.GetOp().GetText() == "<" {
+		return noterm.NewNT_MenorQue(exprIzq, exprDer)
+	} else if ctx.GetOp().GetText() == ">=" {
+		return noterm.NewNT_MayorIgual(exprIzq, exprDer)
+	} else if ctx.GetOp().GetText() == "<=" {
+		return noterm.NewNT_MenorIgual(exprIzq, exprDer)
+	} else if ctx.GetOp().GetText() == "==" {
+		return noterm.NewNT_IgualIgual(exprIzq, exprDer)
+	} else {
+		return noterm.NewNT_Diferente(exprIzq, exprDer)
+	}
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Decimal.
-func (vI *VisitorInterprete) VisitExpr_Decimal(ctx *TswiftP.Expr_DecimalContext) interface{} {
-	return terminales.NewT_Decimal(ctx.DECIMAL().GetText(),
-		ctx.DECIMAL().GetSymbol().GetLine(),
-		ctx.DECIMAL().GetSymbol().GetColumn())
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Logica.
+func (vI *VisitorInterprete) VisitExpr_Logica(ctx *TswiftP.Expr_LogicaContext) interface{} {
+	// izquierda
+	exprIzq := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// derecha
+	exprDer := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	if ctx.GetOp().GetText() == "&&" {
+		return noterm.NewNT_And(exprIzq, exprDer)
+	} else {
+		return noterm.NewNT_Or(exprIzq, exprDer)
+	}
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Caracter.
-func (vI *VisitorInterprete) VisitExpr_Caracter(ctx *TswiftP.Expr_CaracterContext) interface{} {
-	panic("not implemented") // TODO: Implement
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Neg.
+func (vI *VisitorInterprete) VisitExpr_Neg(ctx *TswiftP.Expr_NegContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	if ctx.GetOp().GetText() == "!" {
+		return noterm.NewNT_Not(expr)
+	} else {
+		return noterm.NewNT_MenosUnario(expr)
+	}
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_MulDiv.
+func (vI *VisitorInterprete) VisitExpr_MulDiv(ctx *TswiftP.Expr_MulDivContext) interface{} {
+	// izquierda
+	exprIzq := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// derecha
+	exprDer := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	if ctx.GetOp().GetText() == "*" {
+		return noterm.NewNT_Multiplicacion(exprIzq, exprDer)
+	} else {
+		return noterm.NewNT_Division(exprIzq, exprDer)
+	}
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_SumRes.
@@ -180,24 +273,58 @@ func (vI *VisitorInterprete) VisitExpr_SumRes(ctx *TswiftP.Expr_SumResContext) i
 	if ctx.GetOp().GetText() == "+" {
 		return noterm.NewNT_Suma(exprIzq, exprDer)
 	} else {
-		//return noterm.NewNT_Resta(exprIzq, exprDer)
-		panic("not implemented")
+		return noterm.NewNT_Resta(exprIzq, exprDer)
 	}
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Neg.
-func (vI *VisitorInterprete) VisitExpr_Neg(ctx *TswiftP.Expr_NegContext) interface{} {
-	panic("not implemented") // TODO: Implement
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Mod.
+func (vI *VisitorInterprete) VisitExpr_Mod(ctx *TswiftP.Expr_ModContext) interface{} {
+	// izquierda
+	exprIzq := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// derecha
+	exprDer := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_Modulo(exprIzq, exprDer)
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_MulDiv.
-func (vI *VisitorInterprete) VisitExpr_MulDiv(ctx *TswiftP.Expr_MulDivContext) interface{} {
-	panic("not implemented") // TODO: Implement
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Par.
+func (vI *VisitorInterprete) VisitExpr_Par(ctx *TswiftP.Expr_ParContext) interface{} {
+	return ctx.E().Accept(vI).(interprete.AbstractExpression)
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Nil.
 func (vI *VisitorInterprete) VisitExpr_Nil(ctx *TswiftP.Expr_NilContext) interface{} {
 	return ctx.NIL().GetText()
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Booleano.
+func (vI *VisitorInterprete) VisitExpr_Booleano(ctx *TswiftP.Expr_BooleanoContext) interface{} {
+	return terminales.NewT_Bool(ctx.GetOp().GetText(),
+		ctx.GetOp().GetLine(),
+		ctx.GetOp().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Id.
+func (vI *VisitorInterprete) VisitExpr_Id(ctx *TswiftP.Expr_IdContext) interface{} {
+	return noterm.NewNT_Identificador(ctx.ID().GetText(),
+		ctx.ID().GetSymbol().GetLine(),
+		ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Decimal.
+func (vI *VisitorInterprete) VisitExpr_Decimal(ctx *TswiftP.Expr_DecimalContext) interface{} {
+	return terminales.NewT_Decimal(ctx.DECIMAL().GetText(),
+		ctx.DECIMAL().GetSymbol().GetLine(),
+		ctx.DECIMAL().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Entero.
+func (vI *VisitorInterprete) VisitExpr_Entero(ctx *TswiftP.Expr_EnteroContext) interface{} {
+	return terminales.NewT_Entero(ctx.ENTERO().GetText(),
+		ctx.ENTERO().GetSymbol().GetLine(),
+		ctx.ENTERO().GetSymbol().GetColumn(),
+	)
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Cadena.
@@ -208,39 +335,9 @@ func (vI *VisitorInterprete) VisitExpr_Cadena(ctx *TswiftP.Expr_CadenaContext) i
 
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Id.
-func (vI *VisitorInterprete) VisitExpr_Id(ctx *TswiftP.Expr_IdContext) interface{} {
-	return noterm.NewNT_Identificador(ctx.ID().GetText(),
-		ctx.ID().GetSymbol().GetLine(),
-		ctx.ID().GetSymbol().GetColumn())
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Mod.
-func (vI *VisitorInterprete) VisitExpr_Mod(ctx *TswiftP.Expr_ModContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Par.
-func (vI *VisitorInterprete) VisitExpr_Par(ctx *TswiftP.Expr_ParContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Logica.
-func (vI *VisitorInterprete) VisitExpr_Logica(ctx *TswiftP.Expr_LogicaContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Booleano.
-func (vI *VisitorInterprete) VisitExpr_Booleano(ctx *TswiftP.Expr_BooleanoContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Entero.
-func (vI *VisitorInterprete) VisitExpr_Entero(ctx *TswiftP.Expr_EnteroContext) interface{} {
-	nodoEntero := terminales.NewT_Entero(
-		ctx.ENTERO().GetText(),
-		ctx.ENTERO().GetSymbol().GetLine(),
-		ctx.ENTERO().GetSymbol().GetColumn(),
-	)
-	return nodoEntero
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Caracter.
+func (vI *VisitorInterprete) VisitExpr_Caracter(ctx *TswiftP.Expr_CaracterContext) interface{} {
+	return terminales.NewT_Char(ctx.CARACTER().GetText(),
+		ctx.CARACTER().GetSymbol().GetLine(),
+		ctx.CARACTER().GetSymbol().GetColumn())
 }

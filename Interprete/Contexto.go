@@ -5,16 +5,18 @@ package interprete
 type Simbolo struct {
 	Nombre    string
 	Resultado *Resultado
+	TipoSimb  string
 	linea     int
 	columna   int
 }
 
 // Constructor for Simbolo----------------------------------------------
 
-func NewSimbolo(nombre string, resultado *Resultado, linea int, columna int) *Simbolo {
+func NewSimbolo(nombre string, resultado *Resultado, tiposimb string, linea int, columna int) *Simbolo {
 	return &Simbolo{
 		Nombre:    nombre,
 		Resultado: resultado,
+		TipoSimb:  tiposimb,
 		linea:     linea,
 		columna:   columna,
 	}
@@ -60,12 +62,12 @@ func (c *Contexto) PopAmbito() {
 
 // Se crea una nueva variable en el ambito actual ----------------------------------------------
 
-func (c *Contexto) AddVariable(nombre string, expresion *Resultado, linea int, columna int) bool {
+func (c *Contexto) AddVariable(nombre string, expresion *Resultado, tiposimb string, linea int, columna int) bool {
 	existe := c.Memoria.Exist(nombre)
 	if existe {
 		return false
 	}
-	return c.Memoria.CreateSimbolo(nombre, expresion, linea, columna)
+	return c.Memoria.CreateSimbolo(nombre, expresion, tiposimb, linea, columna)
 }
 
 // Se asigna un valor a una variable en el ambito actual ---------------------------------------------
@@ -77,14 +79,23 @@ func (c *Contexto) AsigVariable(nombre string, expresion *Resultado) bool {
 		for aux_Mem != nil {
 			existe = aux_Mem.Exist(nombre)
 			if existe {
-				aux_Mem.SetSimbolo(nombre, expresion)
-				return true
+				if aux_Mem.SetSimbolo(nombre, expresion) {
+					return true
+				} else {
+					c.AddError("Error: No se le puede asignar un valor a una constante.")
+					return false
+				}
 			}
 			aux_Mem = aux_Mem.Anterior
 		}
 		return false
 	}
-	return c.Memoria.SetSimbolo(nombre, expresion)
+	if c.Memoria.SetSimbolo(nombre, expresion) {
+		return true
+	} else {
+		c.AddError("Error: No se le puede asignar un valor a una constante.")
+		return false
+	}
 }
 
 // Se obtiene el valor de una variable en el ambito actual ----------------------------------------------

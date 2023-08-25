@@ -19,7 +19,7 @@ func (t TipoE) String() string {
 	case Bool:
 		return "Bool"
 	case Integer:
-		return "Integer"
+		return "Int"
 	case Float:
 		return "Float"
 	case String:
@@ -90,6 +90,18 @@ func NewFloatLiteral(valor float64) *Resultado {
 // Constructor para STRING RESULTADO----------------------------------------------
 
 func NewStringLiteral(valor string) *Resultado {
+	return &Resultado{
+		Nil:    false,
+		ValorF: 0.00,
+		Valor:  0,
+		ValorS: valor,
+		Tipo:   String,
+	}
+}
+
+// Constructor para CHAR RESULTADO----------------------------------------------
+
+func NewCharLiteral(valor string) *Resultado {
 	return &Resultado{
 		Nil:    false,
 		ValorF: 0.00,

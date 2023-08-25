@@ -16,6 +16,7 @@ l_sentencias:
 sentencia:
     PRINT PARIZQ e (',' e)* PARDER #S_Consola
     |declaracion #S_Declaracion
+    |constante #S_Constante
     ;
 
 //Declaracion--------------------------------------------------------------------
@@ -24,6 +25,14 @@ declaracion:
     VAR ID DOSPT tipo IGUAL e #Declaracion_Tipo_Val
     |VAR ID IGUAL e #Declaracion_Val
     |VAR ID DOSPT tipo INTERROGACION #Declaracion_Tipo_noVal
+    ;
+
+//Constante----------------------------------------------------------------------
+
+constante:
+    LET ID DOSPT tipo IGUAL e #Constante_Tipo_Val
+    |LET ID IGUAL e #Constante_Val
+    |LET ID DOSPT tipo INTERROGACION #Constante_Tipo_noVal
     ;
 
 //Tipos de datos-----------------------------------------------------------------
@@ -45,7 +54,7 @@ e
     | e op=(POR | DIV) e    # Expr_MulDiv
     | e op=(MAS | MENOS) e  # Expr_SumRes
     | e MOD e           # Expr_Mod
-    | BOOLEANO          # Expr_Booleano
+    | op=(TRUE | FALSE)          # Expr_Booleano
     | NIL               # Expr_Nil
     | ID                # Expr_Id
     | DECIMAL           # Expr_Decimal

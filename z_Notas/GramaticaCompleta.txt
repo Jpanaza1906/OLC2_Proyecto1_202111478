@@ -16,6 +16,7 @@ l_sentencias:
 sentencia:
     PRINT PARIZQ e (',' e)* PARDER #S_Consola
     |declaracion #S_Declaracion
+    |constante #S_Constante
     |asignacion #S_Asignacion
     |if_sentencia #S_If
     |switch_sentencia #S_Switch

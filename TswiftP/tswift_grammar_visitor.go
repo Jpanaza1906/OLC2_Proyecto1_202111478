@@ -19,6 +19,9 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion.
 	VisitS_Declaracion(ctx *S_DeclaracionContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Constante.
+	VisitS_Constante(ctx *S_ConstanteContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
 	VisitDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) interface{}
 
@@ -27,6 +30,15 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_noVal.
 	VisitDeclaracion_Tipo_noVal(ctx *Declaracion_Tipo_noValContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_Val.
+	VisitConstante_Tipo_Val(ctx *Constante_Tipo_ValContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Val.
+	VisitConstante_Val(ctx *Constante_ValContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_noVal.
+	VisitConstante_Tipo_noVal(ctx *Constante_Tipo_noValContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
 	VisitTipo_Int(ctx *Tipo_IntContext) interface{}

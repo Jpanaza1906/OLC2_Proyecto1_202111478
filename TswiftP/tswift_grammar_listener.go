@@ -19,6 +19,9 @@ type Tswift_GrammarListener interface {
 	// EnterS_Declaracion is called when entering the S_Declaracion production.
 	EnterS_Declaracion(c *S_DeclaracionContext)
 
+	// EnterS_Constante is called when entering the S_Constante production.
+	EnterS_Constante(c *S_ConstanteContext)
+
 	// EnterDeclaracion_Tipo_Val is called when entering the Declaracion_Tipo_Val production.
 	EnterDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
 
@@ -27,6 +30,15 @@ type Tswift_GrammarListener interface {
 
 	// EnterDeclaracion_Tipo_noVal is called when entering the Declaracion_Tipo_noVal production.
 	EnterDeclaracion_Tipo_noVal(c *Declaracion_Tipo_noValContext)
+
+	// EnterConstante_Tipo_Val is called when entering the Constante_Tipo_Val production.
+	EnterConstante_Tipo_Val(c *Constante_Tipo_ValContext)
+
+	// EnterConstante_Val is called when entering the Constante_Val production.
+	EnterConstante_Val(c *Constante_ValContext)
+
+	// EnterConstante_Tipo_noVal is called when entering the Constante_Tipo_noVal production.
+	EnterConstante_Tipo_noVal(c *Constante_Tipo_noValContext)
 
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
@@ -97,6 +109,9 @@ type Tswift_GrammarListener interface {
 	// ExitS_Declaracion is called when exiting the S_Declaracion production.
 	ExitS_Declaracion(c *S_DeclaracionContext)
 
+	// ExitS_Constante is called when exiting the S_Constante production.
+	ExitS_Constante(c *S_ConstanteContext)
+
 	// ExitDeclaracion_Tipo_Val is called when exiting the Declaracion_Tipo_Val production.
 	ExitDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
 
@@ -105,6 +120,15 @@ type Tswift_GrammarListener interface {
 
 	// ExitDeclaracion_Tipo_noVal is called when exiting the Declaracion_Tipo_noVal production.
 	ExitDeclaracion_Tipo_noVal(c *Declaracion_Tipo_noValContext)
+
+	// ExitConstante_Tipo_Val is called when exiting the Constante_Tipo_Val production.
+	ExitConstante_Tipo_Val(c *Constante_Tipo_ValContext)
+
+	// ExitConstante_Val is called when exiting the Constante_Val production.
+	ExitConstante_Val(c *Constante_ValContext)
+
+	// ExitConstante_Tipo_noVal is called when exiting the Constante_Tipo_noVal production.
+	ExitConstante_Tipo_noVal(c *Constante_Tipo_noValContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)

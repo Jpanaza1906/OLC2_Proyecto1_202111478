@@ -67,8 +67,7 @@ fragment DIG: [0-9];
 //tipos de datos
 ENTERO: (DIG)+ ;
 DECIMAL: DIG+ '.' DIG+ ;
-BOOLEANO: TRUE | FALSE;
-CARACTER: '\'' ( ~('\'' | '\\') | '\\' . ) '\'' ;
+CARACTER: '"' ( ~('\'' | '\\') | '\\' . ) '"' ;
 CADENA: '"' ( ~('"' | '\\') | '\\' . )* '"' ;
 
 ID
