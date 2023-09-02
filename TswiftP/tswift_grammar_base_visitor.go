@@ -47,10 +47,6 @@ func (v *BaseTswift_GrammarVisitor) VisitConstante_Val(ctx *Constante_ValContext
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseTswift_GrammarVisitor) VisitConstante_Tipo_noVal(ctx *Constante_Tipo_noValContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *BaseTswift_GrammarVisitor) VisitTipo_Int(ctx *Tipo_IntContext) interface{} {
 	return v.VisitChildren(ctx)
 }

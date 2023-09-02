@@ -1,27 +1,5 @@
 package interprete
 
-// Clase simbolo --------------------------------------------------------------------------------------------
-
-type Simbolo struct {
-	Nombre    string
-	Resultado *Resultado
-	TipoSimb  string
-	linea     int
-	columna   int
-}
-
-// Constructor for Simbolo----------------------------------------------
-
-func NewSimbolo(nombre string, resultado *Resultado, tiposimb string, linea int, columna int) *Simbolo {
-	return &Simbolo{
-		Nombre:    nombre,
-		Resultado: resultado,
-		TipoSimb:  tiposimb,
-		linea:     linea,
-		columna:   columna,
-	}
-}
-
 // Clase Contexto --------------------------------------------------------------------------------------------
 
 type Contexto struct {
@@ -62,12 +40,21 @@ func (c *Contexto) PopAmbito() {
 
 // Se crea una nueva variable en el ambito actual ----------------------------------------------
 
-func (c *Contexto) AddVariable(nombre string, expresion *Resultado, tiposimb string, linea int, columna int) bool {
+func (c *Contexto) AddVariable(nombre string, tipo TipoE, resultado *Resultado, linea int, columna int) bool {
 	existe := c.Memoria.Exist(nombre)
 	if existe {
 		return false
 	}
-	return c.Memoria.CreateSimbolo(nombre, expresion, tiposimb, linea, columna)
+	return c.Memoria.CreateSimbolo(nombre, "var", tipo, nil, -1, nil, resultado, nil, nil, linea, columna)
+}
+
+// Se crea una nueva constante en el ambito actual ----------------------------------------------
+func (c *Contexto) AddConstante(nombre string, tipo TipoE, resultado *Resultado, linea int, columna int) bool {
+	existe := c.Memoria.Exist(nombre)
+	if existe {
+		return false
+	}
+	return c.Memoria.CreateSimbolo(nombre, "const", tipo, nil, -1, nil, resultado, nil, nil, linea, columna)
 }
 
 // Se asigna un valor a una variable en el ambito actual ---------------------------------------------

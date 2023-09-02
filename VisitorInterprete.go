@@ -157,17 +157,6 @@ func (vI *VisitorInterprete) VisitConstante_Val(ctx *TswiftP.Constante_ValContex
 	return noterm.NewNT_DecConst(id, "", expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_noVal.
-func (vI *VisitorInterprete) VisitConstante_Tipo_noVal(ctx *TswiftP.Constante_Tipo_noValContext) interface{} {
-	// tipo
-	tipo := ctx.Tipo().GetText()
-
-	// id
-	id := ctx.ID().GetText()
-
-	return noterm.NewNT_DecConst(id, tipo, nil, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
-}
-
 // TIPOS DE DATOS --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.

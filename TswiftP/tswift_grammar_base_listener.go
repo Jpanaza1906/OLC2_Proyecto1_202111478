@@ -81,12 +81,6 @@ func (s *BaseTswift_GrammarListener) EnterConstante_Val(ctx *Constante_ValContex
 // ExitConstante_Val is called when production Constante_Val is exited.
 func (s *BaseTswift_GrammarListener) ExitConstante_Val(ctx *Constante_ValContext) {}
 
-// EnterConstante_Tipo_noVal is called when production Constante_Tipo_noVal is entered.
-func (s *BaseTswift_GrammarListener) EnterConstante_Tipo_noVal(ctx *Constante_Tipo_noValContext) {}
-
-// ExitConstante_Tipo_noVal is called when production Constante_Tipo_noVal is exited.
-func (s *BaseTswift_GrammarListener) ExitConstante_Tipo_noVal(ctx *Constante_Tipo_noValContext) {}
-
 // EnterTipo_Int is called when production Tipo_Int is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}
 

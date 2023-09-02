@@ -6,13 +6,11 @@ s: l_sentencias #SLSentencias
     ;
 
 //Lista de sentencias-------------------------------------------------------------
-
 l_sentencias:
     sentencia* #L_Sentencia
 ;
 
 //Sentencias---------------------------------------------------------------------
-
 sentencia:
     PRINT PARIZQ e (',' e)* PARDER #S_Consola
     |declaracion #S_Declaracion
@@ -20,7 +18,6 @@ sentencia:
     ;
 
 //Declaracion--------------------------------------------------------------------
-
 declaracion:
     VAR ID DOSPT tipo IGUAL e #Declaracion_Tipo_Val
     |VAR ID IGUAL e #Declaracion_Val
@@ -28,15 +25,14 @@ declaracion:
     ;
 
 //Constante----------------------------------------------------------------------
-
 constante:
     LET ID DOSPT tipo IGUAL e #Constante_Tipo_Val
     |LET ID IGUAL e #Constante_Val
-    |LET ID DOSPT tipo INTERROGACION #Constante_Tipo_noVal
     ;
 
-//Tipos de datos-----------------------------------------------------------------
 
+
+//Tipos de datos-----------------------------------------------------------------
 tipo:
     INT #Tipo_Int
     |FLOAT #Tipo_Float
@@ -46,7 +42,6 @@ tipo:
     ;
 
 //Expresiones--------------------------------------------------------------------
-
 e
     : e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
     | e op=(AND | OR) e     # Expr_Logica

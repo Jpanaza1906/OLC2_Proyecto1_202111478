@@ -53,9 +53,11 @@ func saveToFile(filePath, content string) error {
 func ejecutarInterprete(entrada string) {
 	is := antlr.NewInputStream(entrada)
 	lexer := TswiftP.NewTswift_GrammarLexer(is)
+
 	tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	parser := TswiftP.NewTswift_GrammarParser(tokens)
 
+	//Se captura cualquier error
 	visitor := NewVisitorInterprete()
 	arbol := parser.S()
 	raiz := visitor.Visit(arbol).(interprete.AbstractExpression)
@@ -66,6 +68,10 @@ func ejecutarInterprete(entrada string) {
 
 	//igualar la caja de texto a Consola
 	Consola.SetText(string(ctx.Consola))
+	//agregar cada error a la caja de texto de errores
+	for _, element := range ctx.Errores {
+		Errores.SetText(Errores.Text + element + "\n")
+	}
 
 }
 
@@ -101,6 +107,9 @@ func VentanaM() {
 	//botones
 	//BOTON EJECUTAR
 	btn1 := widget.NewButton("Ejecutar", func() {
+		Consola.SetText("")
+		Simbolos.SetText("")
+		Errores.SetText("")
 		if Entrada.Text != "" {
 			ejecutarInterprete(Entrada.Text)
 		} else {

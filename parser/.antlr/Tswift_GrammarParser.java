@@ -455,22 +455,12 @@ public class Tswift_GrammarParser extends Parser {
 		}
 		public Constante_Tipo_ValContext(ConstanteContext ctx) { copyFrom(ctx); }
 	}
-	public static class Constante_Tipo_noValContext extends ConstanteContext {
-		public TerminalNode LET() { return getToken(Tswift_GrammarParser.LET, 0); }
-		public TerminalNode ID() { return getToken(Tswift_GrammarParser.ID, 0); }
-		public TerminalNode DOSPT() { return getToken(Tswift_GrammarParser.DOSPT, 0); }
-		public TipoContext tipo() {
-			return getRuleContext(TipoContext.class,0);
-		}
-		public TerminalNode INTERROGACION() { return getToken(Tswift_GrammarParser.INTERROGACION, 0); }
-		public Constante_Tipo_noValContext(ConstanteContext ctx) { copyFrom(ctx); }
-	}
 
 	public final ConstanteContext constante() throws RecognitionException {
 		ConstanteContext _localctx = new ConstanteContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_constante);
 		try {
-			setState(74);
+			setState(68);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
@@ -503,22 +493,6 @@ public class Tswift_GrammarParser extends Parser {
 				match(IGUAL);
 				setState(67);
 				e(0);
-				}
-				break;
-			case 3:
-				_localctx = new Constante_Tipo_noValContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(68);
-				match(LET);
-				setState(69);
-				match(ID);
-				setState(70);
-				match(DOSPT);
-				setState(71);
-				tipo();
-				setState(72);
-				match(INTERROGACION);
 				}
 				break;
 			}
@@ -570,14 +544,14 @@ public class Tswift_GrammarParser extends Parser {
 		TipoContext _localctx = new TipoContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_tipo);
 		try {
-			setState(81);
+			setState(75);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
 				_localctx = new Tipo_IntContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(76);
+				setState(70);
 				match(INT);
 				}
 				break;
@@ -585,7 +559,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Tipo_FloatContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(77);
+				setState(71);
 				match(FLOAT);
 				}
 				break;
@@ -593,7 +567,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Tipo_StringContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(78);
+				setState(72);
 				match(STRING);
 				}
 				break;
@@ -601,7 +575,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Tipo_BoolContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(79);
+				setState(73);
 				match(BOOL);
 				}
 				break;
@@ -609,7 +583,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Tipo_CharacterContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(80);
+				setState(74);
 				match(CHARACTER);
 				}
 				break;
@@ -765,7 +739,7 @@ public class Tswift_GrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(91);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case MENOS:
@@ -775,7 +749,7 @@ public class Tswift_GrammarParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(84);
+				setState(78);
 				((Expr_NegContext)_localctx).op = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==MENOS || _la==NOT) ) {
@@ -786,7 +760,7 @@ public class Tswift_GrammarParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(85);
+				setState(79);
 				e(12);
 				}
 				break;
@@ -796,7 +770,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_BooleanoContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(86);
+				setState(80);
 				((Expr_BooleanoContext)_localctx).op = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==TRUE || _la==FALSE) ) {
@@ -814,7 +788,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_NilContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(87);
+				setState(81);
 				match(NIL);
 				}
 				break;
@@ -823,7 +797,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_IdContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(88);
+				setState(82);
 				match(ID);
 				}
 				break;
@@ -832,7 +806,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_DecimalContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(89);
+				setState(83);
 				match(DECIMAL);
 				}
 				break;
@@ -841,7 +815,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_EnteroContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(90);
+				setState(84);
 				match(ENTERO);
 				}
 				break;
@@ -850,7 +824,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_CadenaContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(91);
+				setState(85);
 				match(CADENA);
 				}
 				break;
@@ -859,7 +833,7 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_CaracterContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(92);
+				setState(86);
 				match(CARACTER);
 				}
 				break;
@@ -868,11 +842,11 @@ public class Tswift_GrammarParser extends Parser {
 				_localctx = new Expr_ParContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(93);
+				setState(87);
 				match(PARIZQ);
-				setState(94);
+				setState(88);
 				e(0);
-				setState(95);
+				setState(89);
 				match(PARDER);
 				}
 				break;
@@ -880,7 +854,7 @@ public class Tswift_GrammarParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(116);
+			setState(110);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -888,16 +862,16 @@ public class Tswift_GrammarParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(114);
+					setState(108);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 					case 1:
 						{
 						_localctx = new Expr_RelContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
-						setState(99);
+						setState(93);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
-						setState(100);
+						setState(94);
 						((Expr_RelContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IGUALIGUAL) | (1L << DIFERENTE) | (1L << MAYORIGUAL) | (1L << MENORIGUAL) | (1L << MAYOR) | (1L << MENOR))) != 0)) ) {
@@ -908,7 +882,7 @@ public class Tswift_GrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(101);
+						setState(95);
 						e(15);
 						}
 						break;
@@ -916,9 +890,9 @@ public class Tswift_GrammarParser extends Parser {
 						{
 						_localctx = new Expr_LogicaContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
-						setState(102);
+						setState(96);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(103);
+						setState(97);
 						((Expr_LogicaContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==AND || _la==OR) ) {
@@ -929,7 +903,7 @@ public class Tswift_GrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(104);
+						setState(98);
 						e(14);
 						}
 						break;
@@ -937,9 +911,9 @@ public class Tswift_GrammarParser extends Parser {
 						{
 						_localctx = new Expr_MulDivContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
-						setState(105);
+						setState(99);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(106);
+						setState(100);
 						((Expr_MulDivContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==DIV || _la==POR) ) {
@@ -950,7 +924,7 @@ public class Tswift_GrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(107);
+						setState(101);
 						e(12);
 						}
 						break;
@@ -958,9 +932,9 @@ public class Tswift_GrammarParser extends Parser {
 						{
 						_localctx = new Expr_SumResContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
-						setState(108);
+						setState(102);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(109);
+						setState(103);
 						((Expr_SumResContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==MENOS || _la==MAS) ) {
@@ -971,7 +945,7 @@ public class Tswift_GrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(110);
+						setState(104);
 						e(11);
 						}
 						break;
@@ -979,18 +953,18 @@ public class Tswift_GrammarParser extends Parser {
 						{
 						_localctx = new Expr_ModContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
-						setState(111);
+						setState(105);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(112);
+						setState(106);
 						match(MOD);
-						setState(113);
+						setState(107);
 						e(10);
 						}
 						break;
 					}
 					} 
 				}
-				setState(118);
+				setState(112);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			}
@@ -1031,38 +1005,37 @@ public class Tswift_GrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3:z\4\2\t\2\4\3\t\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3:t\4\2\t\2\4\3\t\3"+
 		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\3\7\3\24\n\3\f\3\16"+
 		"\3\27\13\3\3\4\3\4\3\4\3\4\3\4\7\4\36\n\4\f\4\16\4!\13\4\3\4\3\4\3\4\3"+
 		"\4\5\4\'\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\3\5\3\5\5\5:\n\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
-		"\6\3\6\3\6\3\6\3\6\5\6M\n\6\3\7\3\7\3\7\3\7\3\7\5\7T\n\7\3\b\3\b\3\b\3"+
-		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\bd\n\b\3\b\3\b\3\b\3\b\3"+
-		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\7\bu\n\b\f\b\16\bx\13\b\3\b"+
-		"\2\3\16\t\2\4\6\b\n\f\16\2\b\4\2\17\17\32\32\3\2\36\37\3\2\22\27\3\2\30"+
-		"\31\4\2\r\r\21\21\3\2\17\20\2\u008b\2\20\3\2\2\2\4\25\3\2\2\2\6&\3\2\2"+
-		"\2\b9\3\2\2\2\nL\3\2\2\2\fS\3\2\2\2\16c\3\2\2\2\20\21\5\4\3\2\21\3\3\2"+
-		"\2\2\22\24\5\6\4\2\23\22\3\2\2\2\24\27\3\2\2\2\25\23\3\2\2\2\25\26\3\2"+
-		"\2\2\26\5\3\2\2\2\27\25\3\2\2\2\30\31\7\33\2\2\31\32\7\5\2\2\32\37\5\16"+
-		"\b\2\33\34\7\3\2\2\34\36\5\16\b\2\35\33\3\2\2\2\36!\3\2\2\2\37\35\3\2"+
-		"\2\2\37 \3\2\2\2 \"\3\2\2\2!\37\3\2\2\2\"#\7\4\2\2#\'\3\2\2\2$\'\5\b\5"+
-		"\2%\'\5\n\6\2&\30\3\2\2\2&$\3\2\2\2&%\3\2\2\2\'\7\3\2\2\2()\7\34\2\2)"+
-		"*\78\2\2*+\7\b\2\2+,\5\f\7\2,-\7\f\2\2-.\5\16\b\2.:\3\2\2\2/\60\7\34\2"+
-		"\2\60\61\78\2\2\61\62\7\f\2\2\62:\5\16\b\2\63\64\7\34\2\2\64\65\78\2\2"+
-		"\65\66\7\b\2\2\66\67\5\f\7\2\678\7\t\2\28:\3\2\2\29(\3\2\2\29/\3\2\2\2"+
-		"9\63\3\2\2\2:\t\3\2\2\2;<\7\35\2\2<=\78\2\2=>\7\b\2\2>?\5\f\7\2?@\7\f"+
-		"\2\2@A\5\16\b\2AM\3\2\2\2BC\7\35\2\2CD\78\2\2DE\7\f\2\2EM\5\16\b\2FG\7"+
-		"\35\2\2GH\78\2\2HI\7\b\2\2IJ\5\f\7\2JK\7\t\2\2KM\3\2\2\2L;\3\2\2\2LB\3"+
-		"\2\2\2LF\3\2\2\2M\13\3\2\2\2NT\7.\2\2OT\7/\2\2PT\7\62\2\2QT\7\60\2\2R"+
-		"T\7\61\2\2SN\3\2\2\2SO\3\2\2\2SP\3\2\2\2SQ\3\2\2\2SR\3\2\2\2T\r\3\2\2"+
-		"\2UV\b\b\1\2VW\t\2\2\2Wd\5\16\b\16Xd\t\3\2\2Yd\7-\2\2Zd\78\2\2[d\7\65"+
-		"\2\2\\d\7\64\2\2]d\7\67\2\2^d\7\66\2\2_`\7\5\2\2`a\5\16\b\2ab\7\4\2\2"+
-		"bd\3\2\2\2cU\3\2\2\2cX\3\2\2\2cY\3\2\2\2cZ\3\2\2\2c[\3\2\2\2c\\\3\2\2"+
-		"\2c]\3\2\2\2c^\3\2\2\2c_\3\2\2\2dv\3\2\2\2ef\f\20\2\2fg\t\4\2\2gu\5\16"+
-		"\b\21hi\f\17\2\2ij\t\5\2\2ju\5\16\b\20kl\f\r\2\2lm\t\6\2\2mu\5\16\b\16"+
-		"no\f\f\2\2op\t\7\2\2pu\5\16\b\rqr\f\13\2\2rs\7\16\2\2su\5\16\b\fte\3\2"+
-		"\2\2th\3\2\2\2tk\3\2\2\2tn\3\2\2\2tq\3\2\2\2ux\3\2\2\2vt\3\2\2\2vw\3\2"+
-		"\2\2w\17\3\2\2\2xv\3\2\2\2\13\25\37&9LSctv";
+		"\5\3\5\3\5\5\5:\n\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6G\n"+
+		"\6\3\7\3\7\3\7\3\7\3\7\5\7N\n\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\b\5\b^\n\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\b\7\bo\n\b\f\b\16\br\13\b\3\b\2\3\16\t\2\4\6\b\n\f\16"+
+		"\2\b\4\2\17\17\32\32\3\2\36\37\3\2\22\27\3\2\30\31\4\2\r\r\21\21\3\2\17"+
+		"\20\2\u0084\2\20\3\2\2\2\4\25\3\2\2\2\6&\3\2\2\2\b9\3\2\2\2\nF\3\2\2\2"+
+		"\fM\3\2\2\2\16]\3\2\2\2\20\21\5\4\3\2\21\3\3\2\2\2\22\24\5\6\4\2\23\22"+
+		"\3\2\2\2\24\27\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\5\3\2\2\2\27\25"+
+		"\3\2\2\2\30\31\7\33\2\2\31\32\7\5\2\2\32\37\5\16\b\2\33\34\7\3\2\2\34"+
+		"\36\5\16\b\2\35\33\3\2\2\2\36!\3\2\2\2\37\35\3\2\2\2\37 \3\2\2\2 \"\3"+
+		"\2\2\2!\37\3\2\2\2\"#\7\4\2\2#\'\3\2\2\2$\'\5\b\5\2%\'\5\n\6\2&\30\3\2"+
+		"\2\2&$\3\2\2\2&%\3\2\2\2\'\7\3\2\2\2()\7\34\2\2)*\78\2\2*+\7\b\2\2+,\5"+
+		"\f\7\2,-\7\f\2\2-.\5\16\b\2.:\3\2\2\2/\60\7\34\2\2\60\61\78\2\2\61\62"+
+		"\7\f\2\2\62:\5\16\b\2\63\64\7\34\2\2\64\65\78\2\2\65\66\7\b\2\2\66\67"+
+		"\5\f\7\2\678\7\t\2\28:\3\2\2\29(\3\2\2\29/\3\2\2\29\63\3\2\2\2:\t\3\2"+
+		"\2\2;<\7\35\2\2<=\78\2\2=>\7\b\2\2>?\5\f\7\2?@\7\f\2\2@A\5\16\b\2AG\3"+
+		"\2\2\2BC\7\35\2\2CD\78\2\2DE\7\f\2\2EG\5\16\b\2F;\3\2\2\2FB\3\2\2\2G\13"+
+		"\3\2\2\2HN\7.\2\2IN\7/\2\2JN\7\62\2\2KN\7\60\2\2LN\7\61\2\2MH\3\2\2\2"+
+		"MI\3\2\2\2MJ\3\2\2\2MK\3\2\2\2ML\3\2\2\2N\r\3\2\2\2OP\b\b\1\2PQ\t\2\2"+
+		"\2Q^\5\16\b\16R^\t\3\2\2S^\7-\2\2T^\78\2\2U^\7\65\2\2V^\7\64\2\2W^\7\67"+
+		"\2\2X^\7\66\2\2YZ\7\5\2\2Z[\5\16\b\2[\\\7\4\2\2\\^\3\2\2\2]O\3\2\2\2]"+
+		"R\3\2\2\2]S\3\2\2\2]T\3\2\2\2]U\3\2\2\2]V\3\2\2\2]W\3\2\2\2]X\3\2\2\2"+
+		"]Y\3\2\2\2^p\3\2\2\2_`\f\20\2\2`a\t\4\2\2ao\5\16\b\21bc\f\17\2\2cd\t\5"+
+		"\2\2do\5\16\b\20ef\f\r\2\2fg\t\6\2\2go\5\16\b\16hi\f\f\2\2ij\t\7\2\2j"+
+		"o\5\16\b\rkl\f\13\2\2lm\7\16\2\2mo\5\16\b\fn_\3\2\2\2nb\3\2\2\2ne\3\2"+
+		"\2\2nh\3\2\2\2nk\3\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2\2\2q\17\3\2\2\2rp\3"+
+		"\2\2\2\13\25\37&9FM]np";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

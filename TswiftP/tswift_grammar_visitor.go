@@ -37,9 +37,6 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Val.
 	VisitConstante_Val(ctx *Constante_ValContext) interface{}
 
-	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_noVal.
-	VisitConstante_Tipo_noVal(ctx *Constante_Tipo_noValContext) interface{}
-
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
 	VisitTipo_Int(ctx *Tipo_IntContext) interface{}
 

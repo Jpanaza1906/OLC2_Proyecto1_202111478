@@ -37,9 +37,6 @@ type Tswift_GrammarListener interface {
 	// EnterConstante_Val is called when entering the Constante_Val production.
 	EnterConstante_Val(c *Constante_ValContext)
 
-	// EnterConstante_Tipo_noVal is called when entering the Constante_Tipo_noVal production.
-	EnterConstante_Tipo_noVal(c *Constante_Tipo_noValContext)
-
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
 
@@ -126,9 +123,6 @@ type Tswift_GrammarListener interface {
 
 	// ExitConstante_Val is called when exiting the Constante_Val production.
 	ExitConstante_Val(c *Constante_ValContext)
-
-	// ExitConstante_Tipo_noVal is called when exiting the Constante_Tipo_noVal production.
-	ExitConstante_Tipo_noVal(c *Constante_Tipo_noValContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)
