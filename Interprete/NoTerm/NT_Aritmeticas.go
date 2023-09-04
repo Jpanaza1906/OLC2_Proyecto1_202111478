@@ -273,12 +273,8 @@ func (NT_mod *NT_Modulo) Interpretar(ctx *interprete.Contexto) *interprete.Resul
 		resul := resultadoIzq.Valor % resultadoDer.Valor
 		return interprete.NewIntLiteral(resul)
 	case interprete.Float:
-		if resultadoDer.ValorF == 0 {
-			ctx.AddError("Error: No se puede realizar modulo entre 0")
-			return interprete.NewNil()
-		}
-		resul := int(resultadoIzq.ValorF) % int(resultadoDer.ValorF)
-		return interprete.NewIntLiteral(resul)
+		ctx.AddError("Error: No se puede realizar modulo float")
+		return interprete.NewNil()
 	case interprete.String:
 		ctx.AddError("Error: No se puede realizar modulo string")
 		return interprete.NewNil()

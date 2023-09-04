@@ -24,15 +24,6 @@ func (nt_and *NT_And) Interpretar(ctx *interprete.Contexto) *interprete.Resultad
 	resultadoIzq := nt_and.ExprIzquierda.Interpretar(ctx)
 	resultadoDer := nt_and.ExprDerecha.Interpretar(ctx)
 
-	if resultadoIzq.Tipo != resultadoDer.Tipo {
-		if resultadoIzq.Tipo > resultadoDer.Tipo {
-			resultadoDer = ctx.Conversor.Ampliar(resultadoDer, resultadoIzq.Tipo)
-
-		} else {
-			resultadoIzq = ctx.Conversor.Ampliar(resultadoIzq, resultadoDer.Tipo)
-		}
-	}
-
 	if resultadoDer.Nil || resultadoIzq.Nil {
 		ctx.AddError("Error: No se puede and nil")
 		return interprete.NewNil()
@@ -68,15 +59,6 @@ func NewNT_Or(exprIzquierda interprete.AbstractExpression, exprDerecha interpret
 func (nt_or *NT_Or) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	resultadoIzq := nt_or.ExprIzquierda.Interpretar(ctx)
 	resultadoDer := nt_or.ExprDerecha.Interpretar(ctx)
-
-	if resultadoIzq.Tipo != resultadoDer.Tipo {
-		if resultadoIzq.Tipo > resultadoDer.Tipo {
-			resultadoDer = ctx.Conversor.Ampliar(resultadoDer, resultadoIzq.Tipo)
-
-		} else {
-			resultadoIzq = ctx.Conversor.Ampliar(resultadoIzq, resultadoDer.Tipo)
-		}
-	}
 
 	if resultadoDer.Nil || resultadoIzq.Nil {
 		ctx.AddError("Error: No se puede or nil")

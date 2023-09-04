@@ -3,19 +3,21 @@ package interprete
 // Clase Contexto --------------------------------------------------------------------------------------------
 
 type Contexto struct {
-	Memoria   *Memoria
-	zGlobal   *Memoria
-	Consola   string
-	Errores   []string
-	Conversor *Conversor
+	Memoria    *Memoria
+	zGlobal    *Memoria
+	Consola    string
+	TransState []string
+	Errores    []string
+	Conversor  *Conversor
 }
 
 func NewContexto() *Contexto {
 	c := &Contexto{
-		Memoria:   NewMemoria(nil),
-		Consola:   "",
-		Errores:   make([]string, 0, 10),
-		Conversor: nil,
+		Memoria:    NewMemoria(nil),
+		Consola:    "",
+		TransState: make([]string, 0, 10),
+		Errores:    make([]string, 0, 10),
+		Conversor:  nil,
 	}
 	c.Conversor = NewConversor(c)
 	return c
@@ -113,4 +115,16 @@ func (c *Contexto) Print(entrada string) {
 
 func (c *Contexto) AddError(entrada string) {
 	c.Errores = append(c.Errores, entrada)
+}
+
+//Agregar sentencia
+func (c *Contexto) AddTransSentencia(entrada string) {
+	if entrada == "break" || entrada == "continue" || entrada == "return" {
+		c.TransState = append(c.TransState, entrada)
+	}
+}
+
+//Remover sentencia
+func (c *Contexto) RemTransSentencia() {
+	c.TransState = c.TransState[:len(c.TransState)-1]
 }

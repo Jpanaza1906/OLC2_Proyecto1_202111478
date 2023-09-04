@@ -50,6 +50,48 @@ func (s *BaseTswift_GrammarListener) EnterS_Constante(ctx *S_ConstanteContext) {
 // ExitS_Constante is called when production S_Constante is exited.
 func (s *BaseTswift_GrammarListener) ExitS_Constante(ctx *S_ConstanteContext) {}
 
+// EnterS_Asignacion is called when production S_Asignacion is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Asignacion(ctx *S_AsignacionContext) {}
+
+// ExitS_Asignacion is called when production S_Asignacion is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Asignacion(ctx *S_AsignacionContext) {}
+
+// EnterS_If is called when production S_If is entered.
+func (s *BaseTswift_GrammarListener) EnterS_If(ctx *S_IfContext) {}
+
+// ExitS_If is called when production S_If is exited.
+func (s *BaseTswift_GrammarListener) ExitS_If(ctx *S_IfContext) {}
+
+// EnterS_Switch is called when production S_Switch is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Switch(ctx *S_SwitchContext) {}
+
+// ExitS_Switch is called when production S_Switch is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Switch(ctx *S_SwitchContext) {}
+
+// EnterS_Guard is called when production S_Guard is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Guard(ctx *S_GuardContext) {}
+
+// ExitS_Guard is called when production S_Guard is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Guard(ctx *S_GuardContext) {}
+
+// EnterS_While is called when production S_While is entered.
+func (s *BaseTswift_GrammarListener) EnterS_While(ctx *S_WhileContext) {}
+
+// ExitS_While is called when production S_While is exited.
+func (s *BaseTswift_GrammarListener) ExitS_While(ctx *S_WhileContext) {}
+
+// EnterS_For is called when production S_For is entered.
+func (s *BaseTswift_GrammarListener) EnterS_For(ctx *S_ForContext) {}
+
+// ExitS_For is called when production S_For is exited.
+func (s *BaseTswift_GrammarListener) ExitS_For(ctx *S_ForContext) {}
+
+// EnterS_Transicion is called when production S_Transicion is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Transicion(ctx *S_TransicionContext) {}
+
+// ExitS_Transicion is called when production S_Transicion is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Transicion(ctx *S_TransicionContext) {}
+
 // EnterDeclaracion_Tipo_Val is called when production Declaracion_Tipo_Val is entered.
 func (s *BaseTswift_GrammarListener) EnterDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) {}
 
@@ -80,6 +122,102 @@ func (s *BaseTswift_GrammarListener) EnterConstante_Val(ctx *Constante_ValContex
 
 // ExitConstante_Val is called when production Constante_Val is exited.
 func (s *BaseTswift_GrammarListener) ExitConstante_Val(ctx *Constante_ValContext) {}
+
+// EnterSumAsg is called when production SumAsg is entered.
+func (s *BaseTswift_GrammarListener) EnterSumAsg(ctx *SumAsgContext) {}
+
+// ExitSumAsg is called when production SumAsg is exited.
+func (s *BaseTswift_GrammarListener) ExitSumAsg(ctx *SumAsgContext) {}
+
+// EnterResAsg is called when production ResAsg is entered.
+func (s *BaseTswift_GrammarListener) EnterResAsg(ctx *ResAsgContext) {}
+
+// ExitResAsg is called when production ResAsg is exited.
+func (s *BaseTswift_GrammarListener) ExitResAsg(ctx *ResAsgContext) {}
+
+// EnterAsig is called when production Asig is entered.
+func (s *BaseTswift_GrammarListener) EnterAsig(ctx *AsigContext) {}
+
+// ExitAsig is called when production Asig is exited.
+func (s *BaseTswift_GrammarListener) ExitAsig(ctx *AsigContext) {}
+
+// EnterIf_Simple is called when production If_Simple is entered.
+func (s *BaseTswift_GrammarListener) EnterIf_Simple(ctx *If_SimpleContext) {}
+
+// ExitIf_Simple is called when production If_Simple is exited.
+func (s *BaseTswift_GrammarListener) ExitIf_Simple(ctx *If_SimpleContext) {}
+
+// EnterIf_Else is called when production If_Else is entered.
+func (s *BaseTswift_GrammarListener) EnterIf_Else(ctx *If_ElseContext) {}
+
+// ExitIf_Else is called when production If_Else is exited.
+func (s *BaseTswift_GrammarListener) ExitIf_Else(ctx *If_ElseContext) {}
+
+// EnterIf_ElseIf is called when production If_ElseIf is entered.
+func (s *BaseTswift_GrammarListener) EnterIf_ElseIf(ctx *If_ElseIfContext) {}
+
+// ExitIf_ElseIf is called when production If_ElseIf is exited.
+func (s *BaseTswift_GrammarListener) ExitIf_ElseIf(ctx *If_ElseIfContext) {}
+
+// EnterSwitch is called when production Switch is entered.
+func (s *BaseTswift_GrammarListener) EnterSwitch(ctx *SwitchContext) {}
+
+// ExitSwitch is called when production Switch is exited.
+func (s *BaseTswift_GrammarListener) ExitSwitch(ctx *SwitchContext) {}
+
+// EnterCase is called when production Case is entered.
+func (s *BaseTswift_GrammarListener) EnterCase(ctx *CaseContext) {}
+
+// ExitCase is called when production Case is exited.
+func (s *BaseTswift_GrammarListener) ExitCase(ctx *CaseContext) {}
+
+// EnterDefault is called when production Default is entered.
+func (s *BaseTswift_GrammarListener) EnterDefault(ctx *DefaultContext) {}
+
+// ExitDefault is called when production Default is exited.
+func (s *BaseTswift_GrammarListener) ExitDefault(ctx *DefaultContext) {}
+
+// EnterGuard is called when production Guard is entered.
+func (s *BaseTswift_GrammarListener) EnterGuard(ctx *GuardContext) {}
+
+// ExitGuard is called when production Guard is exited.
+func (s *BaseTswift_GrammarListener) ExitGuard(ctx *GuardContext) {}
+
+// EnterWhile is called when production While is entered.
+func (s *BaseTswift_GrammarListener) EnterWhile(ctx *WhileContext) {}
+
+// ExitWhile is called when production While is exited.
+func (s *BaseTswift_GrammarListener) ExitWhile(ctx *WhileContext) {}
+
+// EnterFor is called when production For is entered.
+func (s *BaseTswift_GrammarListener) EnterFor(ctx *ForContext) {}
+
+// ExitFor is called when production For is exited.
+func (s *BaseTswift_GrammarListener) ExitFor(ctx *ForContext) {}
+
+// EnterRango is called when production Rango is entered.
+func (s *BaseTswift_GrammarListener) EnterRango(ctx *RangoContext) {}
+
+// ExitRango is called when production Rango is exited.
+func (s *BaseTswift_GrammarListener) ExitRango(ctx *RangoContext) {}
+
+// EnterBreak is called when production Break is entered.
+func (s *BaseTswift_GrammarListener) EnterBreak(ctx *BreakContext) {}
+
+// ExitBreak is called when production Break is exited.
+func (s *BaseTswift_GrammarListener) ExitBreak(ctx *BreakContext) {}
+
+// EnterContinue is called when production Continue is entered.
+func (s *BaseTswift_GrammarListener) EnterContinue(ctx *ContinueContext) {}
+
+// ExitContinue is called when production Continue is exited.
+func (s *BaseTswift_GrammarListener) ExitContinue(ctx *ContinueContext) {}
+
+// EnterReturn is called when production Return is entered.
+func (s *BaseTswift_GrammarListener) EnterReturn(ctx *ReturnContext) {}
+
+// ExitReturn is called when production Return is exited.
+func (s *BaseTswift_GrammarListener) ExitReturn(ctx *ReturnContext) {}
 
 // EnterTipo_Int is called when production Tipo_Int is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}

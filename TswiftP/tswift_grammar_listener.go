@@ -22,6 +22,27 @@ type Tswift_GrammarListener interface {
 	// EnterS_Constante is called when entering the S_Constante production.
 	EnterS_Constante(c *S_ConstanteContext)
 
+	// EnterS_Asignacion is called when entering the S_Asignacion production.
+	EnterS_Asignacion(c *S_AsignacionContext)
+
+	// EnterS_If is called when entering the S_If production.
+	EnterS_If(c *S_IfContext)
+
+	// EnterS_Switch is called when entering the S_Switch production.
+	EnterS_Switch(c *S_SwitchContext)
+
+	// EnterS_Guard is called when entering the S_Guard production.
+	EnterS_Guard(c *S_GuardContext)
+
+	// EnterS_While is called when entering the S_While production.
+	EnterS_While(c *S_WhileContext)
+
+	// EnterS_For is called when entering the S_For production.
+	EnterS_For(c *S_ForContext)
+
+	// EnterS_Transicion is called when entering the S_Transicion production.
+	EnterS_Transicion(c *S_TransicionContext)
+
 	// EnterDeclaracion_Tipo_Val is called when entering the Declaracion_Tipo_Val production.
 	EnterDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
 
@@ -36,6 +57,54 @@ type Tswift_GrammarListener interface {
 
 	// EnterConstante_Val is called when entering the Constante_Val production.
 	EnterConstante_Val(c *Constante_ValContext)
+
+	// EnterSumAsg is called when entering the SumAsg production.
+	EnterSumAsg(c *SumAsgContext)
+
+	// EnterResAsg is called when entering the ResAsg production.
+	EnterResAsg(c *ResAsgContext)
+
+	// EnterAsig is called when entering the Asig production.
+	EnterAsig(c *AsigContext)
+
+	// EnterIf_Simple is called when entering the If_Simple production.
+	EnterIf_Simple(c *If_SimpleContext)
+
+	// EnterIf_Else is called when entering the If_Else production.
+	EnterIf_Else(c *If_ElseContext)
+
+	// EnterIf_ElseIf is called when entering the If_ElseIf production.
+	EnterIf_ElseIf(c *If_ElseIfContext)
+
+	// EnterSwitch is called when entering the Switch production.
+	EnterSwitch(c *SwitchContext)
+
+	// EnterCase is called when entering the Case production.
+	EnterCase(c *CaseContext)
+
+	// EnterDefault is called when entering the Default production.
+	EnterDefault(c *DefaultContext)
+
+	// EnterGuard is called when entering the Guard production.
+	EnterGuard(c *GuardContext)
+
+	// EnterWhile is called when entering the While production.
+	EnterWhile(c *WhileContext)
+
+	// EnterFor is called when entering the For production.
+	EnterFor(c *ForContext)
+
+	// EnterRango is called when entering the Rango production.
+	EnterRango(c *RangoContext)
+
+	// EnterBreak is called when entering the Break production.
+	EnterBreak(c *BreakContext)
+
+	// EnterContinue is called when entering the Continue production.
+	EnterContinue(c *ContinueContext)
+
+	// EnterReturn is called when entering the Return production.
+	EnterReturn(c *ReturnContext)
 
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
@@ -109,6 +178,27 @@ type Tswift_GrammarListener interface {
 	// ExitS_Constante is called when exiting the S_Constante production.
 	ExitS_Constante(c *S_ConstanteContext)
 
+	// ExitS_Asignacion is called when exiting the S_Asignacion production.
+	ExitS_Asignacion(c *S_AsignacionContext)
+
+	// ExitS_If is called when exiting the S_If production.
+	ExitS_If(c *S_IfContext)
+
+	// ExitS_Switch is called when exiting the S_Switch production.
+	ExitS_Switch(c *S_SwitchContext)
+
+	// ExitS_Guard is called when exiting the S_Guard production.
+	ExitS_Guard(c *S_GuardContext)
+
+	// ExitS_While is called when exiting the S_While production.
+	ExitS_While(c *S_WhileContext)
+
+	// ExitS_For is called when exiting the S_For production.
+	ExitS_For(c *S_ForContext)
+
+	// ExitS_Transicion is called when exiting the S_Transicion production.
+	ExitS_Transicion(c *S_TransicionContext)
+
 	// ExitDeclaracion_Tipo_Val is called when exiting the Declaracion_Tipo_Val production.
 	ExitDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
 
@@ -123,6 +213,54 @@ type Tswift_GrammarListener interface {
 
 	// ExitConstante_Val is called when exiting the Constante_Val production.
 	ExitConstante_Val(c *Constante_ValContext)
+
+	// ExitSumAsg is called when exiting the SumAsg production.
+	ExitSumAsg(c *SumAsgContext)
+
+	// ExitResAsg is called when exiting the ResAsg production.
+	ExitResAsg(c *ResAsgContext)
+
+	// ExitAsig is called when exiting the Asig production.
+	ExitAsig(c *AsigContext)
+
+	// ExitIf_Simple is called when exiting the If_Simple production.
+	ExitIf_Simple(c *If_SimpleContext)
+
+	// ExitIf_Else is called when exiting the If_Else production.
+	ExitIf_Else(c *If_ElseContext)
+
+	// ExitIf_ElseIf is called when exiting the If_ElseIf production.
+	ExitIf_ElseIf(c *If_ElseIfContext)
+
+	// ExitSwitch is called when exiting the Switch production.
+	ExitSwitch(c *SwitchContext)
+
+	// ExitCase is called when exiting the Case production.
+	ExitCase(c *CaseContext)
+
+	// ExitDefault is called when exiting the Default production.
+	ExitDefault(c *DefaultContext)
+
+	// ExitGuard is called when exiting the Guard production.
+	ExitGuard(c *GuardContext)
+
+	// ExitWhile is called when exiting the While production.
+	ExitWhile(c *WhileContext)
+
+	// ExitFor is called when exiting the For production.
+	ExitFor(c *ForContext)
+
+	// ExitRango is called when exiting the Rango production.
+	ExitRango(c *RangoContext)
+
+	// ExitBreak is called when exiting the Break production.
+	ExitBreak(c *BreakContext)
+
+	// ExitContinue is called when exiting the Continue production.
+	ExitContinue(c *ContinueContext)
+
+	// ExitReturn is called when exiting the Return production.
+	ExitReturn(c *ReturnContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)

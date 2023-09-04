@@ -22,6 +22,27 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#S_Constante.
 	VisitS_Constante(ctx *S_ConstanteContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion.
+	VisitS_Asignacion(ctx *S_AsignacionContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_If.
+	VisitS_If(ctx *S_IfContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Switch.
+	VisitS_Switch(ctx *S_SwitchContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Guard.
+	VisitS_Guard(ctx *S_GuardContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_While.
+	VisitS_While(ctx *S_WhileContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_For.
+	VisitS_For(ctx *S_ForContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Transicion.
+	VisitS_Transicion(ctx *S_TransicionContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
 	VisitDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) interface{}
 
@@ -36,6 +57,54 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Constante_Val.
 	VisitConstante_Val(ctx *Constante_ValContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#SumAsg.
+	VisitSumAsg(ctx *SumAsgContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ResAsg.
+	VisitResAsg(ctx *ResAsgContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Asig.
+	VisitAsig(ctx *AsigContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#If_Simple.
+	VisitIf_Simple(ctx *If_SimpleContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#If_Else.
+	VisitIf_Else(ctx *If_ElseContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#If_ElseIf.
+	VisitIf_ElseIf(ctx *If_ElseIfContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Switch.
+	VisitSwitch(ctx *SwitchContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Case.
+	VisitCase(ctx *CaseContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Default.
+	VisitDefault(ctx *DefaultContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Guard.
+	VisitGuard(ctx *GuardContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#While.
+	VisitWhile(ctx *WhileContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#For.
+	VisitFor(ctx *ForContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Rango.
+	VisitRango(ctx *RangoContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Break.
+	VisitBreak(ctx *BreakContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Continue.
+	VisitContinue(ctx *ContinueContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Return.
+	VisitReturn(ctx *ReturnContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
 	VisitTipo_Int(ctx *Tipo_IntContext) interface{}

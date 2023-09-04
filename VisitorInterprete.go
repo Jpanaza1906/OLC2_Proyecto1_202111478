@@ -92,6 +92,41 @@ func (vI *VisitorInterprete) VisitS_Constante(ctx *TswiftP.S_ConstanteContext) i
 	return ctx.Constante().Accept(vI).(interprete.AbstractExpression)
 }
 
+// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion.
+func (vI *VisitorInterprete) VisitS_Asignacion(ctx *TswiftP.S_AsignacionContext) interface{} {
+	return ctx.Asignacion().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_If.
+func (vI *VisitorInterprete) VisitS_If(ctx *TswiftP.S_IfContext) interface{} {
+	return ctx.If_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Switch.
+func (vI *VisitorInterprete) VisitS_Switch(ctx *TswiftP.S_SwitchContext) interface{} {
+	return ctx.Switch_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Guard.
+func (vI *VisitorInterprete) VisitS_Guard(ctx *TswiftP.S_GuardContext) interface{} {
+	return ctx.Guard_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_While.
+func (vI *VisitorInterprete) VisitS_While(ctx *TswiftP.S_WhileContext) interface{} {
+	return ctx.While_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_For.
+func (vI *VisitorInterprete) VisitS_For(ctx *TswiftP.S_ForContext) interface{} {
+	return ctx.For_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Transicion.
+func (vI *VisitorInterprete) VisitS_Transicion(ctx *TswiftP.S_TransicionContext) interface{} {
+	return ctx.Trans_sentencia().Accept(vI).(interprete.AbstractExpression)
+}
+
 // DECLARACIONES --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
@@ -155,6 +190,214 @@ func (vI *VisitorInterprete) VisitConstante_Val(ctx *TswiftP.Constante_ValContex
 	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
 
 	return noterm.NewNT_DecConst(id, "", expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// ASIGNACIONES --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#SumAsg.
+func (vI *VisitorInterprete) VisitSumAsg(ctx *TswiftP.SumAsgContext) interface{} {
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+	//la expresion seria +=, se obtiene la expresion con su ID sumado
+	expr := noterm.NewNT_Suma(noterm.NewNT_Identificador(id, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn()), ctx.E().Accept(vI).(interprete.AbstractExpression))
+
+	return noterm.NewNT_AsigVar(id, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ResAsg.
+func (vI *VisitorInterprete) VisitResAsg(ctx *TswiftP.ResAsgContext) interface{} {
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+	//la expresion seria -=, se obtiene la expresion con su ID restado
+	expr := noterm.NewNT_Resta(noterm.NewNT_Identificador(id, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn()), ctx.E().Accept(vI).(interprete.AbstractExpression))
+
+	return noterm.NewNT_AsigVar(id, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Asig.
+func (vI *VisitorInterprete) VisitAsig(ctx *TswiftP.AsigContext) interface{} {
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+	//Se obtiene la expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_AsigVar(id, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// IF SENTENCIAS --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#If_Simple.
+func (vI *VisitorInterprete) VisitIf_Simple(ctx *TswiftP.If_SimpleContext) interface{} {
+
+	// condicion
+	condicion := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	//si
+	si := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_IfSentencia(condicion, si, nil)
+
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#If_Else.
+func (vI *VisitorInterprete) VisitIf_Else(ctx *TswiftP.If_ElseContext) interface{} {
+
+	// condicion
+	condicion := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	//si
+	si := ctx.L_sentencias(0).Accept(vI).(interprete.AbstractExpression)
+
+	//sino
+	sino := ctx.L_sentencias(1).Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_IfSentencia(condicion, si, sino)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#If_ElseIf.
+func (vI *VisitorInterprete) VisitIf_ElseIf(ctx *TswiftP.If_ElseIfContext) interface{} {
+
+	// condicion
+	condicion := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	//si
+	si := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	//sino
+	sino := ctx.If_sentencia().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_IfSentencia(condicion, si, sino)
+
+}
+
+// SWITCH CASE SENTENCIA
+
+// Visit a parse tree produced by Tswift_GrammarParser#Switch.
+func (vI *VisitorInterprete) VisitSwitch(ctx *TswiftP.SwitchContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	// casos
+	casos := []interprete.AbstractExpression{}
+	casosAntlr := ctx.AllL_casos()
+	for _, casoAntlr := range casosAntlr {
+		nodoCaso := casoAntlr.Accept(vI).(interprete.AbstractExpression)
+		casos = append(casos, nodoCaso)
+	}
+	// default
+	//si no viene default guardar nil
+	var def interprete.AbstractExpression
+	if ctx.L_default() != nil {
+		def = ctx.L_default().Accept(vI).(interprete.AbstractExpression)
+	} else {
+		def = nil
+	}
+
+	return noterm.NewNT_Switch(expr, casos, def)
+
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Case.
+func (vI *VisitorInterprete) VisitCase(ctx *TswiftP.CaseContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	// sentencias
+	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_Caso(expr, sentencias)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Default.
+func (vI *VisitorInterprete) VisitDefault(ctx *TswiftP.DefaultContext) interface{} {
+	// sentencias
+	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	return sentencias
+}
+
+//GUARD SENTENCIA --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Guard.
+func (vI *VisitorInterprete) VisitGuard(ctx *TswiftP.GuardContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	// sentencias
+	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+	//verifica si viene una transentencia
+	trans := ctx.Trans_sentencia().GetText()
+	if trans == "" {
+		return noterm.NewNT_Error("Error: Se esperaba una sentencia de transicion en el guard")
+	}
+
+	//fin
+	transSent := ctx.Trans_sentencia().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_Guard(expr, sentencias, transSent)
+}
+
+//CICLO WHILE --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#While.
+func (vI *VisitorInterprete) VisitWhile(ctx *TswiftP.WhileContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	// sentencias
+	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_While(expr, sentencias)
+}
+
+//CICLO FOR--------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#For.
+func (vI *VisitorInterprete) VisitFor(ctx *TswiftP.ForContext) interface{} {
+	//id
+	id := ctx.ID().GetText()
+
+	if ctx.E() != nil {
+		//expresion
+		expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+		//sentencias
+		sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+		return noterm.NewNT_For(id, expr, nil, sentencias, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+	} else {
+		//rango
+		rango := ctx.Rango_p().Accept(vI).([]interprete.AbstractExpression)
+		//sentencias
+		sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+		return noterm.NewNT_For(id, nil, rango, sentencias, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+	}
+
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Rango.
+func (vI *VisitorInterprete) VisitRango(ctx *TswiftP.RangoContext) interface{} {
+	//expresion
+	expr1 := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+	expr2 := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	return []interprete.AbstractExpression{expr1, expr2}
+}
+
+//SENTENCIAS DE TRANSICION --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Break.
+func (vI *VisitorInterprete) VisitBreak(ctx *TswiftP.BreakContext) interface{} {
+	return noterm.NewNT_TransSentencia("break")
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Continue.
+func (vI *VisitorInterprete) VisitContinue(ctx *TswiftP.ContinueContext) interface{} {
+	return noterm.NewNT_TransSentencia("continue")
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Return.
+func (vI *VisitorInterprete) VisitReturn(ctx *TswiftP.ReturnContext) interface{} {
+	return noterm.NewNT_TransSentencia("return")
 }
 
 // TIPOS DE DATOS --------------------------------------------------------------------------------------------
