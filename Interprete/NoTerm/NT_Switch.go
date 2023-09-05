@@ -1,19 +1,26 @@
 package noterm
 
-import interprete "OLC2_Proyecto1_202111478/Interprete"
+import (
+	interprete "OLC2_Proyecto1_202111478/Interprete"
+	"strconv"
+)
 
 type NT_Switch struct {
 	Expresion interprete.AbstractExpression
 	Casos     []interprete.AbstractExpression
 	Default   interprete.AbstractExpression
+	Linea     int
+	Columna   int
 }
 
 // Constructor for NT_Switch----------------------------------------------
-func NewNT_Switch(expresion interprete.AbstractExpression, casos []interprete.AbstractExpression, def interprete.AbstractExpression) *NT_Switch {
+func NewNT_Switch(expresion interprete.AbstractExpression, casos []interprete.AbstractExpression, def interprete.AbstractExpression, linea int, columna int) *NT_Switch {
 	return &NT_Switch{
 		Expresion: expresion,
 		Casos:     casos,
 		Default:   def,
+		Linea:     linea,
+		Columna:   columna,
 	}
 }
 
@@ -48,6 +55,12 @@ func (NTs *NT_Switch) Interpretar(ctx *interprete.Contexto) *interprete.Resultad
 			ctx.PopAmbito()
 			goodcase = true
 			break
+		}
+		if ctx.Memoria.Anterior == nil {
+			if len(ctx.TransState) > 0 {
+				ctx.AddError("No se puede colocar una expresion de transicion fuera de un ciclo o función en el IF ubicado en la linea " + strconv.Itoa(NTs.Linea) + " y columna " + strconv.Itoa(NTs.Columna))
+				return interprete.NewNil()
+			}
 		}
 	}
 	if NTs.Default != nil && !goodcase {

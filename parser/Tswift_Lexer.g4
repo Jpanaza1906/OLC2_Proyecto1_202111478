@@ -6,9 +6,12 @@ PARDER: ')';
 PARIZQ: '(';
 LLAVEIZQ: '{';
 LLAVEDER: '}';
+CORCHETEIZQ: '[';
+CORCHETEDER: ']';
 DOSPT: ':';
 PTCOMA: ';';
 INTERROGACION: '?';
+PUNTO : '.';
 //Operadores aritmeticos
 MASIGUAL: '+=';
 MENOSIGUAL: '-=';
@@ -51,6 +54,12 @@ CONTINUE: 'continue';
 RETURN: 'return';
 BREAK: 'break';
 NIL: 'nil';
+APPEND : 'append';
+REMOVELAST : 'removeLast';
+REMOVE : 'remove';
+AT : 'at';
+ISEMPTY : 'IsEmpty';
+COUNT : 'count';
 //Tipos de datos reservadas
 INT: 'Int';
 FLOAT: 'Float';

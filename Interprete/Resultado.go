@@ -10,6 +10,7 @@ const (
 	Integer TipoE = 2
 	Float   TipoE = 3
 	String  TipoE = 4
+	Vector  TipoE = 5
 )
 
 func (t TipoE) String() string {
@@ -24,6 +25,8 @@ func (t TipoE) String() string {
 		return "Float"
 	case String:
 		return "String"
+	case Vector:
+		return "Vector"
 	default:
 		return "Unknown"
 	}
@@ -35,6 +38,7 @@ type Resultado struct {
 	Valor  int
 	ValorF float64
 	ValorS string
+	ValorV []Resultado
 	Tipo   TipoE
 }
 
@@ -108,5 +112,18 @@ func NewCharLiteral(valor string) *Resultado {
 		Valor:  0,
 		ValorS: valor,
 		Tipo:   String,
+	}
+}
+
+//constructor para VECTOR RESULTADO----------------------------------------------
+
+func NewVectorLiteral(valor []Resultado) *Resultado {
+	return &Resultado{
+		Nil:    false,
+		ValorF: 0.00,
+		Valor:  0,
+		ValorS: "",
+		ValorV: valor,
+		Tipo:   Vector,
 	}
 }

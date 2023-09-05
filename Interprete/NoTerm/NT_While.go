@@ -5,13 +5,17 @@ import interprete "OLC2_Proyecto1_202111478/Interprete"
 type NT_While struct {
 	Condicion  interprete.AbstractExpression
 	Sentencias interprete.AbstractExpression
+	Linea      int
+	Columna    int
 }
 
 // Constructor for NT_While----------------------------------------------
-func NewNT_While(condicion interprete.AbstractExpression, sentencias interprete.AbstractExpression) *NT_While {
+func NewNT_While(condicion interprete.AbstractExpression, sentencias interprete.AbstractExpression, linea int, columna int) *NT_While {
 	return &NT_While{
 		Condicion:  condicion,
 		Sentencias: sentencias,
+		Linea:      linea,
+		Columna:    columna,
 	}
 }
 
@@ -33,10 +37,10 @@ func (NTw *NT_While) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 		if len(ctx.TransState) > 0 {
 			transt := ctx.TransState[len(ctx.TransState)-1]
 			ctx.RemTransSentencia()
-			if transt == "break" {
+			if transt.ValorS == "break" {
 				ctx.PopAmbito()
 				break
-			} else if transt == "continue" {
+			} else if transt.ValorS == "continue" {
 				ctx.PopAmbito()
 				continue
 			} //else if transt == "return" {

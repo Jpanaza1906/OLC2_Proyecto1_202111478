@@ -1,19 +1,26 @@
 package noterm
 
-import interprete "OLC2_Proyecto1_202111478/Interprete"
+import (
+	interprete "OLC2_Proyecto1_202111478/Interprete"
+	"strconv"
+)
 
 type NT_IfSentencia struct {
 	Condicion interprete.AbstractExpression
 	Si        interprete.AbstractExpression
 	Sino      interprete.AbstractExpression
+	Linea     int
+	Columna   int
 }
 
 // Constructor for NT_IfSentencia----------------------------------------------
-func NewNT_IfSentencia(condicion interprete.AbstractExpression, si interprete.AbstractExpression, sino interprete.AbstractExpression) *NT_IfSentencia {
+func NewNT_IfSentencia(condicion interprete.AbstractExpression, si interprete.AbstractExpression, sino interprete.AbstractExpression, linea int, columna int) *NT_IfSentencia {
 	return &NT_IfSentencia{
 		Condicion: condicion,
 		Si:        si,
 		Sino:      sino,
+		Linea:     linea,
+		Columna:   columna,
 	}
 }
 
@@ -36,6 +43,14 @@ func (NTis *NT_IfSentencia) Interpretar(ctx *interprete.Contexto) *interprete.Re
 		NTis.Sino.Interpretar(ctx)
 		//Se saca el ambito
 		ctx.PopAmbito()
+	}
+
+	//Se evalua si hay un ambito padre que no sea el global. Y si hay una expresion de transicion habra un error
+	if ctx.Memoria.Anterior == nil {
+		if len(ctx.TransState) > 0 {
+			ctx.AddError("No se puede colocar una expresion de transicion fuera de un ciclo o función en el IF ubicado en la linea " + strconv.Itoa(NTis.Linea) + " y columna " + strconv.Itoa(NTis.Columna))
+			return interprete.NewNil()
+		}
 	}
 
 	return interprete.NewNil()

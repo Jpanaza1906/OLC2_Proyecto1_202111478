@@ -22,6 +22,8 @@ sentencia:
     |while_sentencia #S_While
     |for_sentencia #S_For
     |trans_sentencia PTCOMA?#S_Transicion
+    |dec_vector PTCOMA?#S_Declaracion_Vector
+    |func_vector PTCOMA?#S_Funcion_Vector
     ;
 
 //Declaracion--------------------------------------------------------------------
@@ -92,9 +94,28 @@ rango_p:
 trans_sentencia:
     BREAK #Break
     |CONTINUE #Continue
-    |RETURN (e (',' e)*)? #Return
+    |RETURN (e)? #Return
     ;
 
+//Vectores ----------------------------------------------------------------------
+
+dec_vector:
+    tipod=(VAR|LET) ID DOSPT CORCHETEIZQ tipo CORCHETEDER IGUAL def_vector #Declaracion_Vector
+    ;
+
+def_vector:
+    CORCHETEIZQ e (',' e)* CORCHETEDER #Def_Vector
+    |CORCHETEIZQ CORCHETEDER #Def_Vector_Vacio
+    |ID #Def_Vector_Id
+    ;
+
+func_vector:
+    ID PUNTO APPEND PARIZQ e PARDER #Func_Vector_Append
+    |ID PUNTO REMOVELAST PARIZQ PARDER #Func_Vector_RemoveLast
+    |ID PUNTO REMOVE PARIZQ AT DOSPT e PARDER #Func_Vector_Remove
+    |ID PUNTO ISEMPTY #Func_Vector_isEmpty
+    |ID PUNTO COUNT #Func_Vector_Count
+    ;
 //Tipos de datos-----------------------------------------------------------------
 tipo:
     INT #Tipo_Int
@@ -114,6 +135,7 @@ e
     | e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
     | op=(TRUE | FALSE)          # Expr_Booleano
     | NIL               # Expr_Nil
+    | ID CORCHETEIZQ e CORCHETEDER # Expr_Vector
     | ID                # Expr_Id
     | DECIMAL           # Expr_Decimal
     | ENTERO            # Expr_Entero

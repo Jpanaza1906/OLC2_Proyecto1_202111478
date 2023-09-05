@@ -6,14 +6,18 @@ type NT_Guard struct {
 	Expresion interprete.AbstractExpression
 	Sentencia interprete.AbstractExpression
 	TransSent interprete.AbstractExpression
+	Linea     int
+	Columna   int
 }
 
 // Constructor for NT_Guard----------------------------------------------
-func NewNT_Guard(expresion interprete.AbstractExpression, sentencia interprete.AbstractExpression, transsent interprete.AbstractExpression) *NT_Guard {
+func NewNT_Guard(expresion interprete.AbstractExpression, sentencia interprete.AbstractExpression, transsent interprete.AbstractExpression, linea int, columna int) *NT_Guard {
 	return &NT_Guard{
 		Expresion: expresion,
 		Sentencia: sentencia,
 		TransSent: transsent,
+		Linea:     linea,
+		Columna:   columna,
 	}
 }
 
@@ -29,7 +33,7 @@ func (NTg *NT_Guard) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 		ctx.PushAmbito()
 		NTg.Sentencia.Interpretar(ctx)
 		//Se coloca la transicion de sentencia
-		ctx.AddTransSentencia(NTg.TransSent.Interpretar(ctx).ValorS)
+		ctx.AddTransSentencia(NTg.TransSent.Interpretar(ctx))
 		//Se saca el ambito
 		ctx.PopAmbito()
 	}

@@ -92,6 +92,18 @@ func (s *BaseTswift_GrammarListener) EnterS_Transicion(ctx *S_TransicionContext)
 // ExitS_Transicion is called when production S_Transicion is exited.
 func (s *BaseTswift_GrammarListener) ExitS_Transicion(ctx *S_TransicionContext) {}
 
+// EnterS_Declaracion_Vector is called when production S_Declaracion_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Declaracion_Vector(ctx *S_Declaracion_VectorContext) {}
+
+// ExitS_Declaracion_Vector is called when production S_Declaracion_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Declaracion_Vector(ctx *S_Declaracion_VectorContext) {}
+
+// EnterS_Funcion_Vector is called when production S_Funcion_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Funcion_Vector(ctx *S_Funcion_VectorContext) {}
+
+// ExitS_Funcion_Vector is called when production S_Funcion_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Funcion_Vector(ctx *S_Funcion_VectorContext) {}
+
 // EnterDeclaracion_Tipo_Val is called when production Declaracion_Tipo_Val is entered.
 func (s *BaseTswift_GrammarListener) EnterDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) {}
 
@@ -219,6 +231,61 @@ func (s *BaseTswift_GrammarListener) EnterReturn(ctx *ReturnContext) {}
 // ExitReturn is called when production Return is exited.
 func (s *BaseTswift_GrammarListener) ExitReturn(ctx *ReturnContext) {}
 
+// EnterDeclaracion_Vector is called when production Declaracion_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Vector(ctx *Declaracion_VectorContext) {}
+
+// ExitDeclaracion_Vector is called when production Declaracion_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Vector(ctx *Declaracion_VectorContext) {}
+
+// EnterDef_Vector is called when production Def_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Vector(ctx *Def_VectorContext) {}
+
+// ExitDef_Vector is called when production Def_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Vector(ctx *Def_VectorContext) {}
+
+// EnterDef_Vector_Vacio is called when production Def_Vector_Vacio is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Vector_Vacio(ctx *Def_Vector_VacioContext) {}
+
+// ExitDef_Vector_Vacio is called when production Def_Vector_Vacio is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Vector_Vacio(ctx *Def_Vector_VacioContext) {}
+
+// EnterDef_Vector_Id is called when production Def_Vector_Id is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Vector_Id(ctx *Def_Vector_IdContext) {}
+
+// ExitDef_Vector_Id is called when production Def_Vector_Id is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Vector_Id(ctx *Def_Vector_IdContext) {}
+
+// EnterFunc_Vector_Append is called when production Func_Vector_Append is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Append(ctx *Func_Vector_AppendContext) {}
+
+// ExitFunc_Vector_Append is called when production Func_Vector_Append is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Vector_Append(ctx *Func_Vector_AppendContext) {}
+
+// EnterFunc_Vector_RemoveLast is called when production Func_Vector_RemoveLast is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Vector_RemoveLast(ctx *Func_Vector_RemoveLastContext) {
+}
+
+// ExitFunc_Vector_RemoveLast is called when production Func_Vector_RemoveLast is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Vector_RemoveLast(ctx *Func_Vector_RemoveLastContext) {}
+
+// EnterFunc_Vector_Remove is called when production Func_Vector_Remove is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) {}
+
+// ExitFunc_Vector_Remove is called when production Func_Vector_Remove is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) {}
+
+// EnterFunc_Vector_isEmpty is called when production Func_Vector_isEmpty is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) {}
+
+// ExitFunc_Vector_isEmpty is called when production Func_Vector_isEmpty is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) {}
+
+// EnterFunc_Vector_Count is called when production Func_Vector_Count is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Count(ctx *Func_Vector_CountContext) {}
+
+// ExitFunc_Vector_Count is called when production Func_Vector_Count is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Vector_Count(ctx *Func_Vector_CountContext) {}
+
 // EnterTipo_Int is called when production Tipo_Int is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}
 
@@ -326,6 +393,12 @@ func (s *BaseTswift_GrammarListener) EnterExpr_Booleano(ctx *Expr_BooleanoContex
 
 // ExitExpr_Booleano is called when production Expr_Booleano is exited.
 func (s *BaseTswift_GrammarListener) ExitExpr_Booleano(ctx *Expr_BooleanoContext) {}
+
+// EnterExpr_Vector is called when production Expr_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Vector(ctx *Expr_VectorContext) {}
+
+// ExitExpr_Vector is called when production Expr_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Vector(ctx *Expr_VectorContext) {}
 
 // EnterExpr_Entero is called when production Expr_Entero is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Entero(ctx *Expr_EnteroContext) {}

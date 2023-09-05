@@ -6,11 +6,10 @@ type Simbolo struct {
 	Nombre         string
 	Categoria      string
 	Tipo           TipoE
-	Tipo_Compuesto *Tipos
+	Tipo_Compuesto TipoE
 	Num_Parametros int
 	Parametros     []*Simbolo
 	Resultado      *Resultado
-	Resultados     []*Resultado
 	Tipo_Retorno   *Tipos
 	Linea          int
 	Columna        int
@@ -18,7 +17,7 @@ type Simbolo struct {
 
 // Constructor for Simbolo----------------------------------------------
 
-func NewSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto *Tipos, num_parametros int, parametros []*Simbolo, resultado *Resultado, resultados []*Resultado, tipo_retorno *Tipos, linea int, columna int) *Simbolo {
+func NewSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto TipoE, num_parametros int, parametros []*Simbolo, resultado *Resultado, tipo_retorno *Tipos, linea int, columna int) *Simbolo {
 	return &Simbolo{
 		Nombre:         nombre,
 		Categoria:      categoria,
@@ -27,7 +26,6 @@ func NewSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto *Tip
 		Num_Parametros: num_parametros,
 		Parametros:     parametros,
 		Resultado:      resultado,
-		Resultados:     resultados,
 		Tipo_Retorno:   tipo_retorno,
 		Linea:          linea,
 		Columna:        columna,

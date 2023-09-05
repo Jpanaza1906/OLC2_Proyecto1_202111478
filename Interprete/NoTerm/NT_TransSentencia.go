@@ -3,12 +3,12 @@ package noterm
 import interprete "OLC2_Proyecto1_202111478/Interprete"
 
 type NT_TransSentencia struct {
-	tipo string
+	tipo *interprete.Resultado
 }
 
 // Constructor for NT_TransSentencia----------------------------------------------
 
-func NewNT_TransSentencia(tipo string) *NT_TransSentencia {
+func NewNT_TransSentencia(tipo *interprete.Resultado) *NT_TransSentencia {
 	return &NT_TransSentencia{
 		tipo: tipo,
 	}

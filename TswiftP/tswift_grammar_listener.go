@@ -43,6 +43,12 @@ type Tswift_GrammarListener interface {
 	// EnterS_Transicion is called when entering the S_Transicion production.
 	EnterS_Transicion(c *S_TransicionContext)
 
+	// EnterS_Declaracion_Vector is called when entering the S_Declaracion_Vector production.
+	EnterS_Declaracion_Vector(c *S_Declaracion_VectorContext)
+
+	// EnterS_Funcion_Vector is called when entering the S_Funcion_Vector production.
+	EnterS_Funcion_Vector(c *S_Funcion_VectorContext)
+
 	// EnterDeclaracion_Tipo_Val is called when entering the Declaracion_Tipo_Val production.
 	EnterDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
 
@@ -106,6 +112,33 @@ type Tswift_GrammarListener interface {
 	// EnterReturn is called when entering the Return production.
 	EnterReturn(c *ReturnContext)
 
+	// EnterDeclaracion_Vector is called when entering the Declaracion_Vector production.
+	EnterDeclaracion_Vector(c *Declaracion_VectorContext)
+
+	// EnterDef_Vector is called when entering the Def_Vector production.
+	EnterDef_Vector(c *Def_VectorContext)
+
+	// EnterDef_Vector_Vacio is called when entering the Def_Vector_Vacio production.
+	EnterDef_Vector_Vacio(c *Def_Vector_VacioContext)
+
+	// EnterDef_Vector_Id is called when entering the Def_Vector_Id production.
+	EnterDef_Vector_Id(c *Def_Vector_IdContext)
+
+	// EnterFunc_Vector_Append is called when entering the Func_Vector_Append production.
+	EnterFunc_Vector_Append(c *Func_Vector_AppendContext)
+
+	// EnterFunc_Vector_RemoveLast is called when entering the Func_Vector_RemoveLast production.
+	EnterFunc_Vector_RemoveLast(c *Func_Vector_RemoveLastContext)
+
+	// EnterFunc_Vector_Remove is called when entering the Func_Vector_Remove production.
+	EnterFunc_Vector_Remove(c *Func_Vector_RemoveContext)
+
+	// EnterFunc_Vector_isEmpty is called when entering the Func_Vector_isEmpty production.
+	EnterFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// EnterFunc_Vector_Count is called when entering the Func_Vector_Count production.
+	EnterFunc_Vector_Count(c *Func_Vector_CountContext)
+
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
 
@@ -160,6 +193,9 @@ type Tswift_GrammarListener interface {
 	// EnterExpr_Booleano is called when entering the Expr_Booleano production.
 	EnterExpr_Booleano(c *Expr_BooleanoContext)
 
+	// EnterExpr_Vector is called when entering the Expr_Vector production.
+	EnterExpr_Vector(c *Expr_VectorContext)
+
 	// EnterExpr_Entero is called when entering the Expr_Entero production.
 	EnterExpr_Entero(c *Expr_EnteroContext)
 
@@ -198,6 +234,12 @@ type Tswift_GrammarListener interface {
 
 	// ExitS_Transicion is called when exiting the S_Transicion production.
 	ExitS_Transicion(c *S_TransicionContext)
+
+	// ExitS_Declaracion_Vector is called when exiting the S_Declaracion_Vector production.
+	ExitS_Declaracion_Vector(c *S_Declaracion_VectorContext)
+
+	// ExitS_Funcion_Vector is called when exiting the S_Funcion_Vector production.
+	ExitS_Funcion_Vector(c *S_Funcion_VectorContext)
 
 	// ExitDeclaracion_Tipo_Val is called when exiting the Declaracion_Tipo_Val production.
 	ExitDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
@@ -262,6 +304,33 @@ type Tswift_GrammarListener interface {
 	// ExitReturn is called when exiting the Return production.
 	ExitReturn(c *ReturnContext)
 
+	// ExitDeclaracion_Vector is called when exiting the Declaracion_Vector production.
+	ExitDeclaracion_Vector(c *Declaracion_VectorContext)
+
+	// ExitDef_Vector is called when exiting the Def_Vector production.
+	ExitDef_Vector(c *Def_VectorContext)
+
+	// ExitDef_Vector_Vacio is called when exiting the Def_Vector_Vacio production.
+	ExitDef_Vector_Vacio(c *Def_Vector_VacioContext)
+
+	// ExitDef_Vector_Id is called when exiting the Def_Vector_Id production.
+	ExitDef_Vector_Id(c *Def_Vector_IdContext)
+
+	// ExitFunc_Vector_Append is called when exiting the Func_Vector_Append production.
+	ExitFunc_Vector_Append(c *Func_Vector_AppendContext)
+
+	// ExitFunc_Vector_RemoveLast is called when exiting the Func_Vector_RemoveLast production.
+	ExitFunc_Vector_RemoveLast(c *Func_Vector_RemoveLastContext)
+
+	// ExitFunc_Vector_Remove is called when exiting the Func_Vector_Remove production.
+	ExitFunc_Vector_Remove(c *Func_Vector_RemoveContext)
+
+	// ExitFunc_Vector_isEmpty is called when exiting the Func_Vector_isEmpty production.
+	ExitFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// ExitFunc_Vector_Count is called when exiting the Func_Vector_Count production.
+	ExitFunc_Vector_Count(c *Func_Vector_CountContext)
+
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)
 
@@ -315,6 +384,9 @@ type Tswift_GrammarListener interface {
 
 	// ExitExpr_Booleano is called when exiting the Expr_Booleano production.
 	ExitExpr_Booleano(c *Expr_BooleanoContext)
+
+	// ExitExpr_Vector is called when exiting the Expr_Vector production.
+	ExitExpr_Vector(c *Expr_VectorContext)
 
 	// ExitExpr_Entero is called when exiting the Expr_Entero production.
 	ExitExpr_Entero(c *Expr_EnteroContext)

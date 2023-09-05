@@ -22,13 +22,7 @@ func (ls *NT_LSentencias) AddSentencia(sentencia interprete.AbstractExpression) 
 func (ls *NT_LSentencias) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	for _, sentencia := range ls.LSentencias {
 		if len(ctx.TransState) > 0 {
-			if ctx.TransState[len(ctx.TransState)-1] == "break" {
-				break
-			} else if ctx.TransState[len(ctx.TransState)-1] == "continue" {
-				break
-			} else if ctx.TransState[len(ctx.TransState)-1] == "return" {
-				break
-			}
+			break
 		}
 		sentencia.Interpretar(ctx)
 	}

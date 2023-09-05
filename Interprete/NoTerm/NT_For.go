@@ -97,10 +97,10 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 			if len(ctx.TransState) > 0 {
 				transt := ctx.TransState[len(ctx.TransState)-1]
 				ctx.RemTransSentencia()
-				if transt == "break" {
+				if transt.ValorS == "break" {
 					ctx.PopAmbito()
 					break
-				} else if transt == "continue" {
+				} else if transt.ValorS == "continue" {
 					ctx.PopAmbito()
 					continue
 				} // else if transt == "return" {

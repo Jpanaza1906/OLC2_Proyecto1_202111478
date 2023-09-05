@@ -6,7 +6,7 @@ type Contexto struct {
 	Memoria    *Memoria
 	zGlobal    *Memoria
 	Consola    string
-	TransState []string
+	TransState []*Resultado
 	Errores    []string
 	Conversor  *Conversor
 }
@@ -15,7 +15,7 @@ func NewContexto() *Contexto {
 	c := &Contexto{
 		Memoria:    NewMemoria(nil),
 		Consola:    "",
-		TransState: make([]string, 0, 10),
+		TransState: make([]*Resultado, 0, 10),
 		Errores:    make([]string, 0, 10),
 		Conversor:  nil,
 	}
@@ -47,7 +47,7 @@ func (c *Contexto) AddVariable(nombre string, tipo TipoE, resultado *Resultado, 
 	if existe {
 		return false
 	}
-	return c.Memoria.CreateSimbolo(nombre, "var", tipo, nil, -1, nil, resultado, nil, nil, linea, columna)
+	return c.Memoria.CreateSimbolo(nombre, "var", tipo, 0, -1, nil, resultado, nil, linea, columna)
 }
 
 // Se crea una nueva constante en el ambito actual ----------------------------------------------
@@ -56,7 +56,16 @@ func (c *Contexto) AddConstante(nombre string, tipo TipoE, resultado *Resultado,
 	if existe {
 		return false
 	}
-	return c.Memoria.CreateSimbolo(nombre, "const", tipo, nil, -1, nil, resultado, nil, nil, linea, columna)
+	return c.Memoria.CreateSimbolo(nombre, "const", tipo, 0, -1, nil, resultado, nil, linea, columna)
+}
+
+// Se crea un vector en el ambito actual ----------------------------------------------
+func (c *Contexto) AddVector(nombre string, categoria string, tipo TipoE, tipoV TipoE, resultado *Resultado, linea int, columna int) bool {
+	existe := c.Memoria.Exist(nombre)
+	if existe {
+		return false
+	}
+	return c.Memoria.CreateSimbolo(nombre, categoria, tipo, tipoV, -1, nil, resultado, nil, linea, columna)
 }
 
 // Se asigna un valor a una variable en el ambito actual ---------------------------------------------
@@ -118,8 +127,8 @@ func (c *Contexto) AddError(entrada string) {
 }
 
 //Agregar sentencia
-func (c *Contexto) AddTransSentencia(entrada string) {
-	if entrada == "break" || entrada == "continue" || entrada == "return" {
+func (c *Contexto) AddTransSentencia(entrada *Resultado) {
+	if len(c.TransState) == 0 {
 		c.TransState = append(c.TransState, entrada)
 	}
 }

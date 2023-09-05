@@ -16,12 +16,12 @@ func NewMemoria(anterior *Memoria) *Memoria {
 
 // Crear simbolo en memoria----------------------------------------------
 
-func (m *Memoria) CreateSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto *Tipos, num_parametros int, parametros []*Simbolo, resultado *Resultado, resultados []*Resultado, tipo_retorno *Tipos, linea int, columna int) bool {
+func (m *Memoria) CreateSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto TipoE, num_parametros int, parametros []*Simbolo, resultado *Resultado, tipo_retorno *Tipos, linea int, columna int) bool {
 	_, ok := m.variables[nombre]
 	if ok {
 		return false
 	}
-	m.variables[nombre] = NewSimbolo(nombre, categoria, tipo, tipo_compuesto, num_parametros, parametros, resultado, resultados, tipo_retorno, linea, columna)
+	m.variables[nombre] = NewSimbolo(nombre, categoria, tipo, tipo_compuesto, num_parametros, parametros, resultado, tipo_retorno, linea, columna)
 	return true
 }
 

@@ -55,6 +55,14 @@ func (v *BaseTswift_GrammarVisitor) VisitS_Transicion(ctx *S_TransicionContext) 
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitS_Declaracion_Vector(ctx *S_Declaracion_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Funcion_Vector(ctx *S_Funcion_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -139,6 +147,42 @@ func (v *BaseTswift_GrammarVisitor) VisitReturn(ctx *ReturnContext) interface{} 
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitDeclaracion_Vector(ctx *Declaracion_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Vector(ctx *Def_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Vector_Vacio(ctx *Def_Vector_VacioContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Vector_Id(ctx *Def_Vector_IdContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Append(ctx *Func_Vector_AppendContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_RemoveLast(ctx *Func_Vector_RemoveLastContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitTipo_Int(ctx *Tipo_IntContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -208,6 +252,10 @@ func (v *BaseTswift_GrammarVisitor) VisitExpr_Logica(ctx *Expr_LogicaContext) in
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitExpr_Booleano(ctx *Expr_BooleanoContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitExpr_Vector(ctx *Expr_VectorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
