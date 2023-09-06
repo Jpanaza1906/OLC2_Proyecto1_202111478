@@ -12,7 +12,7 @@ l_sentencias:
 
 //Sentencias---------------------------------------------------------------------
 sentencia:
-    PRINT PARIZQ e (',' e)* PARDER PTCOMA?#S_Consola
+    print_sentencia PTCOMA? #S_Print
     |declaracion PTCOMA?#S_Declaracion
     |constante PTCOMA?#S_Constante
     |asignacion PTCOMA?#S_Asignacion
@@ -24,6 +24,12 @@ sentencia:
     |trans_sentencia PTCOMA?#S_Transicion
     |dec_vector PTCOMA?#S_Declaracion_Vector
     |func_vector PTCOMA?#S_Funcion_Vector
+    |asig_vector PTCOMA?#S_Asignacion_Vector
+    ;
+
+//Sentencia de impresion---------------------------------------------------------
+print_sentencia:
+    PRINT PARIZQ e (',' e)* PARDER PTCOMA?#Print
     ;
 
 //Declaracion--------------------------------------------------------------------
@@ -108,13 +114,14 @@ def_vector:
     |CORCHETEIZQ CORCHETEDER #Def_Vector_Vacio
     |ID #Def_Vector_Id
     ;
+asig_vector:
+    ID CORCHETEIZQ e CORCHETEDER IGUAL e #Asig_Vector
+    ;
 
 func_vector:
     ID PUNTO APPEND PARIZQ e PARDER #Func_Vector_Append
     |ID PUNTO REMOVELAST PARIZQ PARDER #Func_Vector_RemoveLast
     |ID PUNTO REMOVE PARIZQ AT DOSPT e PARDER #Func_Vector_Remove
-    |ID PUNTO ISEMPTY #Func_Vector_isEmpty
-    |ID PUNTO COUNT #Func_Vector_Count
     ;
 //Tipos de datos-----------------------------------------------------------------
 tipo:
@@ -136,6 +143,8 @@ e
     | op=(TRUE | FALSE)          # Expr_Booleano
     | NIL               # Expr_Nil
     | ID CORCHETEIZQ e CORCHETEDER # Expr_Vector
+    | ID PUNTO ISEMPTY #Func_Vector_isEmpty
+    | ID PUNTO COUNT #Func_Vector_Count
     | ID                # Expr_Id
     | DECIMAL           # Expr_Decimal
     | ENTERO            # Expr_Entero

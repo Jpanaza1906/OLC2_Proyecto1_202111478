@@ -50,7 +50,7 @@ func (NTs *NT_Switch) Interpretar(ctx *interprete.Contexto) *interprete.Resultad
 		caso := caso.(*NT_Caso)
 		expresionCaso := caso.Expresion.Interpretar(ctx)
 		if expresionCaso.ValorS == expresion.ValorS {
-			ctx.PushAmbito()
+			ctx.PushAmbito("Switch")
 			caso.Interpretar(ctx)
 			ctx.PopAmbito()
 			goodcase = true
@@ -64,7 +64,7 @@ func (NTs *NT_Switch) Interpretar(ctx *interprete.Contexto) *interprete.Resultad
 		}
 	}
 	if NTs.Default != nil && !goodcase {
-		ctx.PushAmbito()
+		ctx.PushAmbito("Switch")
 		NTs.Default.Interpretar(ctx)
 		ctx.PopAmbito()
 	}

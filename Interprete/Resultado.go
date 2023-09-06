@@ -118,11 +118,17 @@ func NewCharLiteral(valor string) *Resultado {
 //constructor para VECTOR RESULTADO----------------------------------------------
 
 func NewVectorLiteral(valor []Resultado) *Resultado {
+	//crear un string con los valores del vector
+	var valorS string = "["
+	for _, element := range valor {
+		valorS += element.ValorS + ","
+	}
+	valorS += "]"
 	return &Resultado{
 		Nil:    false,
 		ValorF: 0.00,
 		Valor:  0,
-		ValorS: "",
+		ValorS: valorS,
 		ValorV: valor,
 		Tipo:   Vector,
 	}

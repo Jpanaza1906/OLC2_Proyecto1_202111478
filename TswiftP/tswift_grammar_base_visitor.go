@@ -15,7 +15,7 @@ func (v *BaseTswift_GrammarVisitor) VisitL_Sentencia(ctx *L_SentenciaContext) in
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseTswift_GrammarVisitor) VisitS_Consola(ctx *S_ConsolaContext) interface{} {
+func (v *BaseTswift_GrammarVisitor) VisitS_Print(ctx *S_PrintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -60,6 +60,14 @@ func (v *BaseTswift_GrammarVisitor) VisitS_Declaracion_Vector(ctx *S_Declaracion
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitS_Funcion_Vector(ctx *S_Funcion_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Asignacion_Vector(ctx *S_Asignacion_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitPrint(ctx *PrintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -163,6 +171,10 @@ func (v *BaseTswift_GrammarVisitor) VisitDef_Vector_Id(ctx *Def_Vector_IdContext
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitAsig_Vector(ctx *Asig_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Append(ctx *Func_Vector_AppendContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -172,14 +184,6 @@ func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_RemoveLast(ctx *Func_Vector
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -228,6 +232,14 @@ func (v *BaseTswift_GrammarVisitor) VisitExpr_MulDiv(ctx *Expr_MulDivContext) in
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitExpr_Nil(ctx *Expr_NilContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

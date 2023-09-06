@@ -4,7 +4,7 @@ package interprete
 
 type Contexto struct {
 	Memoria    *Memoria
-	zGlobal    *Memoria
+	ZGlobal    []*Memoria
 	Consola    string
 	TransState []*Resultado
 	Errores    []string
@@ -13,7 +13,8 @@ type Contexto struct {
 
 func NewContexto() *Contexto {
 	c := &Contexto{
-		Memoria:    NewMemoria(nil),
+		Memoria:    NewMemoria(nil, "Global"),
+		ZGlobal:    make([]*Memoria, 0),
 		Consola:    "",
 		TransState: make([]*Resultado, 0, 10),
 		Errores:    make([]string, 0, 10),
@@ -25,9 +26,10 @@ func NewContexto() *Contexto {
 
 // Se crea un nuevo ambito ----------------------------------------------
 
-func (c *Contexto) PushAmbito() {
-	head_Memoria := NewMemoria(c.Memoria)
+func (c *Contexto) PushAmbito(nombre string) {
+	head_Memoria := NewMemoria(c.Memoria, c.Memoria.Nambito+">"+nombre)
 	c.Memoria = head_Memoria
+	c.ZGlobal = append(c.ZGlobal, c.Memoria)
 }
 
 // Se elimina el ambito actual ----------------------------------------------

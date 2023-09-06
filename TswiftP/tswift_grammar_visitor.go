@@ -13,8 +13,8 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#L_Sentencia.
 	VisitL_Sentencia(ctx *L_SentenciaContext) interface{}
 
-	// Visit a parse tree produced by Tswift_GrammarParser#S_Consola.
-	VisitS_Consola(ctx *S_ConsolaContext) interface{}
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Print.
+	VisitS_Print(ctx *S_PrintContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion.
 	VisitS_Declaracion(ctx *S_DeclaracionContext) interface{}
@@ -48,6 +48,12 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#S_Funcion_Vector.
 	VisitS_Funcion_Vector(ctx *S_Funcion_VectorContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Vector.
+	VisitS_Asignacion_Vector(ctx *S_Asignacion_VectorContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Print.
+	VisitPrint(ctx *PrintContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
 	VisitDeclaracion_Tipo_Val(ctx *Declaracion_Tipo_ValContext) interface{}
@@ -124,6 +130,9 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#Def_Vector_Id.
 	VisitDef_Vector_Id(ctx *Def_Vector_IdContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#Asig_Vector.
+	VisitAsig_Vector(ctx *Asig_VectorContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Append.
 	VisitFunc_Vector_Append(ctx *Func_Vector_AppendContext) interface{}
 
@@ -132,12 +141,6 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Remove.
 	VisitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) interface{}
-
-	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_isEmpty.
-	VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{}
-
-	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Count.
-	VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
 	VisitTipo_Int(ctx *Tipo_IntContext) interface{}
@@ -174,6 +177,12 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Nil.
 	VisitExpr_Nil(ctx *Expr_NilContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_isEmpty.
+	VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Count.
+	VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Cadena.
 	VisitExpr_Cadena(ctx *Expr_CadenaContext) interface{}

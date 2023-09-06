@@ -49,6 +49,32 @@ func saveToFile(filePath, content string) error {
 	return nil
 }
 
+//ERRORES----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+type Error struct {
+	Descripcion string
+	Tipo        string
+	Linea       int
+	Columna     int
+}
+type CustomErrorListener struct {
+	*antlr.DefaultErrorListener
+	Errores []Error
+}
+
+func NewErrorListener() *CustomErrorListener {
+	return &CustomErrorListener{Errores: make([]Error, 0)}
+}
+
+func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
+	error_ := Error{
+		Descripcion: msg,
+		Tipo:        "Sintactico",
+		Linea:       line,
+		Columna:     column,
+	}
+	Errores.SetText(Errores.Text + "Error: " + error_.Tipo + " " + error_.Descripcion + " en la linea " + fmt.Sprint(error_.Linea) + " y columna " + fmt.Sprint(error_.Columna) + "\n")
+}
+
 //EJECUTAR VISITOR INTERPRETE-------------------------------------------------------------------------------------------------------------------------------------------------
 func ejecutarInterprete(entrada string) {
 	is := antlr.NewInputStream(entrada)
@@ -56,6 +82,10 @@ func ejecutarInterprete(entrada string) {
 
 	tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	parser := TswiftP.NewTswift_GrammarParser(tokens)
+	//agregar el error listener
+	ErrorListener := NewErrorListener()
+	parser.RemoveErrorListeners()
+	parser.AddErrorListener(ErrorListener)
 
 	//Se captura cualquier error
 	visitor := NewVisitorInterprete()
@@ -63,14 +93,34 @@ func ejecutarInterprete(entrada string) {
 	raiz := visitor.Visit(arbol).(interprete.AbstractExpression)
 
 	//Hacemos contexto
-	ctx := interprete.NewContexto()
-	raiz.Interpretar(ctx)
+	context := interprete.NewContexto()
+	//se inicializa la memoria global
+	context.ZGlobal = append(context.ZGlobal, context.Memoria)
+
+	raiz.Interpretar(context)
+
+	//Se iguala la memoria global a la memoria actual en su posicion 0
+	context.ZGlobal[0] = context.Memoria
 
 	//igualar la caja de texto a Consola
-	Consola.SetText(string(ctx.Consola))
+	Consola.SetText(string(context.Consola))
 	//agregar cada error a la caja de texto de errores
-	for _, element := range ctx.Errores {
+	for _, element := range context.Errores {
 		Errores.SetText(Errores.Text + element + "\n")
+	}
+
+	//agregar cada simbolo a la caja de texto de simbolos
+	for _, memoria := range context.ZGlobal {
+		for clave, simbolo := range memoria.Variables {
+			Simbolos.SetText(Simbolos.Text + "\n Tipo simbolo: " + simbolo.Categoria + "\n")
+			Simbolos.SetText(Simbolos.Text + "------------------------------------------\n")
+			Simbolos.SetText(Simbolos.Text + "Ambito: " + simbolo.Ambito + "\n")
+			Simbolos.SetText(Simbolos.Text + "Identificador: " + clave + "\n")
+			Simbolos.SetText(Simbolos.Text + "Tipo: " + simbolo.Tipo.String() + "\n")
+			Simbolos.SetText(Simbolos.Text + "Valor: " + simbolo.Resultado.ValorS + "\n")
+			Simbolos.SetText(Simbolos.Text + "Linea: " + fmt.Sprint(simbolo.Linea) + "| Columna: " + fmt.Sprint(simbolo.Columna) + "\n")
+			Simbolos.SetText(Simbolos.Text + "------------------------------------------\n")
+		}
 	}
 
 }

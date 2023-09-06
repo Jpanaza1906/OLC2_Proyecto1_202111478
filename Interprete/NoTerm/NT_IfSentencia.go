@@ -34,12 +34,12 @@ func (NTis *NT_IfSentencia) Interpretar(ctx *interprete.Contexto) *interprete.Re
 	//Se coloca un nuevo ambito
 
 	if condicion.ValorB {
-		ctx.PushAmbito()
+		ctx.PushAmbito("If")
 		NTis.Si.Interpretar(ctx)
 		//Se saca el ambito
 		ctx.PopAmbito()
 	} else if NTis.Sino != nil {
-		ctx.PushAmbito()
+		ctx.PushAmbito("Else")
 		NTis.Sino.Interpretar(ctx)
 		//Se saca el ambito
 		ctx.PopAmbito()

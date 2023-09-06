@@ -22,7 +22,7 @@ func NewNT_While(condicion interprete.AbstractExpression, sentencias interprete.
 // Implementacion de la interfaz de AbstractExpression----------------
 func (NTw *NT_While) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	for {
-		ctx.PushAmbito()
+		ctx.PushAmbito("While")
 		condicion := NTw.Condicion.Interpretar(ctx)
 		if condicion.Tipo != interprete.Bool {
 			ctx.AddError("La condicion del while debe ser de tipo booleano")

@@ -44,10 +44,6 @@ func (vI *VisitorInterprete) VisitTerminal(node antlr.TerminalNode) interface{} 
 	return ""
 }
 
-func (vI *VisitorInterprete) VisitErrorNode(node antlr.ErrorNode) interface{} {
-	return noterm.NewNT_Error(node.GetText())
-}
-
 // Visit a parse tree produced by Tswift_GrammarParser#SLSentencias.
 func (vI *VisitorInterprete) VisitSLSentencias(ctx *TswiftP.SLSentenciasContext) interface{} {
 	lsentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
@@ -63,22 +59,17 @@ func (vI *VisitorInterprete) VisitL_Sentencia(ctx *TswiftP.L_SentenciaContext) i
 	lsentencias := noterm.NewNT_LSentencias()
 	sentenciasAntlr := ctx.AllSentencia()
 	for _, sentenciaAntlr := range sentenciasAntlr {
-		nodoSentencia := sentenciaAntlr.Accept(vI).(interprete.AbstractExpression)
-		lsentencias.AddSentencia(nodoSentencia)
+		nodoSentencia, ok := sentenciaAntlr.Accept(vI).(interprete.AbstractExpression)
+		if ok {
+			lsentencias.AddSentencia(nodoSentencia)
+		}
 	}
 	return lsentencias
 }
 
-// Visit a parse tree produced by Tswift_GrammarParser#S_Consola.
-func (vI *VisitorInterprete) VisitS_Consola(ctx *TswiftP.S_ConsolaContext) interface{} {
-	consola := noterm.NewNT_Print()
-	lExpresiones := ctx.AllE()
-
-	for _, expresion := range lExpresiones {
-		nodoExpresion := expresion.Accept(vI).(interprete.AbstractExpression)
-		consola.AddExpresion(nodoExpresion)
-	}
-	return consola
+// Visit a parse tree produced by Tswift_GrammarParser#S_Print.
+func (vI *VisitorInterprete) VisitS_Print(ctx *TswiftP.S_PrintContext) interface{} {
+	return ctx.Print_sentencia().Accept(vI).(interprete.AbstractExpression)
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion.
@@ -137,13 +128,33 @@ func (vI *VisitorInterprete) VisitS_Funcion_Vector(ctx *TswiftP.S_Funcion_Vector
 	return ctx.Func_vector().Accept(vI).(interprete.AbstractExpression)
 }
 
+// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Vector.
+func (vI *VisitorInterprete) VisitS_Asignacion_Vector(ctx *TswiftP.S_Asignacion_VectorContext) interface{} {
+	return ctx.Asig_vector().Accept(vI).(interprete.AbstractExpression)
+}
+
+//SENTENCIA DE IMPRESION --------------------------------------------------------------------------------------------
+// Visit a parse tree produced by Tswift_GrammarParser#Print.
+func (vI *VisitorInterprete) VisitPrint(ctx *TswiftP.PrintContext) interface{} {
+	consola := noterm.NewNT_Print()
+	lExpresiones := ctx.AllE()
+
+	for _, expresion := range lExpresiones {
+		nodoExpresion, ok := expresion.Accept(vI).(interprete.AbstractExpression)
+		if ok {
+			consola.AddExpresion(nodoExpresion)
+		}
+
+	}
+	return consola
+}
+
 // DECLARACIONES --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_Val.
 func (vI *VisitorInterprete) VisitDeclaracion_Tipo_Val(ctx *TswiftP.Declaracion_Tipo_ValContext) interface{} {
 	// tipo
-	tipo := ctx.Tipo().GetText()
-
+	tipo := ctx.Tipo().Accept(vI).(string)
 	// id
 	id := ctx.ID().GetText()
 
@@ -167,7 +178,7 @@ func (vI *VisitorInterprete) VisitDeclaracion_Val(ctx *TswiftP.Declaracion_ValCo
 // Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Tipo_noVal.
 func (vI *VisitorInterprete) VisitDeclaracion_Tipo_noVal(ctx *TswiftP.Declaracion_Tipo_noValContext) interface{} {
 	// tipo
-	tipo := ctx.Tipo().GetText()
+	tipo := ctx.Tipo().Accept(vI).(string)
 
 	// id
 	id := ctx.ID().GetText()
@@ -180,7 +191,7 @@ func (vI *VisitorInterprete) VisitDeclaracion_Tipo_noVal(ctx *TswiftP.Declaracio
 // Visit a parse tree produced by Tswift_GrammarParser#Constante_Tipo_Val.
 func (vI *VisitorInterprete) VisitConstante_Tipo_Val(ctx *TswiftP.Constante_Tipo_ValContext) interface{} {
 	// tipo
-	tipo := ctx.Tipo().GetText()
+	tipo := ctx.Tipo().Accept(vI).(string)
 
 	// id
 	id := ctx.ID().GetText()
@@ -419,11 +430,11 @@ func (vI *VisitorInterprete) VisitReturn(ctx *TswiftP.ReturnContext) interface{}
 // Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Vector.
 func (vI *VisitorInterprete) VisitDeclaracion_Vector(ctx *TswiftP.Declaracion_VectorContext) interface{} {
 	//tipo dec
-	tipodec := ctx.Tipo().GetText()
+	tipodec := ctx.GetTipod().GetText()
 	//id
 	id := ctx.ID().GetText()
 	//tipo
-	tipo := ctx.Tipo().GetText()
+	tipo := ctx.Tipo().Accept(vI).(string)
 
 	//definicion vector
 	defvec := ctx.Def_vector().Accept(vI).(interprete.AbstractExpression)
@@ -432,53 +443,88 @@ func (vI *VisitorInterprete) VisitDeclaracion_Vector(ctx *TswiftP.Declaracion_Ve
 
 }
 
-// DEFINICION VECTOR
+// ASIGNACION VECTOR DE UNA POSICION --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Asig_Vector.
+func (vI *VisitorInterprete) VisitAsig_Vector(ctx *TswiftP.Asig_VectorContext) interface{} {
+	// id
+	id := ctx.ID().GetText()
+
+	// posicion
+	posicion := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// expresion
+
+	expr := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_AsigVector(id, posicion, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// DEFINICION VECTOR--------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Def_Vector.
 func (vI *VisitorInterprete) VisitDef_Vector(ctx *TswiftP.Def_VectorContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	//Se obtiene la lista de expresiones
+	lExpresiones := ctx.AllE()
+	//Se crea un vector de expresiones
+	vector := []interprete.AbstractExpression{}
+	//Se recorre la lista de expresiones
+	for _, expresion := range lExpresiones {
+		//Se obtiene el valor de la expresion
+		valor := expresion.Accept(vI).(interprete.AbstractExpression)
+		//Se agrega el valor al vector
+		vector = append(vector, valor)
+	}
+	//Se retorna el vector
+	return noterm.NewNT_DefVector("", vector)
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Def_Vector_Vacio.
 func (vI *VisitorInterprete) VisitDef_Vector_Vacio(ctx *TswiftP.Def_Vector_VacioContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	vector := []interprete.AbstractExpression{}
+
+	return noterm.NewNT_DefVector("", vector)
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Def_Vector_Id.
 func (vI *VisitorInterprete) VisitDef_Vector_Id(ctx *TswiftP.Def_Vector_IdContext) interface{} {
-	panic("not implemented") // TODO: Implement
+
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	return noterm.NewNT_DefVector(id, nil)
 }
 
 // FUNCIONES DE VECTOR --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Append.
 func (vI *VisitorInterprete) VisitFunc_Vector_Append(ctx *TswiftP.Func_Vector_AppendContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	//Se obtiene la expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_FuncVector(id, expr, "append", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_RemoveLast.
 func (vI *VisitorInterprete) VisitFunc_Vector_RemoveLast(ctx *TswiftP.Func_Vector_RemoveLastContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	return noterm.NewNT_FuncVector(id, nil, "removeLast", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Remove.
 func (vI *VisitorInterprete) VisitFunc_Vector_Remove(ctx *TswiftP.Func_Vector_RemoveContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
 
-// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_isEmpty.
-func (vI *VisitorInterprete) VisitFunc_Vector_isEmpty(ctx *TswiftP.Func_Vector_isEmptyContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
+	//Se obtiene la expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
 
-// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Count.
-func (vI *VisitorInterprete) VisitFunc_Vector_Count(ctx *TswiftP.Func_Vector_CountContext) interface{} {
-	panic("not implemented") // TODO: Implement
-}
-
-// Visit a parse tree produced by Tswift_GrammarParser#Expr_Vector.
-func (vI *VisitorInterprete) VisitExpr_Vector(ctx *TswiftP.Expr_VectorContext) interface{} {
-	panic("not implemented") // TODO: Implement
+	return noterm.NewNT_FuncVector(id, expr, "remove", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
 // TIPOS DE DATOS --------------------------------------------------------------------------------------------
@@ -505,7 +551,7 @@ func (vI *VisitorInterprete) VisitTipo_Bool(ctx *TswiftP.Tipo_BoolContext) inter
 
 // Visit a parse tree produced by Tswift_GrammarParser#Tipo_Character.
 func (vI *VisitorInterprete) VisitTipo_Character(ctx *TswiftP.Tipo_CharacterContext) interface{} {
-	return ctx.CHARACTER().GetText()
+	return "String"
 }
 
 // EXPRESIONES --------------------------------------------------------------------------------------------
@@ -653,4 +699,32 @@ func (vI *VisitorInterprete) VisitExpr_Caracter(ctx *TswiftP.Expr_CaracterContex
 	return terminales.NewT_Char(ctx.CARACTER().GetText(),
 		ctx.CARACTER().GetSymbol().GetLine(),
 		ctx.CARACTER().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_isEmpty.
+func (vI *VisitorInterprete) VisitFunc_Vector_isEmpty(ctx *TswiftP.Func_Vector_isEmptyContext) interface{} {
+	// Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	return noterm.NewNT_FuncVector(id, nil, "isEmpty", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Count.
+func (vI *VisitorInterprete) VisitFunc_Vector_Count(ctx *TswiftP.Func_Vector_CountContext) interface{} {
+	// Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	return noterm.NewNT_FuncVector(id, nil, "count", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Vector.
+func (vI *VisitorInterprete) VisitExpr_Vector(ctx *TswiftP.Expr_VectorContext) interface{} {
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	//Se obtiene la expresion
+
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return terminales.NewT_VectorPos(id, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }

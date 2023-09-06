@@ -16,4 +16,5 @@ func NewNT_S(sentencias interprete.AbstractExpression) *NT_S {
 // Implementacion de la interfaz de AbstractExpression----------------
 func (NTs *NT_S) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	return NTs.Sentencias.Interpretar(ctx)
+
 }

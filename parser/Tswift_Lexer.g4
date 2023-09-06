@@ -91,3 +91,7 @@ UL_C
 ML_C
   :  '/*' .*? '*/' -> channel(HIDDEN)
   ;
+//Errores
+ERROR
+  : . -> channel(HIDDEN)
+  ;

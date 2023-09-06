@@ -40,7 +40,7 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 		// si la expresion es de tipo string se recorre caracter por caracter
 		if expr.Tipo == interprete.String {
 			// se agrega nuevo ambito
-			ctx.PushAmbito()
+			ctx.PushAmbito("For")
 			// se agrega la constante al contexto
 			ctx.AddVariable(NTf.Id, expr.Tipo, interprete.NewStringLiteral(""), NTf.Linea, NTf.Columa)
 			for _, c := range expr.ValorS {
@@ -51,6 +51,25 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 			}
 			// se saca el ambito
 			ctx.PopAmbito()
+		} else if expr.Tipo == interprete.Vector {
+			// se agrega nuevo ambito
+			ctx.PushAmbito("For")
+			// se obtiene el tipo de dato del vector
+			tipo := expr.ValorV[0].Tipo
+
+			// se agrega la constante del tipo del vector al contexto
+			ctx.AddVariable(NTf.Id, tipo, interprete.NewNil(), NTf.Linea, NTf.Columa)
+			for _, v := range expr.ValorV {
+				// se asigna el valor de la constante
+				ctx.AsigVariable(NTf.Id, &v)
+				// se ejecuta la sentencia
+				NTf.Sentencia.Interpretar(ctx)
+			}
+			// se saca el ambito
+			ctx.PopAmbito()
+		} else {
+			ctx.AddError("La expresion debe ser de tipo string o vector")
+			return interprete.NewNil()
 		}
 
 	} else {
@@ -78,7 +97,7 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 
 		for {
 			// se agrega nuevo ambito
-			ctx.PushAmbito()
+			ctx.PushAmbito("For")
 			// se agrega la variable al contexto
 			ctx.AddVariable(NTf.Id, interprete.Integer, interprete.NewIntLiteral(0), NTf.Linea, NTf.Columa)
 			//se le asigna el valor de inicio a la variable

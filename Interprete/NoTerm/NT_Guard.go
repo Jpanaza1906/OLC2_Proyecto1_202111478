@@ -30,7 +30,7 @@ func (NTg *NT_Guard) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 	}
 	//Se coloca un nuevo ambito
 	if !expresion.ValorB {
-		ctx.PushAmbito()
+		ctx.PushAmbito("Guard")
 		NTg.Sentencia.Interpretar(ctx)
 		//Se coloca la transicion de sentencia
 		ctx.AddTransSentencia(NTg.TransSent.Interpretar(ctx))

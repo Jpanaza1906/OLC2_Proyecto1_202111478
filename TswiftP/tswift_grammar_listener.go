@@ -13,8 +13,8 @@ type Tswift_GrammarListener interface {
 	// EnterL_Sentencia is called when entering the L_Sentencia production.
 	EnterL_Sentencia(c *L_SentenciaContext)
 
-	// EnterS_Consola is called when entering the S_Consola production.
-	EnterS_Consola(c *S_ConsolaContext)
+	// EnterS_Print is called when entering the S_Print production.
+	EnterS_Print(c *S_PrintContext)
 
 	// EnterS_Declaracion is called when entering the S_Declaracion production.
 	EnterS_Declaracion(c *S_DeclaracionContext)
@@ -48,6 +48,12 @@ type Tswift_GrammarListener interface {
 
 	// EnterS_Funcion_Vector is called when entering the S_Funcion_Vector production.
 	EnterS_Funcion_Vector(c *S_Funcion_VectorContext)
+
+	// EnterS_Asignacion_Vector is called when entering the S_Asignacion_Vector production.
+	EnterS_Asignacion_Vector(c *S_Asignacion_VectorContext)
+
+	// EnterPrint is called when entering the Print production.
+	EnterPrint(c *PrintContext)
 
 	// EnterDeclaracion_Tipo_Val is called when entering the Declaracion_Tipo_Val production.
 	EnterDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
@@ -124,6 +130,9 @@ type Tswift_GrammarListener interface {
 	// EnterDef_Vector_Id is called when entering the Def_Vector_Id production.
 	EnterDef_Vector_Id(c *Def_Vector_IdContext)
 
+	// EnterAsig_Vector is called when entering the Asig_Vector production.
+	EnterAsig_Vector(c *Asig_VectorContext)
+
 	// EnterFunc_Vector_Append is called when entering the Func_Vector_Append production.
 	EnterFunc_Vector_Append(c *Func_Vector_AppendContext)
 
@@ -132,12 +141,6 @@ type Tswift_GrammarListener interface {
 
 	// EnterFunc_Vector_Remove is called when entering the Func_Vector_Remove production.
 	EnterFunc_Vector_Remove(c *Func_Vector_RemoveContext)
-
-	// EnterFunc_Vector_isEmpty is called when entering the Func_Vector_isEmpty production.
-	EnterFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
-
-	// EnterFunc_Vector_Count is called when entering the Func_Vector_Count production.
-	EnterFunc_Vector_Count(c *Func_Vector_CountContext)
 
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
@@ -175,6 +178,12 @@ type Tswift_GrammarListener interface {
 	// EnterExpr_Nil is called when entering the Expr_Nil production.
 	EnterExpr_Nil(c *Expr_NilContext)
 
+	// EnterFunc_Vector_isEmpty is called when entering the Func_Vector_isEmpty production.
+	EnterFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// EnterFunc_Vector_Count is called when entering the Func_Vector_Count production.
+	EnterFunc_Vector_Count(c *Func_Vector_CountContext)
+
 	// EnterExpr_Cadena is called when entering the Expr_Cadena production.
 	EnterExpr_Cadena(c *Expr_CadenaContext)
 
@@ -205,8 +214,8 @@ type Tswift_GrammarListener interface {
 	// ExitL_Sentencia is called when exiting the L_Sentencia production.
 	ExitL_Sentencia(c *L_SentenciaContext)
 
-	// ExitS_Consola is called when exiting the S_Consola production.
-	ExitS_Consola(c *S_ConsolaContext)
+	// ExitS_Print is called when exiting the S_Print production.
+	ExitS_Print(c *S_PrintContext)
 
 	// ExitS_Declaracion is called when exiting the S_Declaracion production.
 	ExitS_Declaracion(c *S_DeclaracionContext)
@@ -240,6 +249,12 @@ type Tswift_GrammarListener interface {
 
 	// ExitS_Funcion_Vector is called when exiting the S_Funcion_Vector production.
 	ExitS_Funcion_Vector(c *S_Funcion_VectorContext)
+
+	// ExitS_Asignacion_Vector is called when exiting the S_Asignacion_Vector production.
+	ExitS_Asignacion_Vector(c *S_Asignacion_VectorContext)
+
+	// ExitPrint is called when exiting the Print production.
+	ExitPrint(c *PrintContext)
 
 	// ExitDeclaracion_Tipo_Val is called when exiting the Declaracion_Tipo_Val production.
 	ExitDeclaracion_Tipo_Val(c *Declaracion_Tipo_ValContext)
@@ -316,6 +331,9 @@ type Tswift_GrammarListener interface {
 	// ExitDef_Vector_Id is called when exiting the Def_Vector_Id production.
 	ExitDef_Vector_Id(c *Def_Vector_IdContext)
 
+	// ExitAsig_Vector is called when exiting the Asig_Vector production.
+	ExitAsig_Vector(c *Asig_VectorContext)
+
 	// ExitFunc_Vector_Append is called when exiting the Func_Vector_Append production.
 	ExitFunc_Vector_Append(c *Func_Vector_AppendContext)
 
@@ -324,12 +342,6 @@ type Tswift_GrammarListener interface {
 
 	// ExitFunc_Vector_Remove is called when exiting the Func_Vector_Remove production.
 	ExitFunc_Vector_Remove(c *Func_Vector_RemoveContext)
-
-	// ExitFunc_Vector_isEmpty is called when exiting the Func_Vector_isEmpty production.
-	ExitFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
-
-	// ExitFunc_Vector_Count is called when exiting the Func_Vector_Count production.
-	ExitFunc_Vector_Count(c *Func_Vector_CountContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)
@@ -366,6 +378,12 @@ type Tswift_GrammarListener interface {
 
 	// ExitExpr_Nil is called when exiting the Expr_Nil production.
 	ExitExpr_Nil(c *Expr_NilContext)
+
+	// ExitFunc_Vector_isEmpty is called when exiting the Func_Vector_isEmpty production.
+	ExitFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// ExitFunc_Vector_Count is called when exiting the Func_Vector_Count production.
+	ExitFunc_Vector_Count(c *Func_Vector_CountContext)
 
 	// ExitExpr_Cadena is called when exiting the Expr_Cadena production.
 	ExitExpr_Cadena(c *Expr_CadenaContext)

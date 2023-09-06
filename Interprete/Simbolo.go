@@ -4,6 +4,7 @@ package interprete
 
 type Simbolo struct {
 	Nombre         string
+	Ambito         string
 	Categoria      string
 	Tipo           TipoE
 	Tipo_Compuesto TipoE
@@ -17,9 +18,10 @@ type Simbolo struct {
 
 // Constructor for Simbolo----------------------------------------------
 
-func NewSimbolo(nombre string, categoria string, tipo TipoE, tipo_compuesto TipoE, num_parametros int, parametros []*Simbolo, resultado *Resultado, tipo_retorno *Tipos, linea int, columna int) *Simbolo {
+func NewSimbolo(nombre string, ambito string, categoria string, tipo TipoE, tipo_compuesto TipoE, num_parametros int, parametros []*Simbolo, resultado *Resultado, tipo_retorno *Tipos, linea int, columna int) *Simbolo {
 	return &Simbolo{
 		Nombre:         nombre,
+		Ambito:         ambito,
 		Categoria:      categoria,
 		Tipo:           tipo,
 		Tipo_Compuesto: tipo_compuesto,

@@ -27,17 +27,19 @@ func (NTdv *NT_DefVector) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 			return interprete.NewNil()
 		}
 		return expr
+	} else {
+		//se crea un vector del tipo de la expresion
+		var vector []interprete.Resultado
+		if len(NTdv.ListaNum) > 0 {
+			//se recorre la lista de expresiones
+			for _, expresion := range NTdv.ListaNum {
+				//se obtiene el valor de la expresion
+				valor := expresion.Interpretar(ctx)
+				//se agrega el valor al vector
+				vector = append(vector, *valor)
+			}
+		}
+		//se retorna el vector
+		return interprete.NewVectorLiteral(vector)
 	}
-	//se crea un vector del tipo de la expresion
-	var vector []interprete.Resultado
-
-	//se recorre la lista de expresiones
-	for _, expresion := range NTdv.ListaNum {
-		//se obtiene el valor de la expresion
-		valor := expresion.Interpretar(ctx)
-		//se agrega el valor al vector
-		vector = append(vector, *valor)
-	}
-	//se retorna el vector
-	return interprete.NewVectorLiteral(vector)
 }
