@@ -103,7 +103,12 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 			//se le asigna el valor de inicio a la variable
 			ctx.AsigVariable(NTf.Id, interprete.NewIntLiteral(inicio.Valor))
 			// se obtiene el valor de la variable
-			valor, _ := ctx.GetVariable(NTf.Id)
+			valor1, ok := ctx.GetVariable(NTf.Id)
+			if !ok {
+				ctx.AddError("La variable " + NTf.Id + " no existe")
+				return interprete.NewNil()
+			}
+			valor := valor1.Resultado
 			// se verifica que el valor sea menor que el fin
 			if valor.Valor <= fin.Valor {
 				// se ejecuta la sentencia

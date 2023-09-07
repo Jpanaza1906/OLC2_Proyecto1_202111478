@@ -26,10 +26,11 @@ func NewNT_Identificador(ID string, linea int, columna int) *NT_Identificador {
 // Implementacion de la interfaz de AbstractExpression----------------
 
 func (NT_Id *NT_Identificador) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
-	expr, ok := ctx.GetVariable(NT_Id.ID)
+	expr1, ok := ctx.GetVariable(NT_Id.ID)
 	if !ok {
 		ctx.AddError("La variable " + NT_Id.ID + " no existe" + " en la linea:" + strconv.Itoa(NT_Id.linea) + " y columna:" + strconv.Itoa(NT_Id.columna))
 		return interprete.NewNil()
 	}
+	expr := expr1.Resultado
 	return expr
 }

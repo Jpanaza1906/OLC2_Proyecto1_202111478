@@ -24,7 +24,18 @@ func (ls *NT_LSentencias) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 		if len(ctx.TransState) > 0 {
 			break
 		}
+		if len(ctx.ReturnState) > 0 {
+			break
+		}
 		sentencia.Interpretar(ctx)
+	}
+	return interprete.NewNil()
+}
+
+//Implementacion para interpretar la ultima sentencia de una funcion
+func (ls *NT_LSentencias) InterpretarUltima(ctx *interprete.Contexto) *interprete.Resultado {
+	if len(ls.LSentencias) > 0 {
+		return ls.LSentencias[len(ls.LSentencias)-1].Interpretar(ctx)
 	}
 	return interprete.NewNil()
 }

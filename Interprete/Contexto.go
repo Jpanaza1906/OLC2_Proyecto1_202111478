@@ -3,22 +3,26 @@ package interprete
 // Clase Contexto --------------------------------------------------------------------------------------------
 
 type Contexto struct {
-	Memoria    *Memoria
-	ZGlobal    []*Memoria
-	Consola    string
-	TransState []*Resultado
-	Errores    []string
-	Conversor  *Conversor
+	Memoria     *Memoria
+	ZGlobal     []*Memoria
+	Consola     string
+	TransState  []*Resultado
+	ReturnState []AbstractExpression
+	Errores     []string
+	Funciones   []*Funcion
+	Conversor   *Conversor
 }
 
 func NewContexto() *Contexto {
 	c := &Contexto{
-		Memoria:    NewMemoria(nil, "Global"),
-		ZGlobal:    make([]*Memoria, 0),
-		Consola:    "",
-		TransState: make([]*Resultado, 0, 10),
-		Errores:    make([]string, 0, 10),
-		Conversor:  nil,
+		Memoria:     NewMemoria(nil, "Global"),
+		ZGlobal:     make([]*Memoria, 0),
+		Consola:     "",
+		TransState:  make([]*Resultado, 0, 10),
+		ReturnState: make([]AbstractExpression, 0, 10),
+		Errores:     make([]string, 0),
+		Funciones:   make([]*Funcion, 0),
+		Conversor:   nil,
 	}
 	c.Conversor = NewConversor(c)
 	return c
@@ -52,6 +56,18 @@ func (c *Contexto) AddVariable(nombre string, tipo TipoE, resultado *Resultado, 
 	return c.Memoria.CreateSimbolo(nombre, "var", tipo, 0, -1, nil, resultado, nil, linea, columna)
 }
 
+// Agregar variable por referencia
+func (c *Contexto) AddVariableRef(nombre string, tipo TipoE, resultado *Resultado, linea int, columna int, variable Simbolo) bool {
+	existe := c.Memoria.Exist(nombre)
+	if existe {
+		return false
+	}
+	c.Memoria.CreateSimbolo(nombre, "var", tipo, 0, -1, nil, resultado, nil, linea, columna)
+	nuevavar, _ := c.GetVariable(nombre)
+	nuevavar = &variable
+	return nuevavar != nil
+}
+
 // Se crea una nueva constante en el ambito actual ----------------------------------------------
 func (c *Contexto) AddConstante(nombre string, tipo TipoE, resultado *Resultado, linea int, columna int) bool {
 	existe := c.Memoria.Exist(nombre)
@@ -68,6 +84,26 @@ func (c *Contexto) AddVector(nombre string, categoria string, tipo TipoE, tipoV 
 		return false
 	}
 	return c.Memoria.CreateSimbolo(nombre, categoria, tipo, tipoV, -1, nil, resultado, nil, linea, columna)
+}
+
+// Se agrega una nueva funcion al vector de funciones
+func (c *Contexto) AddFuncion(nombre string, parametros []AbstractExpression, tipo_funcion string, tipo_retorno string, sentencias AbstractExpression, retorno AbstractExpression, linea int, columna int) bool {
+	_, existe := c.ExistFuncion(nombre)
+	if existe {
+		return false
+	}
+	c.Funciones = append(c.Funciones, NewFuncion(nombre, "Global", len(parametros), parametros, tipo_funcion, tipo_retorno, sentencias, retorno, linea, columna))
+	return true
+}
+
+// Se verifica si existe una funcion en el vector de funciones
+func (c *Contexto) ExistFuncion(nombre string) (*Funcion, bool) {
+	for _, funcion := range c.Funciones {
+		if funcion.Nombre == nombre {
+			return funcion, true
+		}
+	}
+	return nil, false
 }
 
 // Se asigna un valor a una variable en el ambito actual ---------------------------------------------
@@ -100,7 +136,7 @@ func (c *Contexto) AsigVariable(nombre string, expresion *Resultado) bool {
 
 // Se obtiene el valor de una variable en el ambito actual ----------------------------------------------
 
-func (c *Contexto) GetVariable(nombre string) (*Resultado, bool) {
+func (c *Contexto) GetVariable(nombre string) (*Simbolo, bool) {
 	existe := c.Memoria.Exist(nombre)
 	if !existe {
 		var aux_Mem = c.Memoria.Anterior
@@ -111,7 +147,7 @@ func (c *Contexto) GetVariable(nombre string) (*Resultado, bool) {
 			}
 			aux_Mem = aux_Mem.Anterior
 		}
-		return NewNil(), false
+		return nil, false
 	}
 	return c.Memoria.GetSimbolo(nombre)
 }
@@ -138,4 +174,16 @@ func (c *Contexto) AddTransSentencia(entrada *Resultado) {
 //Remover sentencia
 func (c *Contexto) RemTransSentencia() {
 	c.TransState = c.TransState[:len(c.TransState)-1]
+}
+
+//Agregar sentencia
+func (c *Contexto) AddReturnSentencia(entrada AbstractExpression) {
+	if len(c.ReturnState) == 0 {
+		c.ReturnState = append(c.ReturnState, entrada)
+	}
+}
+
+//Remover sentencia
+func (c *Contexto) RemReturnSentencia() {
+	c.ReturnState = c.ReturnState[:len(c.ReturnState)-1]
 }

@@ -42,8 +42,9 @@ func (m *Memoria) SetSimbolo(nombre string, resultado *Resultado) bool {
 	//Controlar los tipos
 	if simbolo.Tipo == resultado.Tipo {
 		simbolo.Resultado = resultado
+		return true
 	}
-	return true
+	return false
 }
 
 // Verificar si existe el simbolo en memoria----------------------------------------------
@@ -55,10 +56,10 @@ func (m *Memoria) Exist(nombre string) bool {
 
 // Obtener simbolo en memoria----------------------------------------------
 
-func (m *Memoria) GetSimbolo(nombre string) (*Resultado, bool) {
+func (m *Memoria) GetSimbolo(nombre string) (*Simbolo, bool) {
 	simbolo, ok := m.Variables[nombre]
 	if ok {
-		return simbolo.Resultado, true
+		return simbolo, true
 	}
-	return NewNil(), false
+	return nil, false
 }

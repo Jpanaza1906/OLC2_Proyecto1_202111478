@@ -65,7 +65,7 @@ func (NTdv *NT_DecVector) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 		}
 	}
 	//se crea el vector en el contexto
-	if ctx.AddVector(NTdv.ID, NTdv.Tipodec, tipovector, interprete.Vector, interprete.NewVectorLiteral(copiavec), NTdv.Linea, NTdv.Columna) {
+	if ctx.AddVector(NTdv.ID, NTdv.Tipodec, interprete.Vector, tipovector, interprete.NewVectorLiteral(copiavec), NTdv.Linea, NTdv.Columna) {
 		return interprete.NewNil()
 	} else {
 		//agregar error de que ya existe la variable

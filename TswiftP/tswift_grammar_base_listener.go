@@ -110,6 +110,36 @@ func (s *BaseTswift_GrammarListener) EnterS_Asignacion_Vector(ctx *S_Asignacion_
 // ExitS_Asignacion_Vector is called when production S_Asignacion_Vector is exited.
 func (s *BaseTswift_GrammarListener) ExitS_Asignacion_Vector(ctx *S_Asignacion_VectorContext) {}
 
+// EnterS_Declaracion_Metodo is called when production S_Declaracion_Metodo is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Declaracion_Metodo(ctx *S_Declaracion_MetodoContext) {}
+
+// ExitS_Declaracion_Metodo is called when production S_Declaracion_Metodo is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Declaracion_Metodo(ctx *S_Declaracion_MetodoContext) {}
+
+// EnterS_Declaracion_Funcion is called when production S_Declaracion_Funcion is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Declaracion_Funcion(ctx *S_Declaracion_FuncionContext) {}
+
+// ExitS_Declaracion_Funcion is called when production S_Declaracion_Funcion is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Declaracion_Funcion(ctx *S_Declaracion_FuncionContext) {}
+
+// EnterS_Llamada_Funcion is called when production S_Llamada_Funcion is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Llamada_Funcion(ctx *S_Llamada_FuncionContext) {}
+
+// ExitS_Llamada_Funcion is called when production S_Llamada_Funcion is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Llamada_Funcion(ctx *S_Llamada_FuncionContext) {}
+
+// EnterS_Declaracion_Matriz is called when production S_Declaracion_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Declaracion_Matriz(ctx *S_Declaracion_MatrizContext) {}
+
+// ExitS_Declaracion_Matriz is called when production S_Declaracion_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Declaracion_Matriz(ctx *S_Declaracion_MatrizContext) {}
+
+// EnterS_Asignacion_Matriz is called when production S_Asignacion_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Asignacion_Matriz(ctx *S_Asignacion_MatrizContext) {}
+
+// ExitS_Asignacion_Matriz is called when production S_Asignacion_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Asignacion_Matriz(ctx *S_Asignacion_MatrizContext) {}
+
 // EnterPrint is called when production Print is entered.
 func (s *BaseTswift_GrammarListener) EnterPrint(ctx *PrintContext) {}
 
@@ -273,6 +303,18 @@ func (s *BaseTswift_GrammarListener) EnterAsig_Vector(ctx *Asig_VectorContext) {
 // ExitAsig_Vector is called when production Asig_Vector is exited.
 func (s *BaseTswift_GrammarListener) ExitAsig_Vector(ctx *Asig_VectorContext) {}
 
+// EnterSumAsg_Vector is called when production SumAsg_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterSumAsg_Vector(ctx *SumAsg_VectorContext) {}
+
+// ExitSumAsg_Vector is called when production SumAsg_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitSumAsg_Vector(ctx *SumAsg_VectorContext) {}
+
+// EnterResAsg_Vector is called when production ResAsg_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterResAsg_Vector(ctx *ResAsg_VectorContext) {}
+
+// ExitResAsg_Vector is called when production ResAsg_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitResAsg_Vector(ctx *ResAsg_VectorContext) {}
+
 // EnterFunc_Vector_Append is called when production Func_Vector_Append is entered.
 func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Append(ctx *Func_Vector_AppendContext) {}
 
@@ -291,6 +333,139 @@ func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Remove(ctx *Func_Vector_Re
 
 // ExitFunc_Vector_Remove is called when production Func_Vector_Remove is exited.
 func (s *BaseTswift_GrammarListener) ExitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) {}
+
+// EnterDeclaracion_Matriz is called when production Declaracion_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Matriz(ctx *Declaracion_MatrizContext) {}
+
+// ExitDeclaracion_Matriz is called when production Declaracion_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Matriz(ctx *Declaracion_MatrizContext) {}
+
+// EnterTipo_Matriz is called when production Tipo_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Matriz(ctx *Tipo_MatrizContext) {}
+
+// ExitTipo_Matriz is called when production Tipo_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Matriz(ctx *Tipo_MatrizContext) {}
+
+// EnterTipo_Matriz_Simple is called when production Tipo_Matriz_Simple is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Matriz_Simple(ctx *Tipo_Matriz_SimpleContext) {}
+
+// ExitTipo_Matriz_Simple is called when production Tipo_Matriz_Simple is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Matriz_Simple(ctx *Tipo_Matriz_SimpleContext) {}
+
+// EnterDef_Matriz is called when production Def_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Matriz(ctx *Def_MatrizContext) {}
+
+// ExitDef_Matriz is called when production Def_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Matriz(ctx *Def_MatrizContext) {}
+
+// EnterDef_Matriz_Simple is called when production Def_Matriz_Simple is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Matriz_Simple(ctx *Def_Matriz_SimpleContext) {}
+
+// ExitDef_Matriz_Simple is called when production Def_Matriz_Simple is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Matriz_Simple(ctx *Def_Matriz_SimpleContext) {}
+
+// EnterListaCompletaVal is called when production ListaCompletaVal is entered.
+func (s *BaseTswift_GrammarListener) EnterListaCompletaVal(ctx *ListaCompletaValContext) {}
+
+// ExitListaCompletaVal is called when production ListaCompletaVal is exited.
+func (s *BaseTswift_GrammarListener) ExitListaCompletaVal(ctx *ListaCompletaValContext) {}
+
+// EnterListaValorSig is called when production ListaValorSig is entered.
+func (s *BaseTswift_GrammarListener) EnterListaValorSig(ctx *ListaValorSigContext) {}
+
+// ExitListaValorSig is called when production ListaValorSig is exited.
+func (s *BaseTswift_GrammarListener) ExitListaValorSig(ctx *ListaValorSigContext) {}
+
+// EnterListaValoresHermanos is called when production ListaValoresHermanos is entered.
+func (s *BaseTswift_GrammarListener) EnterListaValoresHermanos(ctx *ListaValoresHermanosContext) {}
+
+// ExitListaValoresHermanos is called when production ListaValoresHermanos is exited.
+func (s *BaseTswift_GrammarListener) ExitListaValoresHermanos(ctx *ListaValoresHermanosContext) {}
+
+// EnterListaExpr is called when production ListaExpr is entered.
+func (s *BaseTswift_GrammarListener) EnterListaExpr(ctx *ListaExprContext) {}
+
+// ExitListaExpr is called when production ListaExpr is exited.
+func (s *BaseTswift_GrammarListener) ExitListaExpr(ctx *ListaExprContext) {}
+
+// EnterSimple_Mat is called when production Simple_Mat is entered.
+func (s *BaseTswift_GrammarListener) EnterSimple_Mat(ctx *Simple_MatContext) {}
+
+// ExitSimple_Mat is called when production Simple_Mat is exited.
+func (s *BaseTswift_GrammarListener) ExitSimple_Mat(ctx *Simple_MatContext) {}
+
+// EnterSimple_Mat_Expr is called when production Simple_Mat_Expr is entered.
+func (s *BaseTswift_GrammarListener) EnterSimple_Mat_Expr(ctx *Simple_Mat_ExprContext) {}
+
+// ExitSimple_Mat_Expr is called when production Simple_Mat_Expr is exited.
+func (s *BaseTswift_GrammarListener) ExitSimple_Mat_Expr(ctx *Simple_Mat_ExprContext) {}
+
+// EnterAsig_Mat is called when production Asig_Mat is entered.
+func (s *BaseTswift_GrammarListener) EnterAsig_Mat(ctx *Asig_MatContext) {}
+
+// ExitAsig_Mat is called when production Asig_Mat is exited.
+func (s *BaseTswift_GrammarListener) ExitAsig_Mat(ctx *Asig_MatContext) {}
+
+// EnterDeclaracion_Metodo is called when production Declaracion_Metodo is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Metodo(ctx *Declaracion_MetodoContext) {}
+
+// ExitDeclaracion_Metodo is called when production Declaracion_Metodo is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Metodo(ctx *Declaracion_MetodoContext) {}
+
+// EnterDeclaracion_Funcion is called when production Declaracion_Funcion is entered.
+func (s *BaseTswift_GrammarListener) EnterDeclaracion_Funcion(ctx *Declaracion_FuncionContext) {}
+
+// ExitDeclaracion_Funcion is called when production Declaracion_Funcion is exited.
+func (s *BaseTswift_GrammarListener) ExitDeclaracion_Funcion(ctx *Declaracion_FuncionContext) {}
+
+// EnterL_Parametros is called when production L_Parametros is entered.
+func (s *BaseTswift_GrammarListener) EnterL_Parametros(ctx *L_ParametrosContext) {}
+
+// ExitL_Parametros is called when production L_Parametros is exited.
+func (s *BaseTswift_GrammarListener) ExitL_Parametros(ctx *L_ParametrosContext) {}
+
+// EnterLlamada_Funcion is called when production Llamada_Funcion is entered.
+func (s *BaseTswift_GrammarListener) EnterLlamada_Funcion(ctx *Llamada_FuncionContext) {}
+
+// ExitLlamada_Funcion is called when production Llamada_Funcion is exited.
+func (s *BaseTswift_GrammarListener) ExitLlamada_Funcion(ctx *Llamada_FuncionContext) {}
+
+// EnterL_Argumentos is called when production L_Argumentos is entered.
+func (s *BaseTswift_GrammarListener) EnterL_Argumentos(ctx *L_ArgumentosContext) {}
+
+// ExitL_Argumentos is called when production L_Argumentos is exited.
+func (s *BaseTswift_GrammarListener) ExitL_Argumentos(ctx *L_ArgumentosContext) {}
+
+// EnterDef_Struct is called when production Def_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterDef_Struct(ctx *Def_StructContext) {}
+
+// ExitDef_Struct is called when production Def_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitDef_Struct(ctx *Def_StructContext) {}
+
+// EnterL_Atributos is called when production L_Atributos is entered.
+func (s *BaseTswift_GrammarListener) EnterL_Atributos(ctx *L_AtributosContext) {}
+
+// ExitL_Atributos is called when production L_Atributos is exited.
+func (s *BaseTswift_GrammarListener) ExitL_Atributos(ctx *L_AtributosContext) {}
+
+// EnterL_Funciones is called when production L_Funciones is entered.
+func (s *BaseTswift_GrammarListener) EnterL_Funciones(ctx *L_FuncionesContext) {}
+
+// ExitL_Funciones is called when production L_Funciones is exited.
+func (s *BaseTswift_GrammarListener) ExitL_Funciones(ctx *L_FuncionesContext) {}
+
+// EnterCreacion_Struct is called when production Creacion_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterCreacion_Struct(ctx *Creacion_StructContext) {}
+
+// ExitCreacion_Struct is called when production Creacion_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitCreacion_Struct(ctx *Creacion_StructContext) {}
+
+// EnterCreacion_Struct_Simple is called when production Creacion_Struct_Simple is entered.
+func (s *BaseTswift_GrammarListener) EnterCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) {
+}
+
+// ExitCreacion_Struct_Simple is called when production Creacion_Struct_Simple is exited.
+func (s *BaseTswift_GrammarListener) ExitCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) {}
 
 // EnterTipo_Int is called when production Tipo_Int is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}
@@ -322,6 +497,12 @@ func (s *BaseTswift_GrammarListener) EnterTipo_Character(ctx *Tipo_CharacterCont
 // ExitTipo_Character is called when production Tipo_Character is exited.
 func (s *BaseTswift_GrammarListener) ExitTipo_Character(ctx *Tipo_CharacterContext) {}
 
+// EnterTipo_Vector is called when production Tipo_Vector is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Vector(ctx *Tipo_VectorContext) {}
+
+// ExitTipo_Vector is called when production Tipo_Vector is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Vector(ctx *Tipo_VectorContext) {}
+
 // EnterExpr_Rel is called when production Expr_Rel is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Rel(ctx *Expr_RelContext) {}
 
@@ -346,6 +527,12 @@ func (s *BaseTswift_GrammarListener) EnterExpr_SumRes(ctx *Expr_SumResContext) {
 // ExitExpr_SumRes is called when production Expr_SumRes is exited.
 func (s *BaseTswift_GrammarListener) ExitExpr_SumRes(ctx *Expr_SumResContext) {}
 
+// EnterExpr_Matriz is called when production Expr_Matriz is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Matriz(ctx *Expr_MatrizContext) {}
+
+// ExitExpr_Matriz is called when production Expr_Matriz is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Matriz(ctx *Expr_MatrizContext) {}
+
 // EnterExpr_Neg is called when production Expr_Neg is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Neg(ctx *Expr_NegContext) {}
 
@@ -369,6 +556,12 @@ func (s *BaseTswift_GrammarListener) EnterFunc_Vector_isEmpty(ctx *Func_Vector_i
 
 // ExitFunc_Vector_isEmpty is called when production Func_Vector_isEmpty is exited.
 func (s *BaseTswift_GrammarListener) ExitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) {}
+
+// EnterExpr_Llamada_Funcion is called when production Expr_Llamada_Funcion is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Llamada_Funcion(ctx *Expr_Llamada_FuncionContext) {}
+
+// ExitExpr_Llamada_Funcion is called when production Expr_Llamada_Funcion is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Llamada_Funcion(ctx *Expr_Llamada_FuncionContext) {}
 
 // EnterFunc_Vector_Count is called when production Func_Vector_Count is entered.
 func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Count(ctx *Func_Vector_CountContext) {}

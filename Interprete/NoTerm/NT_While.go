@@ -31,6 +31,7 @@ func (NTw *NT_While) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 		if condicion.ValorB {
 			NTw.Sentencias.Interpretar(ctx)
 		} else {
+			ctx.PopAmbito()
 			break
 		}
 

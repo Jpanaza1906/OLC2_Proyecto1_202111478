@@ -52,6 +52,21 @@ type Tswift_GrammarListener interface {
 	// EnterS_Asignacion_Vector is called when entering the S_Asignacion_Vector production.
 	EnterS_Asignacion_Vector(c *S_Asignacion_VectorContext)
 
+	// EnterS_Declaracion_Metodo is called when entering the S_Declaracion_Metodo production.
+	EnterS_Declaracion_Metodo(c *S_Declaracion_MetodoContext)
+
+	// EnterS_Declaracion_Funcion is called when entering the S_Declaracion_Funcion production.
+	EnterS_Declaracion_Funcion(c *S_Declaracion_FuncionContext)
+
+	// EnterS_Llamada_Funcion is called when entering the S_Llamada_Funcion production.
+	EnterS_Llamada_Funcion(c *S_Llamada_FuncionContext)
+
+	// EnterS_Declaracion_Matriz is called when entering the S_Declaracion_Matriz production.
+	EnterS_Declaracion_Matriz(c *S_Declaracion_MatrizContext)
+
+	// EnterS_Asignacion_Matriz is called when entering the S_Asignacion_Matriz production.
+	EnterS_Asignacion_Matriz(c *S_Asignacion_MatrizContext)
+
 	// EnterPrint is called when entering the Print production.
 	EnterPrint(c *PrintContext)
 
@@ -133,6 +148,12 @@ type Tswift_GrammarListener interface {
 	// EnterAsig_Vector is called when entering the Asig_Vector production.
 	EnterAsig_Vector(c *Asig_VectorContext)
 
+	// EnterSumAsg_Vector is called when entering the SumAsg_Vector production.
+	EnterSumAsg_Vector(c *SumAsg_VectorContext)
+
+	// EnterResAsg_Vector is called when entering the ResAsg_Vector production.
+	EnterResAsg_Vector(c *ResAsg_VectorContext)
+
 	// EnterFunc_Vector_Append is called when entering the Func_Vector_Append production.
 	EnterFunc_Vector_Append(c *Func_Vector_AppendContext)
 
@@ -141,6 +162,72 @@ type Tswift_GrammarListener interface {
 
 	// EnterFunc_Vector_Remove is called when entering the Func_Vector_Remove production.
 	EnterFunc_Vector_Remove(c *Func_Vector_RemoveContext)
+
+	// EnterDeclaracion_Matriz is called when entering the Declaracion_Matriz production.
+	EnterDeclaracion_Matriz(c *Declaracion_MatrizContext)
+
+	// EnterTipo_Matriz is called when entering the Tipo_Matriz production.
+	EnterTipo_Matriz(c *Tipo_MatrizContext)
+
+	// EnterTipo_Matriz_Simple is called when entering the Tipo_Matriz_Simple production.
+	EnterTipo_Matriz_Simple(c *Tipo_Matriz_SimpleContext)
+
+	// EnterDef_Matriz is called when entering the Def_Matriz production.
+	EnterDef_Matriz(c *Def_MatrizContext)
+
+	// EnterDef_Matriz_Simple is called when entering the Def_Matriz_Simple production.
+	EnterDef_Matriz_Simple(c *Def_Matriz_SimpleContext)
+
+	// EnterListaCompletaVal is called when entering the ListaCompletaVal production.
+	EnterListaCompletaVal(c *ListaCompletaValContext)
+
+	// EnterListaValorSig is called when entering the ListaValorSig production.
+	EnterListaValorSig(c *ListaValorSigContext)
+
+	// EnterListaValoresHermanos is called when entering the ListaValoresHermanos production.
+	EnterListaValoresHermanos(c *ListaValoresHermanosContext)
+
+	// EnterListaExpr is called when entering the ListaExpr production.
+	EnterListaExpr(c *ListaExprContext)
+
+	// EnterSimple_Mat is called when entering the Simple_Mat production.
+	EnterSimple_Mat(c *Simple_MatContext)
+
+	// EnterSimple_Mat_Expr is called when entering the Simple_Mat_Expr production.
+	EnterSimple_Mat_Expr(c *Simple_Mat_ExprContext)
+
+	// EnterAsig_Mat is called when entering the Asig_Mat production.
+	EnterAsig_Mat(c *Asig_MatContext)
+
+	// EnterDeclaracion_Metodo is called when entering the Declaracion_Metodo production.
+	EnterDeclaracion_Metodo(c *Declaracion_MetodoContext)
+
+	// EnterDeclaracion_Funcion is called when entering the Declaracion_Funcion production.
+	EnterDeclaracion_Funcion(c *Declaracion_FuncionContext)
+
+	// EnterL_Parametros is called when entering the L_Parametros production.
+	EnterL_Parametros(c *L_ParametrosContext)
+
+	// EnterLlamada_Funcion is called when entering the Llamada_Funcion production.
+	EnterLlamada_Funcion(c *Llamada_FuncionContext)
+
+	// EnterL_Argumentos is called when entering the L_Argumentos production.
+	EnterL_Argumentos(c *L_ArgumentosContext)
+
+	// EnterDef_Struct is called when entering the Def_Struct production.
+	EnterDef_Struct(c *Def_StructContext)
+
+	// EnterL_Atributos is called when entering the L_Atributos production.
+	EnterL_Atributos(c *L_AtributosContext)
+
+	// EnterL_Funciones is called when entering the L_Funciones production.
+	EnterL_Funciones(c *L_FuncionesContext)
+
+	// EnterCreacion_Struct is called when entering the Creacion_Struct production.
+	EnterCreacion_Struct(c *Creacion_StructContext)
+
+	// EnterCreacion_Struct_Simple is called when entering the Creacion_Struct_Simple production.
+	EnterCreacion_Struct_Simple(c *Creacion_Struct_SimpleContext)
 
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
@@ -157,6 +244,9 @@ type Tswift_GrammarListener interface {
 	// EnterTipo_Character is called when entering the Tipo_Character production.
 	EnterTipo_Character(c *Tipo_CharacterContext)
 
+	// EnterTipo_Vector is called when entering the Tipo_Vector production.
+	EnterTipo_Vector(c *Tipo_VectorContext)
+
 	// EnterExpr_Rel is called when entering the Expr_Rel production.
 	EnterExpr_Rel(c *Expr_RelContext)
 
@@ -169,6 +259,9 @@ type Tswift_GrammarListener interface {
 	// EnterExpr_SumRes is called when entering the Expr_SumRes production.
 	EnterExpr_SumRes(c *Expr_SumResContext)
 
+	// EnterExpr_Matriz is called when entering the Expr_Matriz production.
+	EnterExpr_Matriz(c *Expr_MatrizContext)
+
 	// EnterExpr_Neg is called when entering the Expr_Neg production.
 	EnterExpr_Neg(c *Expr_NegContext)
 
@@ -180,6 +273,9 @@ type Tswift_GrammarListener interface {
 
 	// EnterFunc_Vector_isEmpty is called when entering the Func_Vector_isEmpty production.
 	EnterFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// EnterExpr_Llamada_Funcion is called when entering the Expr_Llamada_Funcion production.
+	EnterExpr_Llamada_Funcion(c *Expr_Llamada_FuncionContext)
 
 	// EnterFunc_Vector_Count is called when entering the Func_Vector_Count production.
 	EnterFunc_Vector_Count(c *Func_Vector_CountContext)
@@ -252,6 +348,21 @@ type Tswift_GrammarListener interface {
 
 	// ExitS_Asignacion_Vector is called when exiting the S_Asignacion_Vector production.
 	ExitS_Asignacion_Vector(c *S_Asignacion_VectorContext)
+
+	// ExitS_Declaracion_Metodo is called when exiting the S_Declaracion_Metodo production.
+	ExitS_Declaracion_Metodo(c *S_Declaracion_MetodoContext)
+
+	// ExitS_Declaracion_Funcion is called when exiting the S_Declaracion_Funcion production.
+	ExitS_Declaracion_Funcion(c *S_Declaracion_FuncionContext)
+
+	// ExitS_Llamada_Funcion is called when exiting the S_Llamada_Funcion production.
+	ExitS_Llamada_Funcion(c *S_Llamada_FuncionContext)
+
+	// ExitS_Declaracion_Matriz is called when exiting the S_Declaracion_Matriz production.
+	ExitS_Declaracion_Matriz(c *S_Declaracion_MatrizContext)
+
+	// ExitS_Asignacion_Matriz is called when exiting the S_Asignacion_Matriz production.
+	ExitS_Asignacion_Matriz(c *S_Asignacion_MatrizContext)
 
 	// ExitPrint is called when exiting the Print production.
 	ExitPrint(c *PrintContext)
@@ -334,6 +445,12 @@ type Tswift_GrammarListener interface {
 	// ExitAsig_Vector is called when exiting the Asig_Vector production.
 	ExitAsig_Vector(c *Asig_VectorContext)
 
+	// ExitSumAsg_Vector is called when exiting the SumAsg_Vector production.
+	ExitSumAsg_Vector(c *SumAsg_VectorContext)
+
+	// ExitResAsg_Vector is called when exiting the ResAsg_Vector production.
+	ExitResAsg_Vector(c *ResAsg_VectorContext)
+
 	// ExitFunc_Vector_Append is called when exiting the Func_Vector_Append production.
 	ExitFunc_Vector_Append(c *Func_Vector_AppendContext)
 
@@ -342,6 +459,72 @@ type Tswift_GrammarListener interface {
 
 	// ExitFunc_Vector_Remove is called when exiting the Func_Vector_Remove production.
 	ExitFunc_Vector_Remove(c *Func_Vector_RemoveContext)
+
+	// ExitDeclaracion_Matriz is called when exiting the Declaracion_Matriz production.
+	ExitDeclaracion_Matriz(c *Declaracion_MatrizContext)
+
+	// ExitTipo_Matriz is called when exiting the Tipo_Matriz production.
+	ExitTipo_Matriz(c *Tipo_MatrizContext)
+
+	// ExitTipo_Matriz_Simple is called when exiting the Tipo_Matriz_Simple production.
+	ExitTipo_Matriz_Simple(c *Tipo_Matriz_SimpleContext)
+
+	// ExitDef_Matriz is called when exiting the Def_Matriz production.
+	ExitDef_Matriz(c *Def_MatrizContext)
+
+	// ExitDef_Matriz_Simple is called when exiting the Def_Matriz_Simple production.
+	ExitDef_Matriz_Simple(c *Def_Matriz_SimpleContext)
+
+	// ExitListaCompletaVal is called when exiting the ListaCompletaVal production.
+	ExitListaCompletaVal(c *ListaCompletaValContext)
+
+	// ExitListaValorSig is called when exiting the ListaValorSig production.
+	ExitListaValorSig(c *ListaValorSigContext)
+
+	// ExitListaValoresHermanos is called when exiting the ListaValoresHermanos production.
+	ExitListaValoresHermanos(c *ListaValoresHermanosContext)
+
+	// ExitListaExpr is called when exiting the ListaExpr production.
+	ExitListaExpr(c *ListaExprContext)
+
+	// ExitSimple_Mat is called when exiting the Simple_Mat production.
+	ExitSimple_Mat(c *Simple_MatContext)
+
+	// ExitSimple_Mat_Expr is called when exiting the Simple_Mat_Expr production.
+	ExitSimple_Mat_Expr(c *Simple_Mat_ExprContext)
+
+	// ExitAsig_Mat is called when exiting the Asig_Mat production.
+	ExitAsig_Mat(c *Asig_MatContext)
+
+	// ExitDeclaracion_Metodo is called when exiting the Declaracion_Metodo production.
+	ExitDeclaracion_Metodo(c *Declaracion_MetodoContext)
+
+	// ExitDeclaracion_Funcion is called when exiting the Declaracion_Funcion production.
+	ExitDeclaracion_Funcion(c *Declaracion_FuncionContext)
+
+	// ExitL_Parametros is called when exiting the L_Parametros production.
+	ExitL_Parametros(c *L_ParametrosContext)
+
+	// ExitLlamada_Funcion is called when exiting the Llamada_Funcion production.
+	ExitLlamada_Funcion(c *Llamada_FuncionContext)
+
+	// ExitL_Argumentos is called when exiting the L_Argumentos production.
+	ExitL_Argumentos(c *L_ArgumentosContext)
+
+	// ExitDef_Struct is called when exiting the Def_Struct production.
+	ExitDef_Struct(c *Def_StructContext)
+
+	// ExitL_Atributos is called when exiting the L_Atributos production.
+	ExitL_Atributos(c *L_AtributosContext)
+
+	// ExitL_Funciones is called when exiting the L_Funciones production.
+	ExitL_Funciones(c *L_FuncionesContext)
+
+	// ExitCreacion_Struct is called when exiting the Creacion_Struct production.
+	ExitCreacion_Struct(c *Creacion_StructContext)
+
+	// ExitCreacion_Struct_Simple is called when exiting the Creacion_Struct_Simple production.
+	ExitCreacion_Struct_Simple(c *Creacion_Struct_SimpleContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)
@@ -358,6 +541,9 @@ type Tswift_GrammarListener interface {
 	// ExitTipo_Character is called when exiting the Tipo_Character production.
 	ExitTipo_Character(c *Tipo_CharacterContext)
 
+	// ExitTipo_Vector is called when exiting the Tipo_Vector production.
+	ExitTipo_Vector(c *Tipo_VectorContext)
+
 	// ExitExpr_Rel is called when exiting the Expr_Rel production.
 	ExitExpr_Rel(c *Expr_RelContext)
 
@@ -370,6 +556,9 @@ type Tswift_GrammarListener interface {
 	// ExitExpr_SumRes is called when exiting the Expr_SumRes production.
 	ExitExpr_SumRes(c *Expr_SumResContext)
 
+	// ExitExpr_Matriz is called when exiting the Expr_Matriz production.
+	ExitExpr_Matriz(c *Expr_MatrizContext)
+
 	// ExitExpr_Neg is called when exiting the Expr_Neg production.
 	ExitExpr_Neg(c *Expr_NegContext)
 
@@ -381,6 +570,9 @@ type Tswift_GrammarListener interface {
 
 	// ExitFunc_Vector_isEmpty is called when exiting the Func_Vector_isEmpty production.
 	ExitFunc_Vector_isEmpty(c *Func_Vector_isEmptyContext)
+
+	// ExitExpr_Llamada_Funcion is called when exiting the Expr_Llamada_Funcion production.
+	ExitExpr_Llamada_Funcion(c *Expr_Llamada_FuncionContext)
 
 	// ExitFunc_Vector_Count is called when exiting the Func_Vector_Count production.
 	ExitFunc_Vector_Count(c *Func_Vector_CountContext)

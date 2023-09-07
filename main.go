@@ -99,9 +99,6 @@ func ejecutarInterprete(entrada string) {
 
 	raiz.Interpretar(context)
 
-	//Se iguala la memoria global a la memoria actual en su posicion 0
-	context.ZGlobal[0] = context.Memoria
-
 	//igualar la caja de texto a Consola
 	Consola.SetText(string(context.Consola))
 	//agregar cada error a la caja de texto de errores

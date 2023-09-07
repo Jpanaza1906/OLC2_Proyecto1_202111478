@@ -21,11 +21,12 @@ func NewNT_DefVector(ID string, ListaNum []interprete.AbstractExpression) *NT_De
 func (NTdv *NT_DefVector) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	// Si viene ID, se obtiene la expresion del ID
 	if NTdv.ID != "" {
-		expr, ok := ctx.GetVariable(NTdv.ID)
+		expr1, ok := ctx.GetVariable(NTdv.ID)
 		if !ok {
 			ctx.AddError("La variable " + NTdv.ID + " no existe")
 			return interprete.NewNil()
 		}
+		expr := expr1.Resultado
 		return expr
 	} else {
 		//se crea un vector del tipo de la expresion

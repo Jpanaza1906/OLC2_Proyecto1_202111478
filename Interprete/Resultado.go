@@ -123,6 +123,10 @@ func NewVectorLiteral(valor []Resultado) *Resultado {
 	for _, element := range valor {
 		valorS += element.ValorS + ","
 	}
+	//quitar la ultima coma
+	if len(valorS) > 1 {
+		valorS = valorS[:len(valorS)-1]
+	}
 	valorS += "]"
 	return &Resultado{
 		Nil:    false,

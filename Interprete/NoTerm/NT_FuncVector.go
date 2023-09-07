@@ -29,11 +29,12 @@ func NewNT_FuncVector(ID string, expresion interprete.AbstractExpression, tipo s
 
 func (NT_FV *NT_FuncVector) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	//se verifica si el id existe
-	expr, ok := ctx.GetVariable(NT_FV.ID)
+	expr1, ok := ctx.GetVariable(NT_FV.ID)
 	if !ok {
 		ctx.AddError("La variable " + NT_FV.ID + " no existe en la linea " + strconv.Itoa(NT_FV.Linea) + " y columna " + strconv.Itoa(NT_FV.Columna))
 		return interprete.NewNil()
 	}
+	expr := expr1.Resultado
 
 	//se verifica que la variable sea un vector
 	if expr.Tipo != interprete.Vector {
@@ -55,7 +56,7 @@ func (NT_FV *NT_FuncVector) Interpretar(ctx *interprete.Contexto) *interprete.Re
 		// se agrega el valor al vector
 		expr.ValorV = append(expr.ValorV, *valor)
 		// se actualiza el valor de la variable
-		if ctx.AsigVariable(NT_FV.ID, expr) {
+		if ctx.AsigVariable(NT_FV.ID, interprete.NewVectorLiteral(expr.ValorV)) {
 			return interprete.NewNil()
 		} else {
 			ctx.AddError("Error al actualizar el valor de la variable " + NT_FV.ID + " en la linea " + strconv.Itoa(NT_FV.Linea) + " y columna " + strconv.Itoa(NT_FV.Columna))
@@ -70,7 +71,7 @@ func (NT_FV *NT_FuncVector) Interpretar(ctx *interprete.Contexto) *interprete.Re
 		// se obtiene el ultimo valor del vector
 		expr.ValorV = expr.ValorV[:len(expr.ValorV)-1]
 		// se actualiza el valor de la variable
-		if ctx.AsigVariable(NT_FV.ID, expr) {
+		if ctx.AsigVariable(NT_FV.ID, interprete.NewVectorLiteral(expr.ValorV)) {
 			return interprete.NewNil()
 		} else {
 			ctx.AddError("Error al actualizar el valor de la variable " + NT_FV.ID + " en la linea " + strconv.Itoa(NT_FV.Linea) + " y columna " + strconv.Itoa(NT_FV.Columna))
@@ -96,7 +97,7 @@ func (NT_FV *NT_FuncVector) Interpretar(ctx *interprete.Contexto) *interprete.Re
 		expr.ValorV = append(expr.ValorV[:valor.Valor], expr.ValorV[valor.Valor+1:]...)
 
 		// se actualiza el valor de la variable
-		if ctx.AsigVariable(NT_FV.ID, expr) {
+		if ctx.AsigVariable(NT_FV.ID, interprete.NewVectorLiteral(expr.ValorV)) {
 			return interprete.NewNil()
 		} else {
 			ctx.AddError("Error al actualizar el valor de la variable " + NT_FV.ID + " en la linea " + strconv.Itoa(NT_FV.Linea) + " y columna " + strconv.Itoa(NT_FV.Columna))

@@ -12,6 +12,8 @@ DOSPT: ':';
 PTCOMA: ';';
 INTERROGACION: '?';
 PUNTO : '.';
+GUIONBAJO: '_';
+DIR : '&';
 //Operadores aritmeticos
 MASIGUAL: '+=';
 MENOSIGUAL: '-=';
@@ -60,6 +62,11 @@ REMOVE : 'remove';
 AT : 'at';
 ISEMPTY : 'IsEmpty';
 COUNT : 'count';
+FUNC : 'func';
+REPEATING : 'repeating';
+STRUCT : 'struct';
+MUTATING : 'mutating';
+INOUT : 'inout';
 //Tipos de datos reservadas
 INT: 'Int';
 FLOAT: 'Float';

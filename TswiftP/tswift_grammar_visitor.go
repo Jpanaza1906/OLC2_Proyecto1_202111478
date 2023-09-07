@@ -52,6 +52,21 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Vector.
 	VisitS_Asignacion_Vector(ctx *S_Asignacion_VectorContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Metodo.
+	VisitS_Declaracion_Metodo(ctx *S_Declaracion_MetodoContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Funcion.
+	VisitS_Declaracion_Funcion(ctx *S_Declaracion_FuncionContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Llamada_Funcion.
+	VisitS_Llamada_Funcion(ctx *S_Llamada_FuncionContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Matriz.
+	VisitS_Declaracion_Matriz(ctx *S_Declaracion_MatrizContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Matriz.
+	VisitS_Asignacion_Matriz(ctx *S_Asignacion_MatrizContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Print.
 	VisitPrint(ctx *PrintContext) interface{}
 
@@ -133,6 +148,12 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#Asig_Vector.
 	VisitAsig_Vector(ctx *Asig_VectorContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#SumAsg_Vector.
+	VisitSumAsg_Vector(ctx *SumAsg_VectorContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ResAsg_Vector.
+	VisitResAsg_Vector(ctx *ResAsg_VectorContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Append.
 	VisitFunc_Vector_Append(ctx *Func_Vector_AppendContext) interface{}
 
@@ -141,6 +162,72 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Remove.
 	VisitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Matriz.
+	VisitDeclaracion_Matriz(ctx *Declaracion_MatrizContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Matriz.
+	VisitTipo_Matriz(ctx *Tipo_MatrizContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Matriz_Simple.
+	VisitTipo_Matriz_Simple(ctx *Tipo_Matriz_SimpleContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Def_Matriz.
+	VisitDef_Matriz(ctx *Def_MatrizContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Def_Matriz_Simple.
+	VisitDef_Matriz_Simple(ctx *Def_Matriz_SimpleContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ListaCompletaVal.
+	VisitListaCompletaVal(ctx *ListaCompletaValContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ListaValorSig.
+	VisitListaValorSig(ctx *ListaValorSigContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ListaValoresHermanos.
+	VisitListaValoresHermanos(ctx *ListaValoresHermanosContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#ListaExpr.
+	VisitListaExpr(ctx *ListaExprContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Simple_Mat.
+	VisitSimple_Mat(ctx *Simple_MatContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Simple_Mat_Expr.
+	VisitSimple_Mat_Expr(ctx *Simple_Mat_ExprContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Asig_Mat.
+	VisitAsig_Mat(ctx *Asig_MatContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Metodo.
+	VisitDeclaracion_Metodo(ctx *Declaracion_MetodoContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Funcion.
+	VisitDeclaracion_Funcion(ctx *Declaracion_FuncionContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#L_Parametros.
+	VisitL_Parametros(ctx *L_ParametrosContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Llamada_Funcion.
+	VisitLlamada_Funcion(ctx *Llamada_FuncionContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#L_Argumentos.
+	VisitL_Argumentos(ctx *L_ArgumentosContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Def_Struct.
+	VisitDef_Struct(ctx *Def_StructContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#L_Atributos.
+	VisitL_Atributos(ctx *L_AtributosContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#L_Funciones.
+	VisitL_Funciones(ctx *L_FuncionesContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Creacion_Struct.
+	VisitCreacion_Struct(ctx *Creacion_StructContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Creacion_Struct_Simple.
+	VisitCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
 	VisitTipo_Int(ctx *Tipo_IntContext) interface{}
@@ -157,6 +244,9 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Character.
 	VisitTipo_Character(ctx *Tipo_CharacterContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Vector.
+	VisitTipo_Vector(ctx *Tipo_VectorContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Rel.
 	VisitExpr_Rel(ctx *Expr_RelContext) interface{}
 
@@ -169,6 +259,9 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_SumRes.
 	VisitExpr_SumRes(ctx *Expr_SumResContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Matriz.
+	VisitExpr_Matriz(ctx *Expr_MatrizContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Neg.
 	VisitExpr_Neg(ctx *Expr_NegContext) interface{}
 
@@ -180,6 +273,9 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_isEmpty.
 	VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Llamada_Funcion.
+	VisitExpr_Llamada_Funcion(ctx *Expr_Llamada_FuncionContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Func_Vector_Count.
 	VisitFunc_Vector_Count(ctx *Func_Vector_CountContext) interface{}

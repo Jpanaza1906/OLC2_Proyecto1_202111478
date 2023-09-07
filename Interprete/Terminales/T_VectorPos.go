@@ -27,11 +27,12 @@ func NewT_VectorPos(id string, pos interprete.AbstractExpression, linea int, col
 
 func (T_vec *T_VectorPos) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	//Con el Id se busca el vector
-	vec, ok := ctx.GetVariable(T_vec.Id)
+	vec1, ok := ctx.GetVariable(T_vec.Id)
 	if !ok {
 		ctx.AddError("La variable " + T_vec.Id + " no existe en la linea " + strconv.Itoa(T_vec.Linea) + " y columna " + strconv.Itoa(T_vec.Columna))
 		return interprete.NewNil()
 	}
+	vec := vec1.Resultado
 
 	//Se verifica que la variable sea un vector
 	if vec.Tipo != interprete.Vector {

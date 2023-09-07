@@ -44,6 +44,10 @@ func (vI *VisitorInterprete) VisitTerminal(node antlr.TerminalNode) interface{} 
 	return ""
 }
 
+func (vI *VisitorInterprete) VisitErrorNode(node antlr.ErrorNode) interface{} {
+	return noterm.NewNT_Error(node.GetText())
+}
+
 // Visit a parse tree produced by Tswift_GrammarParser#SLSentencias.
 func (vI *VisitorInterprete) VisitSLSentencias(ctx *TswiftP.SLSentenciasContext) interface{} {
 	lsentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
@@ -131,6 +135,31 @@ func (vI *VisitorInterprete) VisitS_Funcion_Vector(ctx *TswiftP.S_Funcion_Vector
 // Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Vector.
 func (vI *VisitorInterprete) VisitS_Asignacion_Vector(ctx *TswiftP.S_Asignacion_VectorContext) interface{} {
 	return ctx.Asig_vector().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Metodo.
+func (vI *VisitorInterprete) VisitS_Declaracion_Metodo(ctx *TswiftP.S_Declaracion_MetodoContext) interface{} {
+	return ctx.Declaracion_metodo().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Funcion.
+func (vI *VisitorInterprete) VisitS_Declaracion_Funcion(ctx *TswiftP.S_Declaracion_FuncionContext) interface{} {
+	return ctx.Declaracion_funcion().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Llamada_Funcion.
+func (vI *VisitorInterprete) VisitS_Llamada_Funcion(ctx *TswiftP.S_Llamada_FuncionContext) interface{} {
+	return ctx.Llamada_funciones().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Declaracion_Matriz.
+func (vI *VisitorInterprete) VisitS_Declaracion_Matriz(ctx *TswiftP.S_Declaracion_MatrizContext) interface{} {
+	return ctx.Declaracion_matrices().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#S_Asignacion_Matriz.
+func (vI *VisitorInterprete) VisitS_Asignacion_Matriz(ctx *TswiftP.S_Asignacion_MatrizContext) interface{} {
+	return ctx.Asig_mat().Accept(vI).(interprete.AbstractExpression)
 }
 
 //SENTENCIA DE IMPRESION --------------------------------------------------------------------------------------------
@@ -420,9 +449,8 @@ func (vI *VisitorInterprete) VisitContinue(ctx *TswiftP.ContinueContext) interfa
 func (vI *VisitorInterprete) VisitReturn(ctx *TswiftP.ReturnContext) interface{} {
 	// expresion
 	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
-	//convertir a resultado
-	resultado := expr.Interpretar(interprete.NewContexto())
-	return noterm.NewNT_TransSentencia(resultado)
+
+	return noterm.NewNT_Return(expr)
 }
 
 // DECLARACION VECTOR --------------------------------------------------------------------------------------------
@@ -458,6 +486,34 @@ func (vI *VisitorInterprete) VisitAsig_Vector(ctx *TswiftP.Asig_VectorContext) i
 	expr := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
 
 	return noterm.NewNT_AsigVector(id, posicion, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#SumAsg_Vector.
+func (vI *VisitorInterprete) VisitSumAsg_Vector(ctx *TswiftP.SumAsg_VectorContext) interface{} {
+	//Se obtiene el ID
+	id := ctx.ID().GetText()
+
+	//Se obtiene la posicion
+	posicion := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// se obtiene la expresion
+	expr := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_AsigIgualVector(id, "+=", posicion, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ResAsg_Vector.
+func (vI *VisitorInterprete) VisitResAsg_Vector(ctx *TswiftP.ResAsg_VectorContext) interface{} {
+	// id
+	id := ctx.ID().GetText()
+
+	// posicion
+	posicion := ctx.E(0).Accept(vI).(interprete.AbstractExpression)
+
+	// se obtiene la expresion
+	expr := ctx.E(1).Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_AsigIgualVector(id, "-=", posicion, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
 // DEFINICION VECTOR--------------------------------------------------------------------------------------------
@@ -527,6 +583,198 @@ func (vI *VisitorInterprete) VisitFunc_Vector_Remove(ctx *TswiftP.Func_Vector_Re
 	return noterm.NewNT_FuncVector(id, expr, "remove", ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
+// DECLARACION FUNCIONES --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Metodo.
+func (vI *VisitorInterprete) VisitDeclaracion_Metodo(ctx *TswiftP.Declaracion_MetodoContext) interface{} {
+	// Id de la funcion
+	id := ctx.ID().GetText()
+	// Lista de parametros
+	parametrosAntlr := ctx.AllL_parametros()
+	var parametros []interprete.AbstractExpression
+	for _, parametroAntlr := range parametrosAntlr {
+		nodoParametro := parametroAntlr.Accept(vI).(interprete.AbstractExpression)
+		parametros = append(parametros, nodoParametro)
+	}
+	sentecias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_DecFuncion(id, parametros, "metodo", "", sentecias, nil, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Funcion.
+func (vI *VisitorInterprete) VisitDeclaracion_Funcion(ctx *TswiftP.Declaracion_FuncionContext) interface{} {
+	//Id de la funcion
+	id := ctx.ID().GetText()
+	//Lista de parametros
+	parametrosAntlr := ctx.AllL_parametros()
+	var parametros []interprete.AbstractExpression
+	for _, parametroAntlr := range parametrosAntlr {
+		nodoParametro := parametroAntlr.Accept(vI).(interprete.AbstractExpression)
+		parametros = append(parametros, nodoParametro)
+	}
+
+	//si viene tipo de retorno
+	tipo := ctx.Tipo().Accept(vI).(string)
+
+	//sentencias
+	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
+
+	//retorno
+	retorno := ctx.Trans_sentencia().Accept(vI).(interprete.AbstractExpression)
+	return noterm.NewNT_DecFuncion(id, parametros, "funcion", tipo, sentencias, retorno, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#L_Parametros.
+func (vI *VisitorInterprete) VisitL_Parametros(ctx *TswiftP.L_ParametrosContext) interface{} {
+	// se verifica si el id va a llevar un identificador primario
+	var id_prim = ""
+	var id = ""
+	if ctx.GetPrim() != nil {
+		id_prim = ctx.GetPrim().GetText()
+		if id_prim == "_" {
+			id = ctx.ID(0).GetText()
+		} else {
+			id = ctx.ID(1).GetText()
+		}
+	} else {
+		id = ctx.ID(0).GetText()
+	}
+	//Se obtiene si es por referencia o por valor
+	referencia := false
+	if ctx.INOUT() != nil {
+		referencia = true
+	}
+	tipo := ""
+	tipo = ctx.Tipo().Accept(vI).(string)
+
+	return noterm.NewNT_Fparametro(id_prim, id, referencia, tipo)
+}
+
+// LLAMADA DE FUNCIONES --------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Llamada_Funcion.
+func (vI *VisitorInterprete) VisitLlamada_Funcion(ctx *TswiftP.Llamada_FuncionContext) interface{} {
+	// id
+	id := ctx.ID().GetText()
+	// lista de argumentos
+	lArgumentosAntlr := ctx.AllL_argumentos()
+	var lArgumentos []interprete.AbstractExpression
+	for _, argumentoAntlr := range lArgumentosAntlr {
+		nodoArgumento := argumentoAntlr.Accept(vI).(interprete.AbstractExpression)
+		lArgumentos = append(lArgumentos, nodoArgumento)
+	}
+
+	return noterm.NewNT_LlamadaFuncion(id, lArgumentos, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#L_Argumentos.
+func (vI *VisitorInterprete) VisitL_Argumentos(ctx *TswiftP.L_ArgumentosContext) interface{} {
+	//se verifica si viene el id
+	var id = ""
+	if ctx.ID() != nil {
+		id = ctx.ID().GetText()
+	}
+	//se verifica si viene el simbolo por referencia
+	var referencia = false
+	if ctx.DIR() != nil {
+		referencia = true
+	}
+	//se obtiene la expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_Fargumento(id, referencia, expr)
+}
+
+//STRUCTS
+
+// Visit a parse tree produced by Tswift_GrammarParser#Def_Struct.
+func (vI *VisitorInterprete) VisitDef_Struct(ctx *TswiftP.Def_StructContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#L_Atributos.
+func (vI *VisitorInterprete) VisitL_Atributos(ctx *TswiftP.L_AtributosContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#L_Funciones.
+func (vI *VisitorInterprete) VisitL_Funciones(ctx *TswiftP.L_FuncionesContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Creacion_Struct.
+func (vI *VisitorInterprete) VisitCreacion_Struct(ctx *TswiftP.Creacion_StructContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Creacion_Struct_Simple.
+func (vI *VisitorInterprete) VisitCreacion_Struct_Simple(ctx *TswiftP.Creacion_Struct_SimpleContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+//MATRICES--------------------------------------------------------------------------------------------
+
+// Visit a parse tree produced by Tswift_GrammarParser#Declaracion_Matriz.
+func (vI *VisitorInterprete) VisitDeclaracion_Matriz(ctx *TswiftP.Declaracion_MatrizContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Matriz.
+func (vI *VisitorInterprete) VisitTipo_Matriz(ctx *TswiftP.Tipo_MatrizContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Matriz_Simple.
+func (vI *VisitorInterprete) VisitTipo_Matriz_Simple(ctx *TswiftP.Tipo_Matriz_SimpleContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Def_Matriz.
+func (vI *VisitorInterprete) VisitDef_Matriz(ctx *TswiftP.Def_MatrizContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Def_Matriz_Simple.
+func (vI *VisitorInterprete) VisitDef_Matriz_Simple(ctx *TswiftP.Def_Matriz_SimpleContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ListaCompletaVal.
+func (vI *VisitorInterprete) VisitListaCompletaVal(ctx *TswiftP.ListaCompletaValContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ListaValorSig.
+func (vI *VisitorInterprete) VisitListaValorSig(ctx *TswiftP.ListaValorSigContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ListaValoresHermanos.
+func (vI *VisitorInterprete) VisitListaValoresHermanos(ctx *TswiftP.ListaValoresHermanosContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#ListaExpr.
+func (vI *VisitorInterprete) VisitListaExpr(ctx *TswiftP.ListaExprContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Simple_Mat.
+func (vI *VisitorInterprete) VisitSimple_Mat(ctx *TswiftP.Simple_MatContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Simple_Mat_Expr.
+func (vI *VisitorInterprete) VisitSimple_Mat_Expr(ctx *TswiftP.Simple_Mat_ExprContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Asig_Mat.
+func (vI *VisitorInterprete) VisitAsig_Mat(ctx *TswiftP.Asig_MatContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
 // TIPOS DE DATOS --------------------------------------------------------------------------------------------
 
 // Visit a parse tree produced by Tswift_GrammarParser#Tipo_Int.
@@ -552,6 +800,11 @@ func (vI *VisitorInterprete) VisitTipo_Bool(ctx *TswiftP.Tipo_BoolContext) inter
 // Visit a parse tree produced by Tswift_GrammarParser#Tipo_Character.
 func (vI *VisitorInterprete) VisitTipo_Character(ctx *TswiftP.Tipo_CharacterContext) interface{} {
 	return "String"
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Tipo_Vector.
+func (vI *VisitorInterprete) VisitTipo_Vector(ctx *TswiftP.Tipo_VectorContext) interface{} {
+	return "Vector"
 }
 
 // EXPRESIONES --------------------------------------------------------------------------------------------
@@ -727,4 +980,14 @@ func (vI *VisitorInterprete) VisitExpr_Vector(ctx *TswiftP.Expr_VectorContext) i
 	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
 
 	return terminales.NewT_VectorPos(id, expr, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Matriz.
+func (vI *VisitorInterprete) VisitExpr_Matriz(ctx *TswiftP.Expr_MatrizContext) interface{} {
+	panic("not implemented") // TODO: Implement
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Llamada_Funcion.
+func (vI *VisitorInterprete) VisitExpr_Llamada_Funcion(ctx *TswiftP.Expr_Llamada_FuncionContext) interface{} {
+	return ctx.Llamada_funciones().Accept(vI).(interprete.AbstractExpression)
 }

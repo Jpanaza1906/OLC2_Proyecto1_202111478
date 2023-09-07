@@ -67,6 +67,26 @@ func (v *BaseTswift_GrammarVisitor) VisitS_Asignacion_Vector(ctx *S_Asignacion_V
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitS_Declaracion_Metodo(ctx *S_Declaracion_MetodoContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Declaracion_Funcion(ctx *S_Declaracion_FuncionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Llamada_Funcion(ctx *S_Llamada_FuncionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Declaracion_Matriz(ctx *S_Declaracion_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitS_Asignacion_Matriz(ctx *S_Asignacion_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitPrint(ctx *PrintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -175,6 +195,14 @@ func (v *BaseTswift_GrammarVisitor) VisitAsig_Vector(ctx *Asig_VectorContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitSumAsg_Vector(ctx *SumAsg_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitResAsg_Vector(ctx *ResAsg_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Append(ctx *Func_Vector_AppendContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -184,6 +212,94 @@ func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_RemoveLast(ctx *Func_Vector
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_Remove(ctx *Func_Vector_RemoveContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDeclaracion_Matriz(ctx *Declaracion_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitTipo_Matriz(ctx *Tipo_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitTipo_Matriz_Simple(ctx *Tipo_Matriz_SimpleContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Matriz(ctx *Def_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Matriz_Simple(ctx *Def_Matriz_SimpleContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitListaCompletaVal(ctx *ListaCompletaValContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitListaValorSig(ctx *ListaValorSigContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitListaValoresHermanos(ctx *ListaValoresHermanosContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitListaExpr(ctx *ListaExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitSimple_Mat(ctx *Simple_MatContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitSimple_Mat_Expr(ctx *Simple_Mat_ExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitAsig_Mat(ctx *Asig_MatContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDeclaracion_Metodo(ctx *Declaracion_MetodoContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDeclaracion_Funcion(ctx *Declaracion_FuncionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitL_Parametros(ctx *L_ParametrosContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitLlamada_Funcion(ctx *Llamada_FuncionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitL_Argumentos(ctx *L_ArgumentosContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitDef_Struct(ctx *Def_StructContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitL_Atributos(ctx *L_AtributosContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitL_Funciones(ctx *L_FuncionesContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitCreacion_Struct(ctx *Creacion_StructContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -207,6 +323,10 @@ func (v *BaseTswift_GrammarVisitor) VisitTipo_Character(ctx *Tipo_CharacterConte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitTipo_Vector(ctx *Tipo_VectorContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitExpr_Rel(ctx *Expr_RelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -223,6 +343,10 @@ func (v *BaseTswift_GrammarVisitor) VisitExpr_SumRes(ctx *Expr_SumResContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitExpr_Matriz(ctx *Expr_MatrizContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitExpr_Neg(ctx *Expr_NegContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -236,6 +360,10 @@ func (v *BaseTswift_GrammarVisitor) VisitExpr_Nil(ctx *Expr_NilContext) interfac
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitFunc_Vector_isEmpty(ctx *Func_Vector_isEmptyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitExpr_Llamada_Funcion(ctx *Expr_Llamada_FuncionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

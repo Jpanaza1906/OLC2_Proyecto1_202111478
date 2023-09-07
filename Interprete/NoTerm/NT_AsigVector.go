@@ -28,11 +28,14 @@ func NewNT_AsigVector(id string, posicion interprete.AbstractExpression, valor i
 
 func (NT_AV *NT_AsigVector) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 	//Con el Id se busca el vector
-	vec, ok := ctx.GetVariable(NT_AV.ID)
+	vec1, ok := ctx.GetVariable(NT_AV.ID)
+
 	if !ok {
 		ctx.AddError("La variable " + NT_AV.ID + " no existe en la linea " + strconv.Itoa(NT_AV.Linea) + " y columna " + strconv.Itoa(NT_AV.Columna))
 		return interprete.NewNil()
 	}
+
+	vec := vec1.Resultado
 
 	//Se verifica que la variable sea un vector
 	if vec.Tipo != interprete.Vector {
@@ -70,7 +73,7 @@ func (NT_AV *NT_AsigVector) Interpretar(ctx *interprete.Contexto) *interprete.Re
 	vec.ValorV[pos.Valor] = *valor
 
 	//Se actualiza el valor de la variable
-	if ctx.AsigVariable(NT_AV.ID, vec) {
+	if ctx.AsigVariable(NT_AV.ID, interprete.NewVectorLiteral(vec.ValorV)) {
 		return interprete.NewNil()
 	} else {
 		ctx.AddError("Error al actualizar el valor de la variable " + NT_AV.ID + " en la linea " + strconv.Itoa(NT_AV.Linea) + " y columna " + strconv.Itoa(NT_AV.Columna))
