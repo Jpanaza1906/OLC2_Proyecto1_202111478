@@ -187,3 +187,8 @@ func (c *Contexto) AddReturnSentencia(entrada AbstractExpression) {
 func (c *Contexto) RemReturnSentencia() {
 	c.ReturnState = c.ReturnState[:len(c.ReturnState)-1]
 }
+
+//limpiar variables del contexto
+func (c *Contexto) LimpiarVariables() {
+	c.Memoria.LimpiarVariables()
+}

@@ -133,9 +133,9 @@ func tswift_grammarParserInit() {
 		36, 5, 36, 634, 8, 36, 10, 36, 12, 36, 637, 9, 36, 1, 36, 0, 2, 48, 72,
 		37, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34,
 		36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70,
-		72, 0, 8, 1, 0, 32, 33, 2, 0, 12, 12, 71, 71, 2, 0, 19, 19, 30, 30, 1,
-		0, 34, 35, 2, 0, 17, 17, 21, 21, 1, 0, 19, 20, 1, 0, 28, 29, 1, 0, 22,
-		27, 706, 0, 74, 1, 0, 0, 0, 2, 79, 1, 0, 0, 0, 4, 133, 1, 0, 0, 0, 6, 135,
+		72, 0, 8, 2, 0, 12, 12, 71, 71, 1, 0, 32, 33, 2, 0, 19, 19, 30, 30, 1,
+		0, 34, 35, 2, 0, 17, 17, 21, 21, 1, 0, 19, 20, 1, 0, 22, 27, 1, 0, 28,
+		29, 706, 0, 74, 1, 0, 0, 0, 2, 79, 1, 0, 0, 0, 4, 133, 1, 0, 0, 0, 6, 135,
 		1, 0, 0, 0, 8, 166, 1, 0, 0, 0, 10, 179, 1, 0, 0, 0, 12, 190, 1, 0, 0,
 		0, 14, 216, 1, 0, 0, 0, 16, 218, 1, 0, 0, 0, 18, 231, 1, 0, 0, 0, 20, 238,
 		1, 0, 0, 0, 22, 244, 1, 0, 0, 0, 24, 252, 1, 0, 0, 0, 26, 258, 1, 0, 0,
@@ -215,7 +215,7 @@ func tswift_grammarParserInit() {
 		250, 3, 30, 15, 0, 250, 251, 5, 5, 0, 0, 251, 23, 1, 0, 0, 0, 252, 253,
 		5, 41, 0, 0, 253, 254, 3, 72, 36, 0, 254, 255, 5, 4, 0, 0, 255, 256, 3,
 		2, 1, 0, 256, 257, 5, 5, 0, 0, 257, 25, 1, 0, 0, 0, 258, 259, 5, 42, 0,
-		0, 259, 260, 5, 71, 0, 0, 260, 263, 5, 43, 0, 0, 261, 264, 3, 28, 14, 0,
+		0, 259, 260, 7, 0, 0, 0, 260, 263, 5, 43, 0, 0, 261, 264, 3, 28, 14, 0,
 		262, 264, 3, 72, 36, 0, 263, 261, 1, 0, 0, 0, 263, 262, 1, 0, 0, 0, 264,
 		265, 1, 0, 0, 0, 265, 266, 5, 4, 0, 0, 266, 267, 3, 2, 1, 0, 267, 268,
 		5, 5, 0, 0, 268, 27, 1, 0, 0, 0, 269, 270, 3, 72, 36, 0, 270, 271, 5, 44,
@@ -223,7 +223,7 @@ func tswift_grammarParserInit() {
 		0, 274, 280, 5, 46, 0, 0, 275, 277, 5, 47, 0, 0, 276, 278, 3, 72, 36, 0,
 		277, 276, 1, 0, 0, 0, 277, 278, 1, 0, 0, 0, 278, 280, 1, 0, 0, 0, 279,
 		273, 1, 0, 0, 0, 279, 274, 1, 0, 0, 0, 279, 275, 1, 0, 0, 0, 280, 31, 1,
-		0, 0, 0, 281, 282, 7, 0, 0, 0, 282, 283, 5, 71, 0, 0, 283, 284, 5, 8, 0,
+		0, 0, 0, 281, 282, 7, 1, 0, 0, 282, 283, 5, 71, 0, 0, 283, 284, 5, 8, 0,
 		0, 284, 285, 5, 6, 0, 0, 285, 286, 3, 70, 35, 0, 286, 287, 5, 7, 0, 0,
 		287, 288, 5, 16, 0, 0, 288, 289, 3, 34, 17, 0, 289, 33, 1, 0, 0, 0, 290,
 		291, 5, 6, 0, 0, 291, 296, 3, 72, 36, 0, 292, 293, 5, 1, 0, 0, 293, 295,
@@ -247,7 +247,7 @@ func tswift_grammarParserInit() {
 		343, 344, 5, 52, 0, 0, 344, 345, 5, 3, 0, 0, 345, 346, 5, 53, 0, 0, 346,
 		347, 5, 8, 0, 0, 347, 348, 3, 72, 36, 0, 348, 349, 5, 2, 0, 0, 349, 351,
 		1, 0, 0, 0, 350, 329, 1, 0, 0, 0, 350, 336, 1, 0, 0, 0, 350, 341, 1, 0,
-		0, 0, 351, 39, 1, 0, 0, 0, 352, 353, 7, 0, 0, 0, 353, 356, 5, 71, 0, 0,
+		0, 0, 351, 39, 1, 0, 0, 0, 352, 353, 7, 1, 0, 0, 353, 356, 5, 71, 0, 0,
 		354, 355, 5, 8, 0, 0, 355, 357, 3, 42, 21, 0, 356, 354, 1, 0, 0, 0, 356,
 		357, 1, 0, 0, 0, 357, 358, 1, 0, 0, 0, 358, 359, 5, 16, 0, 0, 359, 360,
 		3, 44, 22, 0, 360, 41, 1, 0, 0, 0, 361, 362, 5, 6, 0, 0, 362, 363, 3, 42,
@@ -290,7 +290,7 @@ func tswift_grammarParserInit() {
 		0, 470, 471, 5, 4, 0, 0, 471, 472, 3, 2, 1, 0, 472, 474, 3, 30, 15, 0,
 		473, 475, 5, 9, 0, 0, 474, 473, 1, 0, 0, 0, 474, 475, 1, 0, 0, 0, 475,
 		476, 1, 0, 0, 0, 476, 477, 5, 5, 0, 0, 477, 57, 1, 0, 0, 0, 478, 480, 7,
-		1, 0, 0, 479, 478, 1, 0, 0, 0, 479, 480, 1, 0, 0, 0, 480, 481, 1, 0, 0,
+		0, 0, 0, 479, 478, 1, 0, 0, 0, 479, 480, 1, 0, 0, 0, 480, 481, 1, 0, 0,
 		0, 481, 482, 5, 71, 0, 0, 482, 484, 5, 8, 0, 0, 483, 485, 5, 60, 0, 0,
 		484, 483, 1, 0, 0, 0, 484, 485, 1, 0, 0, 0, 485, 486, 1, 0, 0, 0, 486,
 		488, 3, 70, 35, 0, 487, 489, 5, 1, 0, 0, 488, 487, 1, 0, 0, 0, 488, 489,
@@ -306,19 +306,19 @@ func tswift_grammarParserInit() {
 		0, 514, 516, 3, 66, 33, 0, 515, 514, 1, 0, 0, 0, 516, 519, 1, 0, 0, 0,
 		517, 515, 1, 0, 0, 0, 517, 518, 1, 0, 0, 0, 518, 520, 1, 0, 0, 0, 519,
 		517, 1, 0, 0, 0, 520, 521, 5, 5, 0, 0, 521, 65, 1, 0, 0, 0, 522, 523, 7,
-		0, 0, 0, 523, 526, 5, 71, 0, 0, 524, 525, 5, 8, 0, 0, 525, 527, 3, 70,
+		1, 0, 0, 523, 526, 5, 71, 0, 0, 524, 525, 5, 8, 0, 0, 525, 527, 3, 70,
 		35, 0, 526, 524, 1, 0, 0, 0, 526, 527, 1, 0, 0, 0, 527, 530, 1, 0, 0, 0,
 		528, 529, 5, 16, 0, 0, 529, 531, 3, 72, 36, 0, 530, 528, 1, 0, 0, 0, 530,
 		531, 1, 0, 0, 0, 531, 533, 1, 0, 0, 0, 532, 534, 5, 9, 0, 0, 533, 532,
 		1, 0, 0, 0, 533, 534, 1, 0, 0, 0, 534, 540, 1, 0, 0, 0, 535, 537, 5, 59,
 		0, 0, 536, 535, 1, 0, 0, 0, 536, 537, 1, 0, 0, 0, 537, 538, 1, 0, 0, 0,
 		538, 540, 3, 56, 28, 0, 539, 522, 1, 0, 0, 0, 539, 536, 1, 0, 0, 0, 540,
-		67, 1, 0, 0, 0, 541, 542, 7, 0, 0, 0, 542, 545, 5, 71, 0, 0, 543, 544,
+		67, 1, 0, 0, 0, 541, 542, 7, 1, 0, 0, 542, 545, 5, 71, 0, 0, 543, 544,
 		5, 8, 0, 0, 544, 546, 5, 71, 0, 0, 545, 543, 1, 0, 0, 0, 545, 546, 1, 0,
 		0, 0, 546, 547, 1, 0, 0, 0, 547, 548, 5, 16, 0, 0, 548, 549, 5, 71, 0,
 		0, 549, 551, 5, 3, 0, 0, 550, 552, 3, 62, 31, 0, 551, 550, 1, 0, 0, 0,
 		551, 552, 1, 0, 0, 0, 552, 553, 1, 0, 0, 0, 553, 563, 5, 2, 0, 0, 554,
-		555, 7, 0, 0, 0, 555, 558, 5, 71, 0, 0, 556, 557, 5, 8, 0, 0, 557, 559,
+		555, 7, 1, 0, 0, 555, 558, 5, 71, 0, 0, 556, 557, 5, 8, 0, 0, 557, 559,
 		5, 71, 0, 0, 558, 556, 1, 0, 0, 0, 558, 559, 1, 0, 0, 0, 559, 560, 1, 0,
 		0, 0, 560, 561, 5, 16, 0, 0, 561, 563, 5, 71, 0, 0, 562, 541, 1, 0, 0,
 		0, 562, 554, 1, 0, 0, 0, 563, 69, 1, 0, 0, 0, 564, 574, 5, 61, 0, 0, 565,
@@ -5280,6 +5280,7 @@ func (s *For_sentenciaContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 type ForContext struct {
 	For_sentenciaContext
+	id antlr.Token
 }
 
 func NewForContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ForContext {
@@ -5292,16 +5293,16 @@ func NewForContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ForContext
 	return p
 }
 
+func (s *ForContext) GetId() antlr.Token { return s.id }
+
+func (s *ForContext) SetId(v antlr.Token) { s.id = v }
+
 func (s *ForContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
 func (s *ForContext) FOR() antlr.TerminalNode {
 	return s.GetToken(Tswift_GrammarParserFOR, 0)
-}
-
-func (s *ForContext) ID() antlr.TerminalNode {
-	return s.GetToken(Tswift_GrammarParserID, 0)
 }
 
 func (s *ForContext) IN() antlr.TerminalNode {
@@ -5330,6 +5331,14 @@ func (s *ForContext) L_sentencias() IL_sentenciasContext {
 
 func (s *ForContext) LLAVEDER() antlr.TerminalNode {
 	return s.GetToken(Tswift_GrammarParserLLAVEDER, 0)
+}
+
+func (s *ForContext) ID() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserID, 0)
+}
+
+func (s *ForContext) GUIONBAJO() antlr.TerminalNode {
+	return s.GetToken(Tswift_GrammarParserGUIONBAJO, 0)
 }
 
 func (s *ForContext) Rango_p() IRango_pContext {
@@ -5389,6 +5398,8 @@ func (s *ForContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 func (p *Tswift_GrammarParser) For_sentencia() (localctx IFor_sentenciaContext) {
 	localctx = NewFor_sentenciaContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 26, Tswift_GrammarParserRULE_for_sentencia)
+	var _la int
+
 	localctx = NewForContext(p, localctx)
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -5401,10 +5412,20 @@ func (p *Tswift_GrammarParser) For_sentencia() (localctx IFor_sentenciaContext) 
 	}
 	{
 		p.SetState(259)
-		p.Match(Tswift_GrammarParserID)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*ForContext).id = _lt
+
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == Tswift_GrammarParserGUIONBAJO || _la == Tswift_GrammarParserID) {
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*ForContext).id = _ri
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
 		}
 	}
 	{
@@ -13919,7 +13940,7 @@ func (p *Tswift_GrammarParser) e(_p int) (localctx IEContext) {
 				}
 
 			case 4:
-				localctx = NewExpr_LogicaContext(p, NewEContext(p, _parentctx, _parentState))
+				localctx = NewExpr_RelContext(p, NewEContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
 				p.SetState(627)
 
@@ -13932,14 +13953,14 @@ func (p *Tswift_GrammarParser) e(_p int) (localctx IEContext) {
 
 					var _lt = p.GetTokenStream().LT(1)
 
-					localctx.(*Expr_LogicaContext).op = _lt
+					localctx.(*Expr_RelContext).op = _lt
 
 					_la = p.GetTokenStream().LA(1)
 
-					if !(_la == Tswift_GrammarParserAND || _la == Tswift_GrammarParserOR) {
+					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&264241152) != 0) {
 						var _ri = p.GetErrorHandler().RecoverInline(p)
 
-						localctx.(*Expr_LogicaContext).op = _ri
+						localctx.(*Expr_RelContext).op = _ri
 					} else {
 						p.GetErrorHandler().ReportMatch(p)
 						p.Consume()
@@ -13951,7 +13972,7 @@ func (p *Tswift_GrammarParser) e(_p int) (localctx IEContext) {
 				}
 
 			case 5:
-				localctx = NewExpr_RelContext(p, NewEContext(p, _parentctx, _parentState))
+				localctx = NewExpr_LogicaContext(p, NewEContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, Tswift_GrammarParserRULE_e)
 				p.SetState(630)
 
@@ -13964,14 +13985,14 @@ func (p *Tswift_GrammarParser) e(_p int) (localctx IEContext) {
 
 					var _lt = p.GetTokenStream().LT(1)
 
-					localctx.(*Expr_RelContext).op = _lt
+					localctx.(*Expr_LogicaContext).op = _lt
 
 					_la = p.GetTokenStream().LA(1)
 
-					if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&264241152) != 0) {
+					if !(_la == Tswift_GrammarParserAND || _la == Tswift_GrammarParserOR) {
 						var _ri = p.GetErrorHandler().RecoverInline(p)
 
-						localctx.(*Expr_RelContext).op = _ri
+						localctx.(*Expr_LogicaContext).op = _ri
 					} else {
 						p.GetErrorHandler().ReportMatch(p)
 						p.Consume()

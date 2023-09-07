@@ -93,7 +93,7 @@ while_sentencia:
 //Ciclo For----------------------------------------------------------------------
 
 for_sentencia:
-    FOR ID IN (rango_p|e) LLAVEIZQ l_sentencias LLAVEDER #For
+    FOR id=(ID|GUIONBAJO) IN (rango_p|e) LLAVEIZQ l_sentencias LLAVEDER #For
     ;
 
 rango_p:
@@ -216,8 +216,8 @@ e
     | e op=(POR | DIV) e    # Expr_MulDiv
     | e op=(MAS | MENOS) e  # Expr_SumRes
     | e MOD e           # Expr_Mod
-    | e op=(AND | OR) e     # Expr_Logica
     | e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
+    | e op=(AND | OR) e     # Expr_Logica
     | op=(TRUE | FALSE)          # Expr_Booleano
     | llamada_funciones # Expr_Llamada_Funcion
     | ID CORCHETEIZQ ENTERO CORCHETEDER CORCHETEIZQ ENTERO CORCHETEDER (CORCHETEIZQ ENTERO CORCHETEDER)* # Expr_Matriz

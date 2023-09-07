@@ -1480,14 +1480,16 @@ public class Tswift_GrammarParser extends Parser {
 		}
 	}
 	public static class ForContext extends For_sentenciaContext {
+		public Token id;
 		public TerminalNode FOR() { return getToken(Tswift_GrammarParser.FOR, 0); }
-		public TerminalNode ID() { return getToken(Tswift_GrammarParser.ID, 0); }
 		public TerminalNode IN() { return getToken(Tswift_GrammarParser.IN, 0); }
 		public TerminalNode LLAVEIZQ() { return getToken(Tswift_GrammarParser.LLAVEIZQ, 0); }
 		public L_sentenciasContext l_sentencias() {
 			return getRuleContext(L_sentenciasContext.class,0);
 		}
 		public TerminalNode LLAVEDER() { return getToken(Tswift_GrammarParser.LLAVEDER, 0); }
+		public TerminalNode ID() { return getToken(Tswift_GrammarParser.ID, 0); }
+		public TerminalNode GUIONBAJO() { return getToken(Tswift_GrammarParser.GUIONBAJO, 0); }
 		public Rango_pContext rango_p() {
 			return getRuleContext(Rango_pContext.class,0);
 		}
@@ -1500,6 +1502,7 @@ public class Tswift_GrammarParser extends Parser {
 	public final For_sentenciaContext for_sentencia() throws RecognitionException {
 		For_sentenciaContext _localctx = new For_sentenciaContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_for_sentencia);
+		int _la;
 		try {
 			_localctx = new ForContext(_localctx);
 			enterOuterAlt(_localctx, 1);
@@ -1507,7 +1510,16 @@ public class Tswift_GrammarParser extends Parser {
 			setState(258);
 			match(FOR);
 			setState(259);
-			match(ID);
+			((ForContext)_localctx).id = _input.LT(1);
+			_la = _input.LA(1);
+			if ( !(_la==GUIONBAJO || _la==ID) ) {
+				((ForContext)_localctx).id = (Token)_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			setState(260);
 			match(IN);
 			setState(263);
@@ -4023,15 +4035,15 @@ public class Tswift_GrammarParser extends Parser {
 						break;
 					case 4:
 						{
-						_localctx = new Expr_LogicaContext(new EContext(_parentctx, _parentState));
+						_localctx = new Expr_RelContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
 						setState(627);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(628);
-						((Expr_LogicaContext)_localctx).op = _input.LT(1);
+						((Expr_RelContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==AND || _la==OR) ) {
-							((Expr_LogicaContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IGUALIGUAL) | (1L << DIFERENTE) | (1L << MAYORIGUAL) | (1L << MENORIGUAL) | (1L << MAYOR) | (1L << MENOR))) != 0)) ) {
+							((Expr_RelContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -4044,15 +4056,15 @@ public class Tswift_GrammarParser extends Parser {
 						break;
 					case 5:
 						{
-						_localctx = new Expr_RelContext(new EContext(_parentctx, _parentState));
+						_localctx = new Expr_LogicaContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
 						setState(630);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(631);
-						((Expr_RelContext)_localctx).op = _input.LT(1);
+						((Expr_LogicaContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IGUALIGUAL) | (1L << DIFERENTE) | (1L << MAYORIGUAL) | (1L << MENORIGUAL) | (1L << MAYOR) | (1L << MENOR))) != 0)) ) {
-							((Expr_RelContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==AND || _la==OR) ) {
+							((Expr_LogicaContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -4162,8 +4174,8 @@ public class Tswift_GrammarParser extends Parser {
 		"\n&\f&\16&\u0254\13&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3"+
 		"&\3&\3&\3&\3&\5&\u026b\n&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3&\3"+
 		"&\7&\u027c\n&\f&\16&\u027f\13&\3&\2\4\62J\'\2\4\6\b\n\f\16\20\22\24\26"+
-		"\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJ\2\n\3\2\"#\4\2\16\16II\4\2"+
-		"\25\25  \3\2$%\4\2\23\23\27\27\3\2\25\26\3\2\36\37\3\2\30\35\2\u02c4\2"+
+		"\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJ\2\n\4\2\16\16II\3\2\"#\4\2"+
+		"\25\25  \3\2$%\4\2\23\23\27\27\3\2\25\26\3\2\30\35\3\2\36\37\2\u02c4\2"+
 		"L\3\2\2\2\4Q\3\2\2\2\6\u0087\3\2\2\2\b\u0089\3\2\2\2\n\u00a8\3\2\2\2\f"+
 		"\u00b5\3\2\2\2\16\u00c0\3\2\2\2\20\u00da\3\2\2\2\22\u00dc\3\2\2\2\24\u00e9"+
 		"\3\2\2\2\26\u00f0\3\2\2\2\30\u00f6\3\2\2\2\32\u00fe\3\2\2\2\34\u0104\3"+
@@ -4227,14 +4239,14 @@ public class Tswift_GrammarParser extends Parser {
 		"\u00fb\5\4\3\2\u00fb\u00fc\5 \21\2\u00fc\u00fd\7\7\2\2\u00fd\31\3\2\2"+
 		"\2\u00fe\u00ff\7+\2\2\u00ff\u0100\5J&\2\u0100\u0101\7\6\2\2\u0101\u0102"+
 		"\5\4\3\2\u0102\u0103\7\7\2\2\u0103\33\3\2\2\2\u0104\u0105\7,\2\2\u0105"+
-		"\u0106\7I\2\2\u0106\u0109\7-\2\2\u0107\u010a\5\36\20\2\u0108\u010a\5J"+
-		"&\2\u0109\u0107\3\2\2\2\u0109\u0108\3\2\2\2\u010a\u010b\3\2\2\2\u010b"+
+		"\u0106\t\2\2\2\u0106\u0109\7-\2\2\u0107\u010a\5\36\20\2\u0108\u010a\5"+
+		"J&\2\u0109\u0107\3\2\2\2\u0109\u0108\3\2\2\2\u010a\u010b\3\2\2\2\u010b"+
 		"\u010c\7\6\2\2\u010c\u010d\5\4\3\2\u010d\u010e\7\7\2\2\u010e\35\3\2\2"+
 		"\2\u010f\u0110\5J&\2\u0110\u0111\7.\2\2\u0111\u0112\5J&\2\u0112\37\3\2"+
 		"\2\2\u0113\u011a\7\62\2\2\u0114\u011a\7\60\2\2\u0115\u0117\7\61\2\2\u0116"+
 		"\u0118\5J&\2\u0117\u0116\3\2\2\2\u0117\u0118\3\2\2\2\u0118\u011a\3\2\2"+
 		"\2\u0119\u0113\3\2\2\2\u0119\u0114\3\2\2\2\u0119\u0115\3\2\2\2\u011a!"+
-		"\3\2\2\2\u011b\u011c\t\2\2\2\u011c\u011d\7I\2\2\u011d\u011e\7\n\2\2\u011e"+
+		"\3\2\2\2\u011b\u011c\t\3\2\2\u011c\u011d\7I\2\2\u011d\u011e\7\n\2\2\u011e"+
 		"\u011f\7\b\2\2\u011f\u0120\5H%\2\u0120\u0121\7\t\2\2\u0121\u0122\7\22"+
 		"\2\2\u0122\u0123\5$\23\2\u0123#\3\2\2\2\u0124\u0125\7\b\2\2\u0125\u012a"+
 		"\5J&\2\u0126\u0127\7\3\2\2\u0127\u0129\5J&\2\u0128\u0126\3\2\2\2\u0129"+
@@ -4255,7 +4267,7 @@ public class Tswift_GrammarParser extends Parser {
 		"\4\2\2\u0157\u0158\7I\2\2\u0158\u0159\7\r\2\2\u0159\u015a\7\66\2\2\u015a"+
 		"\u015b\7\5\2\2\u015b\u015c\7\67\2\2\u015c\u015d\7\n\2\2\u015d\u015e\5"+
 		"J&\2\u015e\u015f\7\4\2\2\u015f\u0161\3\2\2\2\u0160\u014b\3\2\2\2\u0160"+
-		"\u0152\3\2\2\2\u0160\u0157\3\2\2\2\u0161)\3\2\2\2\u0162\u0163\t\2\2\2"+
+		"\u0152\3\2\2\2\u0160\u0157\3\2\2\2\u0161)\3\2\2\2\u0162\u0163\t\3\2\2"+
 		"\u0163\u0166\7I\2\2\u0164\u0165\7\n\2\2\u0165\u0167\5,\27\2\u0166\u0164"+
 		"\3\2\2\2\u0166\u0167\3\2\2\2\u0167\u0168\3\2\2\2\u0168\u0169\7\22\2\2"+
 		"\u0169\u016a\5.\30\2\u016a+\3\2\2\2\u016b\u016c\7\b\2\2\u016c\u016d\5"+
@@ -4293,7 +4305,7 @@ public class Tswift_GrammarParser extends Parser {
 		"\2\2\u01d4\u01d5\7\4\2\2\u01d5\u01d6\7\25\2\2\u01d6\u01d7\7\34\2\2\u01d7"+
 		"\u01d8\5H%\2\u01d8\u01d9\7\6\2\2\u01d9\u01da\5\4\3\2\u01da\u01dc\5 \21"+
 		"\2\u01db\u01dd\7\13\2\2\u01dc\u01db\3\2\2\2\u01dc\u01dd\3\2\2\2\u01dd"+
-		"\u01de\3\2\2\2\u01de\u01df\7\7\2\2\u01df;\3\2\2\2\u01e0\u01e2\t\3\2\2"+
+		"\u01de\3\2\2\2\u01de\u01df\7\7\2\2\u01df;\3\2\2\2\u01e0\u01e2\t\2\2\2"+
 		"\u01e1\u01e0\3\2\2\2\u01e1\u01e2\3\2\2\2\u01e2\u01e3\3\2\2\2\u01e3\u01e4"+
 		"\7I\2\2\u01e4\u01e6\7\n\2\2\u01e5\u01e7\7>\2\2\u01e6\u01e5\3\2\2\2\u01e6"+
 		"\u01e7\3\2\2\2\u01e7\u01e8\3\2\2\2\u01e8\u01ea\5H%\2\u01e9\u01eb\7\3\2"+
@@ -4308,17 +4320,17 @@ public class Tswift_GrammarParser extends Parser {
 		"\u0203\7I\2\2\u0203\u0207\7\6\2\2\u0204\u0206\5D#\2\u0205\u0204\3\2\2"+
 		"\2\u0206\u0209\3\2\2\2\u0207\u0205\3\2\2\2\u0207\u0208\3\2\2\2\u0208\u020a"+
 		"\3\2\2\2\u0209\u0207\3\2\2\2\u020a\u020b\7\7\2\2\u020bC\3\2\2\2\u020c"+
-		"\u020d\t\2\2\2\u020d\u0210\7I\2\2\u020e\u020f\7\n\2\2\u020f\u0211\5H%"+
+		"\u020d\t\3\2\2\u020d\u0210\7I\2\2\u020e\u020f\7\n\2\2\u020f\u0211\5H%"+
 		"\2\u0210\u020e\3\2\2\2\u0210\u0211\3\2\2\2\u0211\u0214\3\2\2\2\u0212\u0213"+
 		"\7\22\2\2\u0213\u0215\5J&\2\u0214\u0212\3\2\2\2\u0214\u0215\3\2\2\2\u0215"+
 		"\u0217\3\2\2\2\u0216\u0218\7\13\2\2\u0217\u0216\3\2\2\2\u0217\u0218\3"+
 		"\2\2\2\u0218\u021e\3\2\2\2\u0219\u021b\7=\2\2\u021a\u0219\3\2\2\2\u021a"+
 		"\u021b\3\2\2\2\u021b\u021c\3\2\2\2\u021c\u021e\5:\36\2\u021d\u020c\3\2"+
-		"\2\2\u021d\u021a\3\2\2\2\u021eE\3\2\2\2\u021f\u0220\t\2\2\2\u0220\u0223"+
+		"\2\2\u021d\u021a\3\2\2\2\u021eE\3\2\2\2\u021f\u0220\t\3\2\2\u0220\u0223"+
 		"\7I\2\2\u0221\u0222\7\n\2\2\u0222\u0224\7I\2\2\u0223\u0221\3\2\2\2\u0223"+
 		"\u0224\3\2\2\2\u0224\u0225\3\2\2\2\u0225\u0226\7\22\2\2\u0226\u0227\7"+
 		"I\2\2\u0227\u0229\7\5\2\2\u0228\u022a\5@!\2\u0229\u0228\3\2\2\2\u0229"+
-		"\u022a\3\2\2\2\u022a\u022b\3\2\2\2\u022b\u0235\7\4\2\2\u022c\u022d\t\2"+
+		"\u022a\3\2\2\2\u022a\u022b\3\2\2\2\u022b\u0235\7\4\2\2\u022c\u022d\t\3"+
 		"\2\2\u022d\u0230\7I\2\2\u022e\u022f\7\n\2\2\u022f\u0231\7I\2\2\u0230\u022e"+
 		"\3\2\2\2\u0230\u0231\3\2\2\2\u0231\u0232\3\2\2\2\u0232\u0233\7\22\2\2"+
 		"\u0233\u0235\7I\2\2\u0234\u021f\3\2\2\2\u0234\u022c\3\2\2\2\u0235G\3\2"+

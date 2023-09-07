@@ -63,3 +63,8 @@ func (m *Memoria) GetSimbolo(nombre string) (*Simbolo, bool) {
 	}
 	return nil, false
 }
+
+//limpiar variables de la memoria
+func (m *Memoria) LimpiarVariables() {
+	m.Variables = make(map[string]*Simbolo)
+}

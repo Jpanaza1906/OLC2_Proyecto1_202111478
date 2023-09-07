@@ -406,7 +406,10 @@ func (vI *VisitorInterprete) VisitWhile(ctx *TswiftP.WhileContext) interface{} {
 // Visit a parse tree produced by Tswift_GrammarParser#For.
 func (vI *VisitorInterprete) VisitFor(ctx *TswiftP.ForContext) interface{} {
 	//id
-	id := ctx.ID().GetText()
+	id := ""
+	if ctx.GetId() != nil {
+		id = ctx.GetId().GetText()
+	}
 
 	if ctx.E() != nil {
 		//expresion
@@ -419,7 +422,7 @@ func (vI *VisitorInterprete) VisitFor(ctx *TswiftP.ForContext) interface{} {
 		rango := ctx.Rango_p().Accept(vI).([]interprete.AbstractExpression)
 		//sentencias
 		sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
-		return noterm.NewNT_For(id, nil, rango, sentencias, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+		return noterm.NewNT_For(id, nil, rango, sentencias, ctx.GetId().GetLine(), ctx.GetId().GetColumn())
 	}
 
 }

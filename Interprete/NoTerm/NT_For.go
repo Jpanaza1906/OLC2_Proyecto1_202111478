@@ -95,11 +95,13 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 			return interprete.NewNil()
 		}
 
+		// se agrega nuevo ambito
+		ctx.PushAmbito("For")
+
+		// se agrega la variable al contexto
+		ctx.AddVariable(NTf.Id, interprete.Integer, interprete.NewIntLiteral(0), NTf.Linea, NTf.Columa)
+
 		for {
-			// se agrega nuevo ambito
-			ctx.PushAmbito("For")
-			// se agrega la variable al contexto
-			ctx.AddVariable(NTf.Id, interprete.Integer, interprete.NewIntLiteral(0), NTf.Linea, NTf.Columa)
 			//se le asigna el valor de inicio a la variable
 			ctx.AsigVariable(NTf.Id, interprete.NewIntLiteral(inicio.Valor))
 			// se obtiene el valor de la variable
@@ -112,10 +114,15 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 			// se verifica que el valor sea menor que el fin
 			if valor.Valor <= fin.Valor {
 				// se ejecuta la sentencia
+				ctx.PushAmbito("ForSentencias")
 				NTf.Sentencia.Interpretar(ctx)
+				ctx.PopAmbito()
+				//se limpian las variables del contexto
+				//ctx.LimpiarVariables()
 				// se aumenta el valor de la variable
 				inicio.Valor++
 			} else {
+				ctx.PopAmbito()
 				break
 			}
 			if len(ctx.TransState) > 0 {
@@ -132,7 +139,6 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 				//return interprete.NewNil()
 				//}
 			}
-			ctx.PopAmbito()
 
 		}
 	}
