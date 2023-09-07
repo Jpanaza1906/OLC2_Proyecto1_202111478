@@ -67,6 +67,8 @@ REPEATING : 'repeating';
 STRUCT : 'struct';
 MUTATING : 'mutating';
 INOUT : 'inout';
+ATOI : 'atoi';
+IOTA : 'iota';
 //Tipos de datos reservadas
 INT: 'Int';
 FLOAT: 'Float';

@@ -214,6 +214,15 @@ type Tswift_GrammarListener interface {
 	// EnterL_Argumentos is called when entering the L_Argumentos production.
 	EnterL_Argumentos(c *L_ArgumentosContext)
 
+	// EnterFunc_Int is called when entering the Func_Int production.
+	EnterFunc_Int(c *Func_IntContext)
+
+	// EnterFunc_Float is called when entering the Func_Float production.
+	EnterFunc_Float(c *Func_FloatContext)
+
+	// EnterFunc_String is called when entering the Func_String production.
+	EnterFunc_String(c *Func_StringContext)
+
 	// EnterDef_Struct is called when entering the Def_Struct production.
 	EnterDef_Struct(c *Def_StructContext)
 
@@ -249,6 +258,9 @@ type Tswift_GrammarListener interface {
 
 	// EnterExpr_Rel is called when entering the Expr_Rel production.
 	EnterExpr_Rel(c *Expr_RelContext)
+
+	// EnterExpr_Funciones_Embebidas is called when entering the Expr_Funciones_Embebidas production.
+	EnterExpr_Funciones_Embebidas(c *Expr_Funciones_EmbebidasContext)
 
 	// EnterExpr_Decimal is called when entering the Expr_Decimal production.
 	EnterExpr_Decimal(c *Expr_DecimalContext)
@@ -511,6 +523,15 @@ type Tswift_GrammarListener interface {
 	// ExitL_Argumentos is called when exiting the L_Argumentos production.
 	ExitL_Argumentos(c *L_ArgumentosContext)
 
+	// ExitFunc_Int is called when exiting the Func_Int production.
+	ExitFunc_Int(c *Func_IntContext)
+
+	// ExitFunc_Float is called when exiting the Func_Float production.
+	ExitFunc_Float(c *Func_FloatContext)
+
+	// ExitFunc_String is called when exiting the Func_String production.
+	ExitFunc_String(c *Func_StringContext)
+
 	// ExitDef_Struct is called when exiting the Def_Struct production.
 	ExitDef_Struct(c *Def_StructContext)
 
@@ -546,6 +567,9 @@ type Tswift_GrammarListener interface {
 
 	// ExitExpr_Rel is called when exiting the Expr_Rel production.
 	ExitExpr_Rel(c *Expr_RelContext)
+
+	// ExitExpr_Funciones_Embebidas is called when exiting the Expr_Funciones_Embebidas production.
+	ExitExpr_Funciones_Embebidas(c *Expr_Funciones_EmbebidasContext)
 
 	// ExitExpr_Decimal is called when exiting the Expr_Decimal production.
 	ExitExpr_Decimal(c *Expr_DecimalContext)

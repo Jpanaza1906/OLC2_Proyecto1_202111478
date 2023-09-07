@@ -214,6 +214,15 @@ type Tswift_GrammarVisitor interface {
 	// Visit a parse tree produced by Tswift_GrammarParser#L_Argumentos.
 	VisitL_Argumentos(ctx *L_ArgumentosContext) interface{}
 
+	// Visit a parse tree produced by Tswift_GrammarParser#Func_Int.
+	VisitFunc_Int(ctx *Func_IntContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Func_Float.
+	VisitFunc_Float(ctx *Func_FloatContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Func_String.
+	VisitFunc_String(ctx *Func_StringContext) interface{}
+
 	// Visit a parse tree produced by Tswift_GrammarParser#Def_Struct.
 	VisitDef_Struct(ctx *Def_StructContext) interface{}
 
@@ -249,6 +258,9 @@ type Tswift_GrammarVisitor interface {
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Rel.
 	VisitExpr_Rel(ctx *Expr_RelContext) interface{}
+
+	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Funciones_Embebidas.
+	VisitExpr_Funciones_Embebidas(ctx *Expr_Funciones_EmbebidasContext) interface{}
 
 	// Visit a parse tree produced by Tswift_GrammarParser#Expr_Decimal.
 	VisitExpr_Decimal(ctx *Expr_DecimalContext) interface{}

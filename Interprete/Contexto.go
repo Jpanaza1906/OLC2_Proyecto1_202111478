@@ -87,12 +87,12 @@ func (c *Contexto) AddVector(nombre string, categoria string, tipo TipoE, tipoV 
 }
 
 // Se agrega una nueva funcion al vector de funciones
-func (c *Contexto) AddFuncion(nombre string, parametros []AbstractExpression, tipo_funcion string, tipo_retorno string, sentencias AbstractExpression, retorno AbstractExpression, linea int, columna int) bool {
+func (c *Contexto) AddFuncion(nombre string, parametros []AbstractExpression, tipo_funcion string, tipo_retorno string, sentencias AbstractExpression, linea int, columna int) bool {
 	_, existe := c.ExistFuncion(nombre)
 	if existe {
 		return false
 	}
-	c.Funciones = append(c.Funciones, NewFuncion(nombre, "Global", len(parametros), parametros, tipo_funcion, tipo_retorno, sentencias, retorno, linea, columna))
+	c.Funciones = append(c.Funciones, NewFuncion(nombre, "Global", len(parametros), parametros, tipo_funcion, tipo_retorno, sentencias, linea, columna))
 	return true
 }
 

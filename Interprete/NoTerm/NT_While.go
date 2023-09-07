@@ -29,7 +29,11 @@ func (NTw *NT_While) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 			return interprete.NewNil()
 		}
 		if condicion.ValorB {
-			NTw.Sentencias.Interpretar(ctx)
+			resul := NTw.Sentencias.Interpretar(ctx)
+			if !resul.Nil {
+				ctx.PopAmbito()
+				return resul
+			}
 		} else {
 			ctx.PopAmbito()
 			break
@@ -44,10 +48,7 @@ func (NTw *NT_While) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 			} else if transt.ValorS == "continue" {
 				ctx.PopAmbito()
 				continue
-			} //else if transt == "return" {
-			//ctx.PopAmbito()
-			//	return interprete.NewNil()
-			//}
+			}
 		}
 		//Se saca el ambito
 		ctx.PopAmbito()

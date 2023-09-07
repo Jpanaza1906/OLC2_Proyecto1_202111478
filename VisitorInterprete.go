@@ -623,9 +623,7 @@ func (vI *VisitorInterprete) VisitDeclaracion_Funcion(ctx *TswiftP.Declaracion_F
 	//sentencias
 	sentencias := ctx.L_sentencias().Accept(vI).(interprete.AbstractExpression)
 
-	//retorno
-	retorno := ctx.Trans_sentencia().Accept(vI).(interprete.AbstractExpression)
-	return noterm.NewNT_DecFuncion(id, parametros, "funcion", tipo, sentencias, retorno, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
+	return noterm.NewNT_DecFuncion(id, parametros, "funcion", tipo, sentencias, nil, ctx.ID().GetSymbol().GetLine(), ctx.ID().GetSymbol().GetColumn())
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#L_Parametros.
@@ -687,6 +685,30 @@ func (vI *VisitorInterprete) VisitL_Argumentos(ctx *TswiftP.L_ArgumentosContext)
 	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
 
 	return noterm.NewNT_Fargumento(id, referencia, expr)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Func_Int.
+func (vI *VisitorInterprete) VisitFunc_Int(ctx *TswiftP.Func_IntContext) interface{} {
+	//expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_FuncEmbebida("Int", expr, ctx.E().GetStart().GetLine(), ctx.E().GetStart().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Func_Float.
+func (vI *VisitorInterprete) VisitFunc_Float(ctx *TswiftP.Func_FloatContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_FuncEmbebida("Float", expr, ctx.E().GetStart().GetLine(), ctx.E().GetStart().GetColumn())
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Func_String.
+func (vI *VisitorInterprete) VisitFunc_String(ctx *TswiftP.Func_StringContext) interface{} {
+	// expresion
+	expr := ctx.E().Accept(vI).(interprete.AbstractExpression)
+
+	return noterm.NewNT_FuncEmbebida("String", expr, ctx.E().GetStart().GetLine(), ctx.E().GetStart().GetColumn())
 }
 
 //STRUCTS
@@ -910,7 +932,7 @@ func (vI *VisitorInterprete) VisitExpr_Par(ctx *TswiftP.Expr_ParContext) interfa
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Nil.
 func (vI *VisitorInterprete) VisitExpr_Nil(ctx *TswiftP.Expr_NilContext) interface{} {
-	return ctx.NIL().GetText()
+	return terminales.NewT_Nil(ctx.NIL().GetText(), ctx.NIL().GetSymbol().GetLine(), ctx.NIL().GetSymbol().GetColumn())
 }
 
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Booleano.
@@ -993,4 +1015,9 @@ func (vI *VisitorInterprete) VisitExpr_Matriz(ctx *TswiftP.Expr_MatrizContext) i
 // Visit a parse tree produced by Tswift_GrammarParser#Expr_Llamada_Funcion.
 func (vI *VisitorInterprete) VisitExpr_Llamada_Funcion(ctx *TswiftP.Expr_Llamada_FuncionContext) interface{} {
 	return ctx.Llamada_funciones().Accept(vI).(interprete.AbstractExpression)
+}
+
+// Visit a parse tree produced by Tswift_GrammarParser#Expr_Funciones_Embebidas.
+func (vI *VisitorInterprete) VisitExpr_Funciones_Embebidas(ctx *TswiftP.Expr_Funciones_EmbebidasContext) interface{} {
+	return ctx.Funciones_embebidas().Accept(vI).(interprete.AbstractExpression)
 }

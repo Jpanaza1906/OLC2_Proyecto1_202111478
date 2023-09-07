@@ -169,7 +169,7 @@ declaracion_metodo:
     FUNC ID PARIZQ l_parametros* PARDER LLAVEIZQ l_sentencias LLAVEDER #Declaracion_Metodo
     ;
 declaracion_funcion:
-    FUNC ID PARIZQ l_parametros* PARDER MENOS MAYOR tipo LLAVEIZQ l_sentencias trans_sentencia PTCOMA? LLAVEDER #Declaracion_Funcion 
+    FUNC ID PARIZQ l_parametros* PARDER MENOS MAYOR tipo LLAVEIZQ l_sentencias LLAVEDER #Declaracion_Funcion 
     ;
 
 l_parametros: prim=(ID | GUIONBAJO)? ID DOSPT INOUT? tipo ','?#L_Parametros
@@ -181,6 +181,12 @@ llamada_funciones:
 
 l_argumentos:
     (ID ':')? DIR? e ','? #L_Argumentos
+    ;
+
+funciones_embebidas:
+    (INT|ATOI) PARIZQ e PARDER #Func_Int
+    |FLOAT PARIZQ e PARDER #Func_Float
+    |(STRING|IOTA) PARIZQ e PARDER #Func_String
     ;
 
 //Structs -----------------------------------------------------------------------
@@ -219,6 +225,7 @@ e
     | e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
     | e op=(AND | OR) e     # Expr_Logica
     | op=(TRUE | FALSE)          # Expr_Booleano
+    | funciones_embebidas # Expr_Funciones_Embebidas
     | llamada_funciones # Expr_Llamada_Funcion
     | ID CORCHETEIZQ ENTERO CORCHETEDER CORCHETEIZQ ENTERO CORCHETEDER (CORCHETEIZQ ENTERO CORCHETEDER)* # Expr_Matriz
     | ID CORCHETEIZQ e CORCHETEDER # Expr_Vector

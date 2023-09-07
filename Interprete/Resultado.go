@@ -86,7 +86,7 @@ func NewFloatLiteral(valor float64) *Resultado {
 		Nil:    false,
 		ValorF: valor,
 		Valor:  0,
-		ValorS: strconv.FormatFloat(valor, 'f', 2, 64),
+		ValorS: strconv.FormatFloat(valor, 'f', 4, 64),
 		Tipo:   Float,
 	}
 }

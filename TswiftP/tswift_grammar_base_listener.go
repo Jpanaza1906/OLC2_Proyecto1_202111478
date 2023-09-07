@@ -436,6 +436,24 @@ func (s *BaseTswift_GrammarListener) EnterL_Argumentos(ctx *L_ArgumentosContext)
 // ExitL_Argumentos is called when production L_Argumentos is exited.
 func (s *BaseTswift_GrammarListener) ExitL_Argumentos(ctx *L_ArgumentosContext) {}
 
+// EnterFunc_Int is called when production Func_Int is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Int(ctx *Func_IntContext) {}
+
+// ExitFunc_Int is called when production Func_Int is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Int(ctx *Func_IntContext) {}
+
+// EnterFunc_Float is called when production Func_Float is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_Float(ctx *Func_FloatContext) {}
+
+// ExitFunc_Float is called when production Func_Float is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_Float(ctx *Func_FloatContext) {}
+
+// EnterFunc_String is called when production Func_String is entered.
+func (s *BaseTswift_GrammarListener) EnterFunc_String(ctx *Func_StringContext) {}
+
+// ExitFunc_String is called when production Func_String is exited.
+func (s *BaseTswift_GrammarListener) ExitFunc_String(ctx *Func_StringContext) {}
+
 // EnterDef_Struct is called when production Def_Struct is entered.
 func (s *BaseTswift_GrammarListener) EnterDef_Struct(ctx *Def_StructContext) {}
 
@@ -508,6 +526,14 @@ func (s *BaseTswift_GrammarListener) EnterExpr_Rel(ctx *Expr_RelContext) {}
 
 // ExitExpr_Rel is called when production Expr_Rel is exited.
 func (s *BaseTswift_GrammarListener) ExitExpr_Rel(ctx *Expr_RelContext) {}
+
+// EnterExpr_Funciones_Embebidas is called when production Expr_Funciones_Embebidas is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Funciones_Embebidas(ctx *Expr_Funciones_EmbebidasContext) {
+}
+
+// ExitExpr_Funciones_Embebidas is called when production Expr_Funciones_Embebidas is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Funciones_Embebidas(ctx *Expr_Funciones_EmbebidasContext) {
+}
 
 // EnterExpr_Decimal is called when production Expr_Decimal is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Decimal(ctx *Expr_DecimalContext) {}

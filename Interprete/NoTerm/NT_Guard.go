@@ -33,7 +33,11 @@ func (NTg *NT_Guard) Interpretar(ctx *interprete.Contexto) *interprete.Resultado
 		ctx.PushAmbito("Guard")
 		NTg.Sentencia.Interpretar(ctx)
 		//Se coloca la transicion de sentencia
-		ctx.AddTransSentencia(NTg.TransSent.Interpretar(ctx))
+		resul := NTg.TransSent.Interpretar(ctx)
+		if !resul.Nil {
+			ctx.PopAmbito()
+			return resul
+		}
 		//Se saca el ambito
 		ctx.PopAmbito()
 	}

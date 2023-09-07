@@ -32,7 +32,10 @@ func (NT_LF *NT_LlamadaFuncion) Interpretar(ctx *interprete.Contexto) *interpret
 		ctx.AddError("La funcion " + NT_LF.Id + " no existe en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
 		return interprete.NewNil()
 	}
-	ctx.PushAmbito("Funcion " + NT_LF.Id)
+	//Se crea un vector de resultados para guardar los valores de los parametros
+
+	var valores []*interprete.Resultado
+
 	for i := 0; i < funcionL.Nparametros; i++ {
 		parametro := funcionL.Parametros[i].(*NT_Fparametro)
 		atributo := NT_LF.Atributos[i].(*NT_Fargumento)
@@ -69,9 +72,7 @@ func (NT_LF *NT_LlamadaFuncion) Interpretar(ctx *interprete.Contexto) *interpret
 					return interprete.NewNil()
 				}
 				// se agrega una variable que referencie a la variable del contexto
-				ctx.AddVariable(parametro.Id, valorparam.Tipo, valorparam, NT_LF.Linea, NT_LF.Columna)
-
-				// se actualiza el valor de la variable
+				valores = append(valores, valorparam)
 
 			} else {
 				ctx.AddError("El parametro " + parametro.Id + " es por referencia y no se le puede asignar un valor en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
@@ -80,23 +81,38 @@ func (NT_LF *NT_LlamadaFuncion) Interpretar(ctx *interprete.Contexto) *interpret
 		} else {
 			valor := atributo.Expresion.Interpretar(ctx)
 			valorparam = valor
+			//el problema es que opera el primer valor de M, y al meterlo a la otra funcion lo opera de una vez, asi que toma el valor de la M en la nueva funcion
 			if parametro.Tipo != valorparam.Tipo.String() {
 				ctx.AddError("El tipo de dato del parametro " + parametro.Id + " no coincide con el tipo de dato del atributo en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
 				return interprete.NewNil()
 			}
 			//se agrega una nueva variable al contexto
-			ctx.AddVariable(parametro.Id, valorparam.Tipo, valorparam, NT_LF.Linea, NT_LF.Columna)
+			valores = append(valores, valorparam)
 		}
 
 	}
+	// se evalua que el vector de valores sea del mismo tamaño al numero de parametros
+	if len(valores) != funcionL.Nparametros {
+		ctx.AddError("El numero de parametros no coincide con el numero de atributos en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
+		return interprete.NewNil()
+	}
 
+	// se crea un nuevo contexto para la funcion
+	ctx.PushAmbito("Funcion " + NT_LF.Id)
+	// se agregan las variables al contexto
+	for i := 0; i < len(funcionL.Parametros); i++ {
+		parametro := funcionL.Parametros[i].(*NT_Fparametro)
+		valorparam := valores[i]
+		ctx.AddVariable(parametro.Id, valorparam.Tipo, valorparam, NT_LF.Linea, NT_LF.Columna)
+	}
+
+	var resul *interprete.Resultado
 	if funcionL.Sentencias != nil {
 		// se ejecutan las sentencias de la funcion
-		funcionL.Sentencias.Interpretar(ctx)
+		resul = funcionL.Sentencias.Interpretar(ctx)
 	}
 	// si tiene valor de retorno se retorna
-	if funcionL.Retorno != nil {
-		resul := funcionL.Retorno.Interpretar(ctx)
+	if !resul.Nil {
 		ctx.PopAmbito()
 		//se verifica que el resultado sea del mismo tipo que el de la funcion
 		if resul.Tipo.String() != funcionL.Tipo_Retorno {

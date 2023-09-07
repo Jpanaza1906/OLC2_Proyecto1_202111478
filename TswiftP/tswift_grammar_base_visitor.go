@@ -283,6 +283,18 @@ func (v *BaseTswift_GrammarVisitor) VisitL_Argumentos(ctx *L_ArgumentosContext) 
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Int(ctx *Func_IntContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_Float(ctx *Func_FloatContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitFunc_String(ctx *Func_StringContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseTswift_GrammarVisitor) VisitDef_Struct(ctx *Def_StructContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -328,6 +340,10 @@ func (v *BaseTswift_GrammarVisitor) VisitTipo_Vector(ctx *Tipo_VectorContext) in
 }
 
 func (v *BaseTswift_GrammarVisitor) VisitExpr_Rel(ctx *Expr_RelContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseTswift_GrammarVisitor) VisitExpr_Funciones_Embebidas(ctx *Expr_Funciones_EmbebidasContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

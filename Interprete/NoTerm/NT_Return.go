@@ -16,6 +16,8 @@ func NewNT_Return(exp interprete.AbstractExpression) *NT_Return {
 
 // Implementacion de la interfaz de AbstractExpression----------------
 func (NTR *NT_Return) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
-	ctx.AddReturnSentencia(NTR.Exp)
-	return NTR.Exp.Interpretar(ctx)
+	if NTR.Exp != nil {
+		return NTR.Exp.Interpretar(ctx)
+	}
+	return interprete.NewNil()
 }

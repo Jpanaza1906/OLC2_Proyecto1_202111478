@@ -24,10 +24,10 @@ func (ls *NT_LSentencias) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 		if len(ctx.TransState) > 0 {
 			break
 		}
-		if len(ctx.ReturnState) > 0 {
-			break
+		resul := sentencia.Interpretar(ctx)
+		if !resul.Nil {
+			return resul
 		}
-		sentencia.Interpretar(ctx)
 	}
 	return interprete.NewNil()
 }

@@ -47,7 +47,21 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 				// se asigna el valor de la constante
 				ctx.AsigVariable(NTf.Id, interprete.NewStringLiteral(string(c)))
 				// se ejecuta la sentencia
-				NTf.Sentencia.Interpretar(ctx)
+				resul := NTf.Sentencia.Interpretar(ctx)
+				if !resul.Nil {
+					ctx.PopAmbito()
+					return resul
+				}
+
+				if len(ctx.TransState) > 0 {
+					transt := ctx.TransState[len(ctx.TransState)-1]
+					ctx.RemTransSentencia()
+					if transt.ValorS == "break" {
+						break
+					} else if transt.ValorS == "continue" {
+						continue
+					}
+				}
 			}
 			// se saca el ambito
 			ctx.PopAmbito()
@@ -64,6 +78,19 @@ func (NTf *NT_For) Interpretar(ctx *interprete.Contexto) *interprete.Resultado {
 				ctx.AsigVariable(NTf.Id, &v)
 				// se ejecuta la sentencia
 				NTf.Sentencia.Interpretar(ctx)
+
+				if len(ctx.TransState) > 0 {
+					transt := ctx.TransState[len(ctx.TransState)-1]
+					ctx.RemTransSentencia()
+					if transt.ValorS == "break" {
+						break
+					} else if transt.ValorS == "continue" {
+						continue
+					}
+				}
+				if len(ctx.ReturnState) > 0 {
+					break
+				}
 			}
 			// se saca el ambito
 			ctx.PopAmbito()
