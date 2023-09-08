@@ -20,6 +20,7 @@ var rutaCompleta string
 var Consola = widget.NewMultiLineEntry()
 var Simbolos = widget.NewMultiLineEntry()
 var Errores = widget.NewMultiLineEntry()
+var Funciones = widget.NewMultiLineEntry()
 
 //FUNCION PARA CREAR LAS TABS DE CONSOLA, SIMBOLOS, ERRORES
 func createTabContent(entry fyne.Widget) *fyne.Container {
@@ -119,6 +120,17 @@ func ejecutarInterprete(entrada string) {
 			Simbolos.SetText(Simbolos.Text + "------------------------------------------\n")
 		}
 	}
+	//agregar cada funcion a la caja de texto de funciones
+	for _, funciones := range context.Funciones {
+		Funciones.SetText(Funciones.Text + "\n------------------------------------------\n")
+		Funciones.SetText(Funciones.Text + "Funcion: " + funciones.Nombre + "\n")
+		Funciones.SetText(Funciones.Text + "Ambito: " + funciones.Ambito + "\n")
+		Funciones.SetText(Funciones.Text + "Parametros: " + fmt.Sprint(funciones.Nparametros) + "\n")
+		Funciones.SetText(Funciones.Text + "Tipo: " + funciones.Tipo_Funcion + "\n")
+		Funciones.SetText(Funciones.Text + "Tipo Retorno: " + funciones.Tipo_Retorno + "\n")
+		Funciones.SetText(Funciones.Text + "Linea: " + fmt.Sprint(funciones.Linea) + "| Columna: " + fmt.Sprint(funciones.Columna) + "\n")
+		Funciones.SetText(Funciones.Text + "------------------------------------------\n")
+	}
 
 }
 
@@ -146,6 +158,9 @@ func VentanaM() {
 	Simbolos = widget.NewMultiLineEntry()
 	Simbolos.Wrapping = fyne.TextWrapBreak
 	//Simbolos.Disable()
+
+	Funciones = widget.NewMultiLineEntry()
+	Funciones.Wrapping = fyne.TextWrapBreak
 
 	Errores = widget.NewMultiLineEntry()
 	Errores.Wrapping = fyne.TextWrapBreak
@@ -253,6 +268,7 @@ func VentanaM() {
 	tabContainer := container.NewAppTabs(
 		container.NewTabItem("Consola", createTabContent(Consola)),
 		container.NewTabItem("Símbolos", createTabContent(Simbolos)),
+		container.NewTabItem("Funciones", createTabContent(Funciones)),
 		container.NewTabItem("Errores", createTabContent(Errores)),
 	)
 	//se coloca en un contenedor las tabs

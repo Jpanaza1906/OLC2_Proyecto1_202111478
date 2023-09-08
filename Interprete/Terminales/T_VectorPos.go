@@ -55,7 +55,19 @@ func (T_vec *T_VectorPos) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 		return interprete.NewNil()
 	}
 
-	//Se retorna el valor del vector en la posicion
-	return &vec.ValorV[pos.Valor]
+	//Se hace una copia del valor del vector
+
+	val := vec.ValorV[pos.Valor]
+
+	if val.Tipo == interprete.Bool {
+		return interprete.NewBoolLiteral(val.ValorB)
+	} else if val.Tipo == interprete.Integer {
+		return interprete.NewIntLiteral(val.Valor)
+	} else if val.Tipo == interprete.Float {
+		return interprete.NewFloatLiteral(val.ValorF)
+	} else if val.Tipo == interprete.String {
+		return interprete.NewStringLiteral(val.ValorS)
+	}
+	return interprete.NewNil()
 
 }
