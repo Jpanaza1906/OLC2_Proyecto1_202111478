@@ -67,6 +67,18 @@ type Tswift_GrammarListener interface {
 	// EnterS_Asignacion_Matriz is called when entering the S_Asignacion_Matriz production.
 	EnterS_Asignacion_Matriz(c *S_Asignacion_MatrizContext)
 
+	// EnterS_Def_Struct is called when entering the S_Def_Struct production.
+	EnterS_Def_Struct(c *S_Def_StructContext)
+
+	// EnterS_Self_Data is called when entering the S_Self_Data production.
+	EnterS_Self_Data(c *S_Self_DataContext)
+
+	// EnterS_Struct_Data is called when entering the S_Struct_Data production.
+	EnterS_Struct_Data(c *S_Struct_DataContext)
+
+	// EnterS_Struct_Llamada_Func is called when entering the S_Struct_Llamada_Func production.
+	EnterS_Struct_Llamada_Func(c *S_Struct_Llamada_FuncContext)
+
 	// EnterPrint is called when entering the Print production.
 	EnterPrint(c *PrintContext)
 
@@ -232,11 +244,17 @@ type Tswift_GrammarListener interface {
 	// EnterL_Funciones is called when entering the L_Funciones production.
 	EnterL_Funciones(c *L_FuncionesContext)
 
-	// EnterCreacion_Struct is called when entering the Creacion_Struct production.
-	EnterCreacion_Struct(c *Creacion_StructContext)
+	// EnterSelf_Data is called when entering the Self_Data production.
+	EnterSelf_Data(c *Self_DataContext)
 
-	// EnterCreacion_Struct_Simple is called when entering the Creacion_Struct_Simple production.
-	EnterCreacion_Struct_Simple(c *Creacion_Struct_SimpleContext)
+	// EnterStruct_Data is called when entering the Struct_Data production.
+	EnterStruct_Data(c *Struct_DataContext)
+
+	// EnterId_Struct is called when entering the Id_Struct production.
+	EnterId_Struct(c *Id_StructContext)
+
+	// EnterStruct_Llamada_Func is called when entering the Struct_Llamada_Func production.
+	EnterStruct_Llamada_Func(c *Struct_Llamada_FuncContext)
 
 	// EnterTipo_Int is called when entering the Tipo_Int production.
 	EnterTipo_Int(c *Tipo_IntContext)
@@ -252,6 +270,9 @@ type Tswift_GrammarListener interface {
 
 	// EnterTipo_Character is called when entering the Tipo_Character production.
 	EnterTipo_Character(c *Tipo_CharacterContext)
+
+	// EnterTipo_Struct is called when entering the Tipo_Struct production.
+	EnterTipo_Struct(c *Tipo_StructContext)
 
 	// EnterTipo_Vector is called when entering the Tipo_Vector production.
 	EnterTipo_Vector(c *Tipo_VectorContext)
@@ -270,6 +291,9 @@ type Tswift_GrammarListener interface {
 
 	// EnterExpr_SumRes is called when entering the Expr_SumRes production.
 	EnterExpr_SumRes(c *Expr_SumResContext)
+
+	// EnterExpr_Llamada_Funcion_Struct is called when entering the Expr_Llamada_Funcion_Struct production.
+	EnterExpr_Llamada_Funcion_Struct(c *Expr_Llamada_Funcion_StructContext)
 
 	// EnterExpr_Matriz is called when entering the Expr_Matriz production.
 	EnterExpr_Matriz(c *Expr_MatrizContext)
@@ -292,8 +316,14 @@ type Tswift_GrammarListener interface {
 	// EnterFunc_Vector_Count is called when entering the Func_Vector_Count production.
 	EnterFunc_Vector_Count(c *Func_Vector_CountContext)
 
+	// EnterExpr_Struct is called when entering the Expr_Struct production.
+	EnterExpr_Struct(c *Expr_StructContext)
+
 	// EnterExpr_Cadena is called when entering the Expr_Cadena production.
 	EnterExpr_Cadena(c *Expr_CadenaContext)
+
+	// EnterExpr_Self is called when entering the Expr_Self production.
+	EnterExpr_Self(c *Expr_SelfContext)
 
 	// EnterExpr_Id is called when entering the Expr_Id production.
 	EnterExpr_Id(c *Expr_IdContext)
@@ -375,6 +405,18 @@ type Tswift_GrammarListener interface {
 
 	// ExitS_Asignacion_Matriz is called when exiting the S_Asignacion_Matriz production.
 	ExitS_Asignacion_Matriz(c *S_Asignacion_MatrizContext)
+
+	// ExitS_Def_Struct is called when exiting the S_Def_Struct production.
+	ExitS_Def_Struct(c *S_Def_StructContext)
+
+	// ExitS_Self_Data is called when exiting the S_Self_Data production.
+	ExitS_Self_Data(c *S_Self_DataContext)
+
+	// ExitS_Struct_Data is called when exiting the S_Struct_Data production.
+	ExitS_Struct_Data(c *S_Struct_DataContext)
+
+	// ExitS_Struct_Llamada_Func is called when exiting the S_Struct_Llamada_Func production.
+	ExitS_Struct_Llamada_Func(c *S_Struct_Llamada_FuncContext)
 
 	// ExitPrint is called when exiting the Print production.
 	ExitPrint(c *PrintContext)
@@ -541,11 +583,17 @@ type Tswift_GrammarListener interface {
 	// ExitL_Funciones is called when exiting the L_Funciones production.
 	ExitL_Funciones(c *L_FuncionesContext)
 
-	// ExitCreacion_Struct is called when exiting the Creacion_Struct production.
-	ExitCreacion_Struct(c *Creacion_StructContext)
+	// ExitSelf_Data is called when exiting the Self_Data production.
+	ExitSelf_Data(c *Self_DataContext)
 
-	// ExitCreacion_Struct_Simple is called when exiting the Creacion_Struct_Simple production.
-	ExitCreacion_Struct_Simple(c *Creacion_Struct_SimpleContext)
+	// ExitStruct_Data is called when exiting the Struct_Data production.
+	ExitStruct_Data(c *Struct_DataContext)
+
+	// ExitId_Struct is called when exiting the Id_Struct production.
+	ExitId_Struct(c *Id_StructContext)
+
+	// ExitStruct_Llamada_Func is called when exiting the Struct_Llamada_Func production.
+	ExitStruct_Llamada_Func(c *Struct_Llamada_FuncContext)
 
 	// ExitTipo_Int is called when exiting the Tipo_Int production.
 	ExitTipo_Int(c *Tipo_IntContext)
@@ -561,6 +609,9 @@ type Tswift_GrammarListener interface {
 
 	// ExitTipo_Character is called when exiting the Tipo_Character production.
 	ExitTipo_Character(c *Tipo_CharacterContext)
+
+	// ExitTipo_Struct is called when exiting the Tipo_Struct production.
+	ExitTipo_Struct(c *Tipo_StructContext)
 
 	// ExitTipo_Vector is called when exiting the Tipo_Vector production.
 	ExitTipo_Vector(c *Tipo_VectorContext)
@@ -579,6 +630,9 @@ type Tswift_GrammarListener interface {
 
 	// ExitExpr_SumRes is called when exiting the Expr_SumRes production.
 	ExitExpr_SumRes(c *Expr_SumResContext)
+
+	// ExitExpr_Llamada_Funcion_Struct is called when exiting the Expr_Llamada_Funcion_Struct production.
+	ExitExpr_Llamada_Funcion_Struct(c *Expr_Llamada_Funcion_StructContext)
 
 	// ExitExpr_Matriz is called when exiting the Expr_Matriz production.
 	ExitExpr_Matriz(c *Expr_MatrizContext)
@@ -601,8 +655,14 @@ type Tswift_GrammarListener interface {
 	// ExitFunc_Vector_Count is called when exiting the Func_Vector_Count production.
 	ExitFunc_Vector_Count(c *Func_Vector_CountContext)
 
+	// ExitExpr_Struct is called when exiting the Expr_Struct production.
+	ExitExpr_Struct(c *Expr_StructContext)
+
 	// ExitExpr_Cadena is called when exiting the Expr_Cadena production.
 	ExitExpr_Cadena(c *Expr_CadenaContext)
+
+	// ExitExpr_Self is called when exiting the Expr_Self production.
+	ExitExpr_Self(c *Expr_SelfContext)
 
 	// ExitExpr_Id is called when exiting the Expr_Id production.
 	ExitExpr_Id(c *Expr_IdContext)

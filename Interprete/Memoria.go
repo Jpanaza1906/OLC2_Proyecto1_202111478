@@ -54,6 +54,15 @@ func (m *Memoria) Exist(nombre string) bool {
 	return ok
 }
 
+//Se hace una copia de la memoria
+func (m *Memoria) Copy() *Memoria {
+	memoria := NewMemoria(nil, m.Nambito)
+	for key, value := range m.Variables {
+		memoria.Variables[key] = value
+	}
+	return memoria
+}
+
 // Obtener simbolo en memoria----------------------------------------------
 
 func (m *Memoria) GetSimbolo(nombre string) (*Simbolo, bool) {

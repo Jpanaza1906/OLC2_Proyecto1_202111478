@@ -29,7 +29,43 @@ func (NT_LF *NT_LlamadaFuncion) Interpretar(ctx *interprete.Contexto) *interpret
 	// se verifica que la funcion exista
 	funcionL, existe := ctx.ExistFuncion(NT_LF.Id)
 	if !existe {
-		ctx.AddError("La funcion " + NT_LF.Id + " no existe en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
+		if ctx.ExistStruct(NT_LF.Id) {
+			//se obtiene el valor de la variable del atributo
+			var valores []*interprete.Resultado
+			for _, atr := range NT_LF.Atributos {
+				atributo := atr.(*NT_Fargumento)
+				//se interpreta el atributo
+				valores = append(valores, atributo.Expresion.Interpretar(ctx))
+			}
+			//se obtiene el struct del contexto
+			structctx := ctx.GetStruct(NT_LF.Id)
+
+			//se hace una copia del contexto para no afectar el original
+			structf := interprete.NewContexto(NT_LF.Id)
+
+			//se recorre el struct viejo para obtener las variables que debe de tener
+			for _, variable := range structctx.Memoria.Variables {
+				//se agrega la variable al nuevo struct
+				structf.AddVariable(variable.Nombre, variable.Tipo, variable.Resultado, variable.Linea, variable.Columna)
+			}
+
+			//se agregan los valores al struct
+			for i := 0; i < len(valores); i++ {
+				atributo := NT_LF.Atributos[i].(*NT_Fargumento)
+				valorparam := valores[i]
+				structf.AsigVariable(atributo.Id, valorparam)
+			}
+
+			//se agregan las funciones al struct
+			structf.Funciones = structctx.Funciones
+
+			//Se crea un resulado con el struct
+			resultado := interprete.NewStructLiteral(structf)
+
+			return resultado
+
+		}
+		ctx.AddError("La funcion/struct " + NT_LF.Id + " no existe en la linea " + strconv.Itoa(NT_LF.Linea) + " y columna " + strconv.Itoa(NT_LF.Columna))
 		return interprete.NewNil()
 	}
 	//Se crea un vector de resultados para guardar los valores de los parametros
@@ -110,6 +146,7 @@ func (NT_LF *NT_LlamadaFuncion) Interpretar(ctx *interprete.Contexto) *interpret
 	if funcionL.Sentencias != nil {
 		// se ejecutan las sentencias de la funcion
 		resul = funcionL.Sentencias.Interpretar(ctx)
+
 	}
 	// si tiene valor de retorno se retorna
 	if !resul.Nil {

@@ -11,6 +11,7 @@ const (
 	Float   TipoE = 3
 	String  TipoE = 4
 	Vector  TipoE = 5
+	StructT TipoE = 6
 )
 
 func (t TipoE) String() string {
@@ -27,19 +28,22 @@ func (t TipoE) String() string {
 		return "String"
 	case Vector:
 		return "Vector"
+	case StructT:
+		return "Struct"
 	default:
 		return "Unknown"
 	}
 }
 
 type Resultado struct {
-	Nil    bool
-	ValorB bool
-	Valor  int
-	ValorF float64
-	ValorS string
-	ValorV []Resultado
-	Tipo   TipoE
+	Nil     bool
+	ValorB  bool
+	Valor   int
+	ValorF  float64
+	ValorS  string
+	ValorV  []Resultado
+	StructC *Contexto
+	Tipo    TipoE
 }
 
 // Constructor para NIL RESULTADO----------------------------------------------
@@ -135,5 +139,13 @@ func NewVectorLiteral(valor []Resultado) *Resultado {
 		ValorS: valorS,
 		ValorV: valor,
 		Tipo:   Vector,
+	}
+}
+
+//constructor para STRUCT RESULTADO----------------------------------------------
+func NewStructLiteral(valor *Contexto) *Resultado {
+	return &Resultado{
+		StructC: valor,
+		Tipo:    StructT,
 	}
 }

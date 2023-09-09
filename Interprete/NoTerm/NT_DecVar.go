@@ -36,6 +36,23 @@ func (NT_DV *NT_DecVar) Interpretar(ctx *interprete.Contexto) *interprete.Result
 
 	if NT_DV.Tipo == "" {
 		NT_DV.Tipo = expr.Tipo.String()
+	} else {
+		switch NT_DV.Tipo {
+		case "Int":
+			expr.Tipo = interprete.Integer
+		case "Float":
+			expr.Tipo = interprete.Float
+		case "String":
+			expr.Tipo = interprete.String
+		case "Bool":
+			expr.Tipo = interprete.Bool
+		case "Char":
+			expr.Tipo = interprete.String
+		case "Vector":
+			expr.Tipo = interprete.Vector
+		default:
+			expr.Tipo = interprete.StructT
+		}
 	}
 
 	//Si no tiene expresion, solo tipo y variable. Se le asigna un valor por defecto segun el tipo

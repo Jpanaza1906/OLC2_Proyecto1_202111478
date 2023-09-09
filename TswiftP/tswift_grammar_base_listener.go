@@ -140,6 +140,30 @@ func (s *BaseTswift_GrammarListener) EnterS_Asignacion_Matriz(ctx *S_Asignacion_
 // ExitS_Asignacion_Matriz is called when production S_Asignacion_Matriz is exited.
 func (s *BaseTswift_GrammarListener) ExitS_Asignacion_Matriz(ctx *S_Asignacion_MatrizContext) {}
 
+// EnterS_Def_Struct is called when production S_Def_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Def_Struct(ctx *S_Def_StructContext) {}
+
+// ExitS_Def_Struct is called when production S_Def_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Def_Struct(ctx *S_Def_StructContext) {}
+
+// EnterS_Self_Data is called when production S_Self_Data is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Self_Data(ctx *S_Self_DataContext) {}
+
+// ExitS_Self_Data is called when production S_Self_Data is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Self_Data(ctx *S_Self_DataContext) {}
+
+// EnterS_Struct_Data is called when production S_Struct_Data is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Struct_Data(ctx *S_Struct_DataContext) {}
+
+// ExitS_Struct_Data is called when production S_Struct_Data is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Struct_Data(ctx *S_Struct_DataContext) {}
+
+// EnterS_Struct_Llamada_Func is called when production S_Struct_Llamada_Func is entered.
+func (s *BaseTswift_GrammarListener) EnterS_Struct_Llamada_Func(ctx *S_Struct_Llamada_FuncContext) {}
+
+// ExitS_Struct_Llamada_Func is called when production S_Struct_Llamada_Func is exited.
+func (s *BaseTswift_GrammarListener) ExitS_Struct_Llamada_Func(ctx *S_Struct_Llamada_FuncContext) {}
+
 // EnterPrint is called when production Print is entered.
 func (s *BaseTswift_GrammarListener) EnterPrint(ctx *PrintContext) {}
 
@@ -472,18 +496,29 @@ func (s *BaseTswift_GrammarListener) EnterL_Funciones(ctx *L_FuncionesContext) {
 // ExitL_Funciones is called when production L_Funciones is exited.
 func (s *BaseTswift_GrammarListener) ExitL_Funciones(ctx *L_FuncionesContext) {}
 
-// EnterCreacion_Struct is called when production Creacion_Struct is entered.
-func (s *BaseTswift_GrammarListener) EnterCreacion_Struct(ctx *Creacion_StructContext) {}
+// EnterSelf_Data is called when production Self_Data is entered.
+func (s *BaseTswift_GrammarListener) EnterSelf_Data(ctx *Self_DataContext) {}
 
-// ExitCreacion_Struct is called when production Creacion_Struct is exited.
-func (s *BaseTswift_GrammarListener) ExitCreacion_Struct(ctx *Creacion_StructContext) {}
+// ExitSelf_Data is called when production Self_Data is exited.
+func (s *BaseTswift_GrammarListener) ExitSelf_Data(ctx *Self_DataContext) {}
 
-// EnterCreacion_Struct_Simple is called when production Creacion_Struct_Simple is entered.
-func (s *BaseTswift_GrammarListener) EnterCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) {
-}
+// EnterStruct_Data is called when production Struct_Data is entered.
+func (s *BaseTswift_GrammarListener) EnterStruct_Data(ctx *Struct_DataContext) {}
 
-// ExitCreacion_Struct_Simple is called when production Creacion_Struct_Simple is exited.
-func (s *BaseTswift_GrammarListener) ExitCreacion_Struct_Simple(ctx *Creacion_Struct_SimpleContext) {}
+// ExitStruct_Data is called when production Struct_Data is exited.
+func (s *BaseTswift_GrammarListener) ExitStruct_Data(ctx *Struct_DataContext) {}
+
+// EnterId_Struct is called when production Id_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterId_Struct(ctx *Id_StructContext) {}
+
+// ExitId_Struct is called when production Id_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitId_Struct(ctx *Id_StructContext) {}
+
+// EnterStruct_Llamada_Func is called when production Struct_Llamada_Func is entered.
+func (s *BaseTswift_GrammarListener) EnterStruct_Llamada_Func(ctx *Struct_Llamada_FuncContext) {}
+
+// ExitStruct_Llamada_Func is called when production Struct_Llamada_Func is exited.
+func (s *BaseTswift_GrammarListener) ExitStruct_Llamada_Func(ctx *Struct_Llamada_FuncContext) {}
 
 // EnterTipo_Int is called when production Tipo_Int is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Int(ctx *Tipo_IntContext) {}
@@ -514,6 +549,12 @@ func (s *BaseTswift_GrammarListener) EnterTipo_Character(ctx *Tipo_CharacterCont
 
 // ExitTipo_Character is called when production Tipo_Character is exited.
 func (s *BaseTswift_GrammarListener) ExitTipo_Character(ctx *Tipo_CharacterContext) {}
+
+// EnterTipo_Struct is called when production Tipo_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterTipo_Struct(ctx *Tipo_StructContext) {}
+
+// ExitTipo_Struct is called when production Tipo_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitTipo_Struct(ctx *Tipo_StructContext) {}
 
 // EnterTipo_Vector is called when production Tipo_Vector is entered.
 func (s *BaseTswift_GrammarListener) EnterTipo_Vector(ctx *Tipo_VectorContext) {}
@@ -552,6 +593,14 @@ func (s *BaseTswift_GrammarListener) EnterExpr_SumRes(ctx *Expr_SumResContext) {
 
 // ExitExpr_SumRes is called when production Expr_SumRes is exited.
 func (s *BaseTswift_GrammarListener) ExitExpr_SumRes(ctx *Expr_SumResContext) {}
+
+// EnterExpr_Llamada_Funcion_Struct is called when production Expr_Llamada_Funcion_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Llamada_Funcion_Struct(ctx *Expr_Llamada_Funcion_StructContext) {
+}
+
+// ExitExpr_Llamada_Funcion_Struct is called when production Expr_Llamada_Funcion_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Llamada_Funcion_Struct(ctx *Expr_Llamada_Funcion_StructContext) {
+}
 
 // EnterExpr_Matriz is called when production Expr_Matriz is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Matriz(ctx *Expr_MatrizContext) {}
@@ -595,11 +644,23 @@ func (s *BaseTswift_GrammarListener) EnterFunc_Vector_Count(ctx *Func_Vector_Cou
 // ExitFunc_Vector_Count is called when production Func_Vector_Count is exited.
 func (s *BaseTswift_GrammarListener) ExitFunc_Vector_Count(ctx *Func_Vector_CountContext) {}
 
+// EnterExpr_Struct is called when production Expr_Struct is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Struct(ctx *Expr_StructContext) {}
+
+// ExitExpr_Struct is called when production Expr_Struct is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Struct(ctx *Expr_StructContext) {}
+
 // EnterExpr_Cadena is called when production Expr_Cadena is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Cadena(ctx *Expr_CadenaContext) {}
 
 // ExitExpr_Cadena is called when production Expr_Cadena is exited.
 func (s *BaseTswift_GrammarListener) ExitExpr_Cadena(ctx *Expr_CadenaContext) {}
+
+// EnterExpr_Self is called when production Expr_Self is entered.
+func (s *BaseTswift_GrammarListener) EnterExpr_Self(ctx *Expr_SelfContext) {}
+
+// ExitExpr_Self is called when production Expr_Self is exited.
+func (s *BaseTswift_GrammarListener) ExitExpr_Self(ctx *Expr_SelfContext) {}
 
 // EnterExpr_Id is called when production Expr_Id is entered.
 func (s *BaseTswift_GrammarListener) EnterExpr_Id(ctx *Expr_IdContext) {}

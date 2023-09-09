@@ -67,6 +67,8 @@ func (T_vec *T_VectorPos) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 		return interprete.NewFloatLiteral(val.ValorF)
 	} else if val.Tipo == interprete.String {
 		return interprete.NewStringLiteral(val.ValorS)
+	} else if val.Tipo == interprete.StructT {
+		return interprete.NewStructLiteral(val.StructC)
 	}
 	return interprete.NewNil()
 

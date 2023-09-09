@@ -36,6 +36,23 @@ func (NT_DC *NT_DecConst) Interpretar(ctx *interprete.Contexto) *interprete.Resu
 
 	if NT_DC.Tipo == "" {
 		NT_DC.Tipo = expr.Tipo.String()
+	} else {
+		switch NT_DC.Tipo {
+		case "Int":
+			expr.Tipo = interprete.Integer
+		case "Float":
+			expr.Tipo = interprete.Float
+		case "String":
+			expr.Tipo = interprete.String
+		case "Bool":
+			expr.Tipo = interprete.Bool
+		case "Char":
+			expr.Tipo = interprete.String
+		case "Vector":
+			expr.Tipo = interprete.Vector
+		default:
+			expr.Tipo = interprete.StructT
+		}
 	}
 
 	//Si el tipo de la expresion es igual al tipo de la variable, se agrega la variable al contexto

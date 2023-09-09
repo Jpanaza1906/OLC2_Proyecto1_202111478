@@ -3,6 +3,7 @@ package interprete
 // Clase Contexto --------------------------------------------------------------------------------------------
 
 type Contexto struct {
+	Nombre      string
 	Memoria     *Memoria
 	ZGlobal     []*Memoria
 	Consola     string
@@ -10,11 +11,13 @@ type Contexto struct {
 	ReturnState []AbstractExpression
 	Errores     []string
 	Funciones   []*Funcion
+	Structs     map[string]*Contexto
 	Conversor   *Conversor
 }
 
-func NewContexto() *Contexto {
+func NewContexto(nombre string) *Contexto {
 	c := &Contexto{
+		Nombre:      nombre,
 		Memoria:     NewMemoria(nil, "Global"),
 		ZGlobal:     make([]*Memoria, 0),
 		Consola:     "",
@@ -22,6 +25,7 @@ func NewContexto() *Contexto {
 		ReturnState: make([]AbstractExpression, 0, 10),
 		Errores:     make([]string, 0),
 		Funciones:   make([]*Funcion, 0),
+		Structs:     make(map[string]*Contexto, 0),
 		Conversor:   nil,
 	}
 	c.Conversor = NewConversor(c)
@@ -54,18 +58,6 @@ func (c *Contexto) AddVariable(nombre string, tipo TipoE, resultado *Resultado, 
 		return false
 	}
 	return c.Memoria.CreateSimbolo(nombre, "var", tipo, 0, -1, nil, resultado, nil, linea, columna)
-}
-
-// Agregar variable por referencia
-func (c *Contexto) AddVariableRef(nombre string, tipo TipoE, resultado *Resultado, linea int, columna int, variable Simbolo) bool {
-	existe := c.Memoria.Exist(nombre)
-	if existe {
-		return false
-	}
-	c.Memoria.CreateSimbolo(nombre, "var", tipo, 0, -1, nil, resultado, nil, linea, columna)
-	nuevavar, _ := c.GetVariable(nombre)
-	nuevavar = &variable
-	return nuevavar != nil
 }
 
 // Se crea una nueva constante en el ambito actual ----------------------------------------------
@@ -106,6 +98,17 @@ func (c *Contexto) ExistFuncion(nombre string) (*Funcion, bool) {
 	return nil, false
 }
 
+// Se agrega un struct al vector de structs
+func (c *Contexto) ExistStruct(nombre string) bool {
+	_, existe := c.Structs[nombre]
+	return existe
+}
+
+//Se agrega una funcion para devolver el struct por el nombre
+func (c *Contexto) GetStruct(nombre string) *Contexto {
+	return c.Structs[nombre]
+}
+
 // Se asigna un valor a una variable en el ambito actual ---------------------------------------------
 
 func (c *Contexto) AsigVariable(nombre string, expresion *Resultado) bool {
@@ -132,6 +135,21 @@ func (c *Contexto) AsigVariable(nombre string, expresion *Resultado) bool {
 		c.AddError("Error: No se le puede asignar un valor a una constante.")
 		return false
 	}
+}
+
+//se hace una copia del contexto para no afectar el original
+func (c *Contexto) Copy() *Contexto {
+	var copia = NewContexto(c.Nombre)
+	copia.Memoria = c.Memoria.Copy()
+	copia.ZGlobal = c.ZGlobal
+	copia.Consola = c.Consola
+	copia.TransState = c.TransState
+	copia.ReturnState = c.ReturnState
+	copia.Errores = c.Errores
+	copia.Funciones = c.Funciones
+	copia.Structs = c.Structs
+	copia.Conversor = c.Conversor
+	return copia
 }
 
 // Se obtiene el valor de una variable en el ambito actual ----------------------------------------------
@@ -191,4 +209,27 @@ func (c *Contexto) RemReturnSentencia() {
 //limpiar variables del contexto
 func (c *Contexto) LimpiarVariables() {
 	c.Memoria.LimpiarVariables()
+}
+
+//mutear funcion
+func (c *Contexto) MuteFuncion(nombre string) {
+	for _, funcion := range c.Funciones {
+		if funcion.Nombre == nombre {
+			funcion.Mutating = true
+		}
+	}
+}
+
+//Concatenar consolas de los structs
+func (c *Contexto) ConcatenarConsola() {
+	for _, struct_ := range c.Structs {
+		c.Consola += struct_.Consola
+	}
+}
+
+//limpiar consolas de los structs
+func (c *Contexto) LimpiarConsola() {
+	for _, struct_ := range c.Structs {
+		struct_.Consola = ""
+	}
 }

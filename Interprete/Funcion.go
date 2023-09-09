@@ -2,6 +2,7 @@ package interprete
 
 type Funcion struct {
 	Nombre       string
+	Mutating     bool
 	Ambito       string
 	Nparametros  int
 	Parametros   []AbstractExpression
@@ -17,6 +18,7 @@ type Funcion struct {
 func NewFuncion(nombre string, ambito string, nparametros int, parametros []AbstractExpression, tipo_funcion string, tipo_retorno string, sentencias AbstractExpression, linea int, columna int) *Funcion {
 	return &Funcion{
 		Nombre:       nombre,
+		Mutating:     false,
 		Ambito:       ambito,
 		Nparametros:  nparametros,
 		Parametros:   parametros,

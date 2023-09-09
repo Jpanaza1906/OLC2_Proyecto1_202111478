@@ -94,7 +94,7 @@ func ejecutarInterprete(entrada string) {
 	raiz := visitor.Visit(arbol).(interprete.AbstractExpression)
 
 	//Hacemos contexto
-	context := interprete.NewContexto()
+	context := interprete.NewContexto("Global")
 	//se inicializa la memoria global
 	context.ZGlobal = append(context.ZGlobal, context.Memoria)
 

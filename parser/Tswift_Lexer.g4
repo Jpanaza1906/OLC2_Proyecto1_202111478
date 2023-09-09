@@ -69,6 +69,7 @@ MUTATING : 'mutating';
 INOUT : 'inout';
 ATOI : 'atoi';
 IOTA : 'iota';
+SELF : 'self';
 //Tipos de datos reservadas
 INT: 'Int';
 FLOAT: 'Float';

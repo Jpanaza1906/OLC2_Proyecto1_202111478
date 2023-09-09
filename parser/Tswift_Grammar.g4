@@ -30,6 +30,10 @@ sentencia:
     |llamada_funciones PTCOMA?#S_Llamada_Funcion
     |declaracion_matrices PTCOMA?#S_Declaracion_Matriz
     |asig_mat PTCOMA?#S_Asignacion_Matriz
+    |def_struct #S_Def_Struct
+    |self_data PTCOMA?#S_Self_Data
+    |struct_data PTCOMA?#S_Struct_Data
+    |struct_llamadafunc PTCOMA?#S_Struct_Llamada_Func
     ;
 
 //Sentencia de impresion---------------------------------------------------------
@@ -196,15 +200,23 @@ def_struct:
     ;
 
 l_sentencias_struct:
-    (VAR|LET) ID (DOSPT tipo)? (IGUAL e)? PTCOMA? #L_Atributos
-    | MUTATING? declaracion_funcion #L_Funciones
+    tipod=(VAR|LET) ID (DOSPT tipo)? (IGUAL e)? PTCOMA? #L_Atributos
+    | MUTATING? (declaracion_metodo|declaracion_funcion) #L_Funciones
     ;
 
-creacion_struct:
-    (VAR|LET) ID (DOSPT ID)? IGUAL ID PARIZQ l_argumentos? PARDER #Creacion_Struct
-    | (VAR|LET) ID (DOSPT ID)? IGUAL ID #Creacion_Struct_Simple
+self_data:
+    SELF PUNTO asignacion #Self_Data
+    ;
+struct_data:
+    idstruct oper=(IGUAL|MASIGUAL|MENOSIGUAL) e #Struct_Data
+    ;
+idstruct:
+    e PUNTO ID #Id_Struct
     ;
 
+struct_llamadafunc:
+    e PUNTO llamada_funciones #Struct_Llamada_Func
+    ;
 
 //Tipos de datos-----------------------------------------------------------------
 tipo:
@@ -213,6 +225,7 @@ tipo:
     |STRING #Tipo_String
     |BOOL #Tipo_Bool
     |CHARACTER #Tipo_Character
+    | ID #Tipo_Struct
     |CORCHETEIZQ tipo CORCHETEDER #Tipo_Vector
     ;
 
@@ -225,8 +238,11 @@ e
     | e op=(IGUALIGUAL | DIFERENTE | MAYORIGUAL | MAYOR | MENORIGUAL | MENOR) e     # Expr_Rel
     | e op=(AND | OR) e     # Expr_Logica
     | op=(TRUE | FALSE)          # Expr_Booleano
+    | SELF PUNTO ID     # Expr_Self
+    | e PUNTO ID       # Expr_Struct
     | funciones_embebidas # Expr_Funciones_Embebidas
     | llamada_funciones # Expr_Llamada_Funcion
+    | e PUNTO llamada_funciones # Expr_Llamada_Funcion_Struct
     | ID CORCHETEIZQ ENTERO CORCHETEDER CORCHETEIZQ ENTERO CORCHETEDER (CORCHETEIZQ ENTERO CORCHETEDER)* # Expr_Matriz
     | ID CORCHETEIZQ e CORCHETEDER # Expr_Vector
     | ID PUNTO ISEMPTY #Func_Vector_isEmpty
